@@ -1,0 +1,56 @@
+.Conecta — Web de planes
+========================
+
+Contenido
+---------
+index.html        La web completa (HTML + CSS + JS en un solo archivo).
+assets/           Imágenes optimizadas (.webp con respaldo en .png).
+                  hero / motito / logo / logo-co
+
+
+Cómo verla
+----------
+Doble click en index.html. Se abre en el navegador, no hace falta instalar nada.
+
+
+Lo que tenés que cambiar antes de publicarla
+--------------------------------------------
+Abrí index.html con cualquier editor de texto y buscá el bloque CONFIG,
+casi al final del archivo:
+
+    const CONFIG = {
+      whatsapp: "5491112345678",      <-- tu número
+      email:    "hola@conecta.com.ar", <-- tu mail
+      marca:    ".Conecta"
+    };
+
+- whatsapp: sólo números, con código de país, sin "+" ni espacios ni guiones.
+  Ejemplo para Argentina (11 1234-5678):  5491112345678
+- email: la casilla donde querés recibir las consultas.
+
+Con eso ya quedan andando los botones de los tres planes (cada uno abre
+WhatsApp con un mensaje distinto según el plan) y los links de mail.
+
+También conviene cambiar los links de Instagram y TikTok del pie: están
+en la sección "pie__redes", cerca del final del HTML.
+
+
+Cómo publicarla
+---------------
+Es una web estática, así que sirve cualquier hosting gratuito.
+La forma más rápida: entrar a netlify.com/drop (o app.netlify.com) y
+arrastrar esta carpeta entera. En un minuto te da una URL.
+Otras opciones: Vercel, GitHub Pages, Cloudflare Pages.
+
+Si comprás un dominio propio (ej. conecta.com.ar), se conecta desde el
+panel del hosting.
+
+
+Cambios frecuentes
+------------------
+Precios y textos de los planes: están en el HTML, dentro de cada
+<article class="card">. Son texto plano, se editan directo.
+
+Colores: arriba de todo del CSS, en el bloque :root.
+  --naranja  #ff3000   (el de la marca)
+  --azul     #2440e0   (el resplandor del Plan Boost)
