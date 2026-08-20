@@ -19,7 +19,6 @@
    Para cambiar los datos de contacto, editá el bloque CONFIG
    que está en el <script> al final del archivo.
    ============================================================ */
-
 :root{
   --naranja:      #ff3000;
   --naranja-alto: #ff6a2a;
@@ -37,7 +36,6 @@
   --radio-card:   22px;
   --ancho:        1000px;
 }
-
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
@@ -53,9 +51,7 @@ body{
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 button{font:inherit}
-
 .contenedor{width:min(100% - 40px,var(--ancho));margin-inline:auto}
-
 /* ---------- 1. HERO ---------------------------------------- */
 .hero{
   position:relative;
@@ -85,7 +81,6 @@ button{font:inherit}
   width:min(74%,470px);
   filter:drop-shadow(0 8px 34px rgba(0,0,0,.30));
 }
-
 /* ---------- 2. PANEL DE PLANES ------------------------------ */
 .planes{
   position:relative;
@@ -107,7 +102,6 @@ button{font:inherit}
   z-index:-1;
   pointer-events:none;
 }
-
 .planes__head{
   display:flex;
   align-items:center;
@@ -124,7 +118,6 @@ button{font:inherit}
   margin:0;
 }
 .planes__co{width:clamp(46px,5vw,62px);opacity:.9}
-
 /* ---------- 3. GRILLA 2 + 1 --------------------------------- */
 .grilla{
   display:grid;
@@ -138,7 +131,6 @@ button{font:inherit}
   width:min(100%,436px);
   margin-inline:auto;
 }
-
 /* ---------- 4. TARJETA -------------------------------------- */
 .card{
   position:relative;
@@ -175,7 +167,6 @@ button{font:inherit}
   border-color:rgba(255,255,255,.14);
   box-shadow:0 24px 60px -24px rgba(0,0,0,.9);
 }
-
 .card__badge{
   position:absolute;
   top:16px;
@@ -192,7 +183,6 @@ button{font:inherit}
   color:#f0f0f0;
   white-space:nowrap;
 }
-
 .card__nombre{
   font-family:"Manrope",sans-serif;
   font-weight:500;
@@ -220,7 +210,6 @@ button{font:inherit}
   letter-spacing:-.02em;
 }
 .card__precio span{font-size:13.5px;color:#cfcfcf}
-
 .card__cta{
   display:block;
   width:100%;
@@ -241,7 +230,6 @@ button{font:inherit}
 }
 .card__cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
 .card__cta:active{transform:translateY(0)}
-
 .card__ajustes{
   display:flex;
   align-items:center;
@@ -252,7 +240,6 @@ button{font:inherit}
   color:#d2d2d2;
 }
 .card__ajustes svg{flex:none;opacity:.8}
-
 .card__sep{
   display:flex;
   align-items:center;
@@ -268,7 +255,6 @@ button{font:inherit}
   height:1px;
   background:rgba(255,255,255,.13);
 }
-
 .card__lista{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .card__lista li{
   display:flex;
@@ -279,7 +265,6 @@ button{font:inherit}
   color:#cfcfcf;
 }
 .card__lista svg{flex:none;margin-top:2px;opacity:.75}
-
 .card__mail{
   display:inline-flex;
   align-items:center;
@@ -291,7 +276,6 @@ button{font:inherit}
   transition:color .2s ease,border-color .2s ease;
 }
 .card__mail:hover{color:#fff;border-color:rgba(255,255,255,.35)}
-
 /* ---------- 5. MOTITO + CIERRE DEL PANEL -------------------- */
 .cierre{
   position:relative;
@@ -315,7 +299,6 @@ button{font:inherit}
   clip-path:polygon(0 100%, 100% 0, 100% 100%);
   z-index:1;
 }
-
 /* ---------- 6. CONTACTO ------------------------------------- */
 .contacto{
   background:var(--fondo-hero);
@@ -366,7 +349,6 @@ button{font:inherit}
 .btn--wa:hover{filter:brightness(1.07)}
 .btn--mail{background:transparent;color:#171717;border-color:rgba(0,0,0,.22)}
 .btn--mail:hover{background:#171717;color:#fff;border-color:#171717}
-
 .pie{
   border-top:1px solid rgba(0,0,0,.12);
   margin-top:clamp(30px,5vw,52px);
@@ -382,13 +364,11 @@ button{font:inherit}
 .pie__redes{display:flex;gap:18px}
 .pie__redes a{transition:color .2s ease}
 .pie__redes a:hover{color:var(--naranja)}
-
 /* ---------- 7. APARICIÓN AL SCROLL -------------------------- */
 .reveal{opacity:0;transform:translateY(22px)}
 .reveal.visible{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal:nth-child(2){transition-delay:.08s}
 .reveal:nth-child(3){transition-delay:.16s}
-
 /* ---------- 8. MOBILE --------------------------------------- */
 @media (max-width:760px){
   .grilla{grid-template-columns:1fr;max-width:440px}
@@ -407,7 +387,6 @@ button{font:inherit}
 </style>
 </head>
 <body>
-
 <!-- ===================== HERO ===================== -->
 <header class="hero">
   <div class="hero__inner">
@@ -421,11 +400,9 @@ button{font:inherit}
     </picture>
   </div>
 </header>
-
 <!-- ===================== PLANES ===================== -->
 <main class="planes" id="planes">
   <div class="contenedor">
-
     <div class="planes__head">
       <h1 class="planes__titulo">Planes</h1>
       <picture>
@@ -433,9 +410,7 @@ button{font:inherit}
         <img class="planes__co" src="assets/logo-co.png" alt=".Co" width="80" height="44">
       </picture>
     </div>
-
     <div class="grilla">
-
       <!-- ---------- Plan Lift ---------- -->
       <article class="card card--naranja reveal" data-plan="Lift">
         <span class="card__badge">El más popular</span>
@@ -459,7 +434,6 @@ button{font:inherit}
           Consultar por mail
         </a>
       </article>
-
       <!-- ---------- Plan Boost ---------- -->
       <article class="card card--azul reveal" data-plan="Boost">
         <span class="card__badge">El más completo</span>
@@ -483,7 +457,6 @@ button{font:inherit}
           Consultar por mail
         </a>
       </article>
-
       <!-- ---------- Plan Base ---------- -->
       <article class="card card--naranja card--solo reveal" data-plan="Base">
         <span class="card__badge">Plan inicial</span>
@@ -506,10 +479,8 @@ button{font:inherit}
           Consultar por mail
         </a>
       </article>
-
     </div>
   </div>
-
   <div class="cierre">
     <picture>
       <source srcset="assets/motito.webp" type="image/webp">
@@ -518,7 +489,6 @@ button{font:inherit}
     <div class="cierre__cuna"></div>
   </div>
 </main>
-
 <!-- ===================== CONTACTO ===================== -->
 <section class="contacto" id="contacto">
   <div class="contenedor">
@@ -538,7 +508,6 @@ button{font:inherit}
         </a>
       </div>
     </div>
-
     <div class="pie">
       <span>© <span id="anio"></span> .Conecta — Gestión de redes sociales</span>
       <nav class="pie__redes">
@@ -547,25 +516,25 @@ button{font:inherit}
     </div>
   </div>
 </section>
-
 <script>
 /* ============================================================
-   CONFIG — cambiá estos tres valores y listo.
-   whatsapp: sólo números, con código de país y sin + ni espacios
-             (ej. Argentina: 54 9 11 1234-5678  ->  "5491112345678")
+   CONFIG — cambiá estos valores y listo.
+
+   whatsappLink: tu link corto de WhatsApp Business (wa.me/message/…).
+                 Abre el chat directo. El mensaje inicial se configura
+                 UNA sola vez desde la app de WhatsApp Business.
+   email:        casilla donde recibís las consultas.
    ============================================================ */
 const CONFIG = {
-  whatsapp: "+543755505926",
-  email:    "studio.conecta.gestion@gmail.com",
-  marca:    ".Conecta"
+  whatsappLink: "https://wa.me/message/3RGHI45WNTN5J1",
+  email:        "studio.conecta.gestion@gmail.com",
+  marca:        ".Conecta"
 };
-
 /* --- Arma los links de WhatsApp y de mail --- */
 function linkWhatsApp(plan){
-  const texto = plan
-    ? `¡Hola ${CONFIG.marca}! Me interesa el ${plan}, ¿me contás cómo seguimos?`
-    : `¡Hola ${CONFIG.marca}! Quiero consultarles por la gestión de mis redes.`;
-  return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+  // El link corto de WhatsApp Business abre el chat directo; no admite
+  // un mensaje distinto por plan (eso se define dentro de la app).
+  return CONFIG.whatsappLink;
 }
 function linkMail(plan){
   const asunto = plan ? `Consulta por el ${plan}` : `Consulta por gestión de redes`;
@@ -574,20 +543,16 @@ function linkMail(plan){
     : `¡Hola ${CONFIG.marca}!\n\nQuiero consultarles por la gestión de mis redes. Les cuento:\n\n`;
   return `mailto:${CONFIG.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 }
-
 document.querySelectorAll("[data-wa]").forEach(el => {
-  const plan = el.dataset.wa;
-  const url  = linkWhatsApp(plan);
+  const url = linkWhatsApp(el.dataset.wa);
   if (el.tagName === "A") el.href = url;
   else el.addEventListener("click", () => window.open(url, "_blank", "noopener"));
 });
 document.querySelectorAll("[data-mail]").forEach(el => {
   el.href = linkMail(el.dataset.mail);
 });
-
 /* --- Año del pie --- */
 document.getElementById("anio").textContent = new Date().getFullYear();
-
 /* --- Aparición suave al hacer scroll --- */
 const io = new IntersectionObserver(entradas => {
   entradas.forEach(e => { if (e.isIntersecting){ e.target.classList.add("visible"); io.unobserve(e.target); } });
