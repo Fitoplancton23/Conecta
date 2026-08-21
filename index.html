@@ -73,13 +73,33 @@ button{font:inherit;color:inherit}
   -webkit-mask-image:linear-gradient(to bottom,#000 93%,transparent 100%);
   mask-image:linear-gradient(to bottom,#000 93%,transparent 100%);
 }
-.hero__logo{
+.hero__marca{
   position:absolute;
   left:50%;
-  top:58%;
+  top:57%;
   transform:translate(-50%,-50%);
   width:min(74%,470px);
+  text-align:center;
+}
+.hero__logo{
+  width:100%;
   filter:drop-shadow(0 8px 34px rgba(0,0,0,.30));
+}
+.hero__tagline{
+  margin:6px 0 0;
+  font-family:"Manrope",sans-serif;
+  font-weight:700;
+  font-size:clamp(11px,1.35vw,14.5px);
+  letter-spacing:.06em;
+  color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,.5);
+  display:flex;align-items:center;justify-content:center;gap:.6em;
+}
+.hero__tagline i{
+  font-style:normal;
+  width:4px;height:4px;border-radius:50%;
+  background:var(--naranja);
+  display:inline-block;
 }
 
 /* ---------- 2. PANEL OSCURO -------------------------------- */
@@ -121,55 +141,212 @@ button{font:inherit;color:inherit}
 .panel[data-vista="web"] .brillo--azul{opacity:1}
 
 /* ---------- 3. SWITCH REDES / WEB --------------------------- */
+.elegi{
+  text-align:center;
+  margin:0 0 12px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+  color:#8f8f8f;
+}
+.switch-zona{position:relative;margin-bottom:clamp(30px,4.6vw,48px)}
 .switcher{
   position:relative;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:4px;
-  width:min(100%,430px);
-  margin:0 auto clamp(28px,4.4vw,44px);
-  padding:5px;
+  gap:6px;
+  width:min(100%,520px);
+  margin:0 auto;
+  padding:6px;
   border-radius:999px;
-  background:rgba(255,255,255,.055);
-  border:1px solid rgba(255,255,255,.11);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
   box-shadow:0 14px 40px -22px rgba(0,0,0,.95);
 }
 .switcher__pill{
   position:absolute;
-  top:5px;left:5px;
-  width:calc(50% - 5px);
-  height:calc(100% - 10px);
+  top:6px;left:6px;
+  width:calc(50% - 9px);
+  height:calc(100% - 12px);
   border-radius:999px;
   background:linear-gradient(180deg,var(--acento-alto),var(--acento));
   box-shadow:0 8px 22px -8px color-mix(in srgb, var(--acento) 85%, transparent);
   transition:transform .42s cubic-bezier(.65,.02,.2,1), background .42s ease, box-shadow .42s ease;
   pointer-events:none;
 }
-.panel[data-vista="web"] .switcher__pill{transform:translateX(100%)}
+.panel[data-vista="web"] .switcher__pill{transform:translateX(calc(100% + 12px))}
 .switcher__opt{
   position:relative;
   z-index:1;
-  border:0;
+  border:1px solid transparent;
   background:transparent;
   cursor:pointer;
   border-radius:999px;
-  padding:12px 10px;
+  padding:14px 10px;
   font-family:"Manrope",sans-serif;
   font-weight:700;
-  font-size:13.5px;
-  letter-spacing:.015em;
-  color:#a5a5a5;
-  transition:color .3s ease;
+  font-size:14.5px;
+  letter-spacing:.01em;
+  color:#fff;
+  transition:color .3s ease, background .3s ease, border-color .3s ease;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
+  gap:9px;
 }
-.switcher__opt svg{flex:none;opacity:.85}
-.switcher__opt[aria-selected="true"]{color:#fff}
+.switcher__opt svg{flex:none;opacity:.9}
+/* la opción inactiva también tiene que parecer un botón, no un texto apagado */
+.switcher__opt[aria-selected="false"]{
+  color:#dcdcdc;
+  background:rgba(255,255,255,.045);
+  border-color:rgba(255,255,255,.17);
+}
+.switcher__opt[aria-selected="false"]:hover{
+  color:#fff;
+  background:rgba(255,255,255,.1);
+  border-color:rgba(255,255,255,.32);
+}
 .switcher__opt:focus-visible{outline:2px solid #fff;outline-offset:3px}
+/* latido único cuando el switch entra en pantalla por primera vez */
+@keyframes latido{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  35%    {box-shadow:0 0 0 7px rgba(255,255,255,.13)}
+  70%    {box-shadow:0 0 0 12px rgba(255,255,255,0)}
+}
+.switcher.avisar .switcher__opt[aria-selected="false"]{animation:latido 1.5s ease-out 2}
+
+/* globo de ayuda, una sola vez, sin bloquear nada */
+.pista{
+  position:absolute;
+  left:74%;top:calc(100% + 12px);
+  transform:translate(-50%,6px);
+  display:flex;align-items:center;gap:7px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#fff;
+  color:#111;
+  font-size:12.5px;font-weight:600;
+  white-space:nowrap;
+  box-shadow:0 14px 34px -14px rgba(0,0,0,.9);
+  opacity:0;pointer-events:none;
+  transition:opacity .45s ease, transform .45s ease;
+  z-index:3;
+}
+.pista::before{
+  content:"";
+  position:absolute;
+  top:-5px;left:50%;
+  width:11px;height:11px;
+  background:#fff;
+  transform:translateX(-50%) rotate(45deg);
+  border-radius:2px;
+}
+.pista.se-ve{opacity:1;transform:translate(-50%,0)}
+.pista svg{color:var(--azul)}
+
+/* ---------- 3b. SWITCH FLOTANTE ---------------------------- */
+.mini{
+  position:fixed;
+  left:50%;bottom:18px;
+  transform:translate(-50%,calc(100% + 30px));
+  z-index:60;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+  padding:5px;
+  border-radius:999px;
+  background:rgba(16,16,16,.86);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 18px 44px -18px rgba(0,0,0,1);
+  opacity:0;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), opacity .35s ease;
+  pointer-events:none;
+}
+.mini.se-ve{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.mini__opt{
+  border:0;background:transparent;cursor:pointer;
+  border-radius:999px;
+  padding:9px 18px;
+  font-family:"Manrope",sans-serif;
+  font-weight:700;font-size:12.5px;
+  color:#bdbdbd;
+  white-space:nowrap;
+  display:flex;align-items:center;gap:7px;
+  transition:color .25s ease, background .25s ease;
+}
+.mini__opt:hover{color:#fff}
+.mini__opt[aria-selected="true"]{
+  color:#fff;
+  background:linear-gradient(180deg,var(--c-alto,#ff6a2a),var(--c,#ff3000));
+  box-shadow:0 6px 16px -7px var(--c,#ff3000);
+}
+.mini[data-vista="redes"]{--c:#ff3000;--c-alto:#ff6a2a}
+.mini[data-vista="web"]{--c:#2440e0;--c-alto:#4f6bff}
+.mini__opt:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+/* ---------- 3c. BANDA DE CRUCE ------------------------------ */
+.cruce{
+  --c:var(--azul);
+  --c-alto:var(--azul-alto);
+  position:relative;
+  margin-top:clamp(34px,4.6vw,56px);
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(135deg,#151515 0%,#0f0f0f 62%);
+  padding:clamp(22px,3vw,32px);
+  display:flex;align-items:center;gap:clamp(20px,3vw,34px);
+  flex-wrap:wrap;
+}
+.cruce--redes{--c:var(--naranja);--c-alto:var(--naranja-alto)}
+.cruce::before{
+  content:"";position:absolute;
+  inset:-70% -10% auto auto;width:480px;height:400px;
+  background:radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--c) 62%, transparent) 0%, transparent 72%);
+  opacity:.5;pointer-events:none;
+}
+.cruce > *{position:relative}
+.cruce__thumbs{display:flex;flex:none;align-items:center;padding:6px 0}
+.cruce__thumbs img{
+  width:clamp(76px,9vw,104px);
+  aspect-ratio:4/3;
+  object-fit:cover;object-position:top center;
+  border-radius:10px;
+  border:2px solid #1a1a1a;
+  box-shadow:0 12px 26px -12px #000;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.cruce__thumbs img + img{margin-left:-26px}
+.cruce__thumbs img:nth-child(1){transform:rotate(-5deg);z-index:1}
+.cruce__thumbs img:nth-child(2){z-index:3}
+.cruce__thumbs img:nth-child(3){transform:rotate(5deg);z-index:2}
+.cruce:hover .cruce__thumbs img:nth-child(1){transform:translateX(-7px) rotate(-8deg)}
+.cruce:hover .cruce__thumbs img:nth-child(3){transform:translateX(7px) rotate(8deg)}
+.cruce__texto{flex:1 1 260px;min-width:0}
+.cruce__kicker{
+  display:inline-block;
+  font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--c-alto);
+  margin-bottom:7px;
+}
+.cruce__texto h3{
+  font-family:"Manrope",sans-serif;font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(19px,2.4vw,24px);line-height:1.2;margin:0 0 6px;
+}
+.cruce__texto p{margin:0;font-size:13.5px;font-weight:300;color:#a9a9a9;max-width:44ch}
+.btn--cruce{
+  flex:none;
+  background:linear-gradient(180deg,var(--c-alto),var(--c));
+  color:#fff;
+  box-shadow:0 12px 30px -14px var(--c);
+  border:0;
+}
+.btn--cruce:hover{filter:brightness(1.08)}
 
 /* ---------- 4. ENCABEZADO DE SECCIÓN ------------------------ */
 .seccion__head{
@@ -200,7 +377,7 @@ button{font:inherit;color:inherit}
 .vista{display:none}
 .vista.is-activa{display:block;animation:entrar .5s ease both}
 /* aire abajo para que la moto no pise el contenido */
-.vista[data-vista="web"]{padding-bottom:clamp(56px,8vw,112px)}
+.vista{padding-bottom:clamp(56px,8vw,112px)}
 @keyframes entrar{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* ---------- 6. GRILLA DE PLANES 2 + 1 ----------------------- */
@@ -786,6 +963,14 @@ body[data-vista="web"] .contacto .btn--wa{
   .switcher__opt{font-size:12.5px;padding:11px 6px;gap:6px}
   .presu{flex-direction:column;align-items:flex-start;text-align:left}
   .lightbox__cerrar{top:-42px}
+  .cruce{flex-direction:column;align-items:flex-start;text-align:left}
+  .cruce .btn--cruce{width:100%;justify-content:center}
+  .mini{bottom:14px;width:calc(100% - 28px);max-width:400px}
+  .mini__opt{padding:10px 8px;justify-content:center;font-size:12px}
+  .pista{font-size:11.5px;padding:7px 12px;left:50%}
+}
+@media (max-width:400px){
+  .pista{white-space:normal;text-align:center;max-width:82vw}
 }
 @media (max-width:420px){
   .switcher__opt svg{display:none}
@@ -796,6 +981,8 @@ body[data-vista="web"] .contacto .btn--wa{
   .card:hover,.btn:hover,.servicio:hover,.trabajo:hover{transform:none}
   .vista.is-activa{animation:none}
   .marco__shot img{transition:none}
+  .switcher.avisar .switcher__opt[aria-selected="false"]{animation:none}
+  .cruce:hover .cruce__thumbs img{transform:none}
 }
 </style>
 </head>
@@ -808,10 +995,13 @@ body[data-vista="web"] .contacto .btn--wa{
       <source srcset="assets/hero.webp" type="image/webp">
       <img class="hero__foto" src="assets/hero.png" alt="El equipo de .Conecta, de espaldas, con una notebook y una tablet" width="1800" height="1304" fetchpriority="high">
     </picture>
-    <picture>
-      <source srcset="assets/logo.webp" type="image/webp">
-      <img class="hero__logo" src="assets/logo.png" alt=".Conecta — Redes sociales y desarrollo web" width="732" height="248">
-    </picture>
+    <div class="hero__marca">
+      <picture>
+        <source srcset="assets/logo-solo.webp" type="image/webp">
+        <img class="hero__logo" src="assets/logo-solo.png" alt=".Conecta" width="732" height="170">
+      </picture>
+      <p class="hero__tagline">Redes sociales <i></i> Desarrollo web</p>
+    </div>
   </div>
 </header>
 
@@ -823,6 +1013,8 @@ body[data-vista="web"] .contacto .btn--wa{
   <div class="contenedor">
 
     <!-- ---------- SWITCH ---------- -->
+    <div class="switch-zona">
+    <p class="elegi">Elegí qué necesitás</p>
     <div class="switcher" role="tablist" aria-label="Elegí el servicio">
       <span class="switcher__pill" aria-hidden="true"></span>
       <button class="switcher__opt" role="tab" id="tab-redes" aria-controls="vista-redes" aria-selected="true" data-vista="redes">
@@ -833,6 +1025,11 @@ body[data-vista="web"] .contacto .btn--wa{
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         Desarrollo web
       </button>
+    </div>
+      <div class="pista" id="pista" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        También hacemos webs, tocá acá
+      </div>
     </div>
 
     <!-- ================= VISTA A · REDES ================= -->
@@ -880,7 +1077,7 @@ body[data-vista="web"] .contacto .btn--wa{
           <span class="card__badge">El más completo</span>
           <h2 class="card__nombre">Plan Boost</h2>
           <p class="card__desc">Planificamos, editamos y publicamos el contenido</p>
-          <p class="card__precio"><b>$400.000</b><span>/mes</span></p>
+          <p class="card__precio"><b>$350.000</b><span>/mes</span></p>
           <button class="card__cta" data-wa="Plan Boost">16 contenidos mensuales</button>
           <p class="card__ajustes">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -923,6 +1120,25 @@ body[data-vista="web"] .contacto .btn--wa{
         </article>
 
       </div>
+
+      <!-- ---------- Cruce hacia desarrollo web ---------- -->
+      <aside class="cruce reveal" style="--i:0">
+        <div class="cruce__thumbs">
+          <img src="assets/trabajos/giulia-1-t.webp" alt="" loading="lazy">
+          <img src="assets/trabajos/hugo-1-t.webp" alt="" loading="lazy">
+          <img src="assets/trabajos/plataforma-1-t.webp" alt="" loading="lazy">
+        </div>
+        <div class="cruce__texto">
+          <span class="cruce__kicker">También hacemos</span>
+          <h3>Tu tienda online, tu app o tu landing</h3>
+          <p>Diseñamos y programamos el sitio completo, de cero y a medida. Mirá los trabajos que ya salieron.</p>
+        </div>
+        <button class="btn btn--cruce" data-ir="web">
+          Ver desarrollo web
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </button>
+      </aside>
+
     </section>
 
     <!-- ================= VISTA B · DESARROLLO WEB ================= -->
@@ -1160,6 +1376,19 @@ body[data-vista="web"] .contacto .btn--wa{
         </div>
       </div>
 
+      <!-- ---------- Cruce hacia redes ---------- -->
+      <aside class="cruce cruce--redes reveal" style="--i:0">
+        <div class="cruce__texto">
+          <span class="cruce__kicker">Lo otro que hacemos</span>
+          <h3>¿Y quién te maneja las redes?</h3>
+          <p>Planificamos, editamos y publicamos el contenido todos los meses. Planes desde $100.000.</p>
+        </div>
+        <button class="btn btn--cruce" data-ir="redes">
+          Ver los planes
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </button>
+      </aside>
+
     </section>
 
   </div>
@@ -1200,6 +1429,18 @@ body[data-vista="web"] .contacto .btn--wa{
     </div>
   </div>
 </section>
+
+<!-- ===================== SWITCH FLOTANTE ===================== -->
+<div class="mini" id="mini" data-vista="redes" role="tablist" aria-label="Cambiar de servicio">
+  <button class="mini__opt" role="tab" data-ir="redes" aria-selected="true">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Redes
+  </button>
+  <button class="mini__opt" role="tab" data-ir="web" aria-selected="false">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+    Desarrollo web
+  </button>
+</div>
 
 <!-- ===================== LIGHTBOX ===================== -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galería de capturas">
@@ -1284,11 +1525,18 @@ const TEXTOS = {
   }
 };
 
+const mini    = document.getElementById("mini");
+const pista   = document.getElementById("pista");
+const switcher = document.querySelector(".switcher");
+let yaTocoElSwitch = false;
+
 function activarVista(v, hacerFoco){
   panel.dataset.vista = v;
   document.body.dataset.vista = v;
+  mini.dataset.vista = v;
 
   opciones.forEach(o => o.setAttribute("aria-selected", String(o.dataset.vista === v)));
+  mini.querySelectorAll(".mini__opt").forEach(o => o.setAttribute("aria-selected", String(o.dataset.ir === v)));
   vistas.forEach(s => s.classList.toggle("is-activa", s.dataset.vista === v));
 
   document.getElementById("contacto-foco").textContent   = TEXTOS[v].foco;
@@ -1305,12 +1553,52 @@ function activarVista(v, hacerFoco){
   if (hacerFoco) panel.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+function ocultarPista(){
+  yaTocoElSwitch = true;
+  pista.classList.remove("se-ve");
+  switcher.classList.remove("avisar");
+}
+
 opciones.forEach(o => {
-  o.addEventListener("click", () => activarVista(o.dataset.vista, false));
+  o.addEventListener("click", () => { ocultarPista(); activarVista(o.dataset.vista, false); });
+});
+
+// botones de las bandas de cruce y del switch flotante
+document.querySelectorAll("[data-ir]").forEach(b => {
+  b.addEventListener("click", () => { ocultarPista(); activarVista(b.dataset.ir, true); });
 });
 
 // permite entrar directo con .../#desarrollo
-if (location.hash === "#desarrollo") activarVista("web", false);
+if (location.hash === "#desarrollo") { activarVista("web", false); yaTocoElSwitch = true; }
+
+/* ---------- Que el switch se note ----------
+   1. late dos veces cuando aparece en pantalla
+   2. muestra un globo de ayuda una sola vez, que no tapa nada
+   3. si el usuario sigue bajando, aparece la versión flotante        */
+const ojoSwitch = new IntersectionObserver(([e]) => {
+  if (e.isIntersecting){
+    if (!yaTocoElSwitch){
+      switcher.classList.add("avisar");
+      setTimeout(() => { if (!yaTocoElSwitch) pista.classList.add("se-ve"); }, 1400);
+      setTimeout(ocultarPista, 8000);
+    }
+    mini.classList.remove("se-ve");
+  } else if (e.boundingClientRect.top < 0){
+    // el switch quedó arriba: bajamos, así que mostramos el flotante
+    ocultarPista();
+    mini.classList.add("se-ve");
+  } else {
+    mini.classList.remove("se-ve");
+  }
+}, { threshold: 0 });
+ojoSwitch.observe(switcher);
+
+// el flotante se esconde al llegar al contacto para no tapar los botones
+const ojoContacto = new IntersectionObserver(([e]) => {
+  if (e.isIntersecting) mini.classList.remove("se-ve");
+  else if (window.scrollY > switcher.getBoundingClientRect().top + window.scrollY) mini.classList.add("se-ve");
+}, { threshold: .18 });
+ojoContacto.observe(document.getElementById("contacto"));
 
 /* ---------- Galería / lightbox ---------- */
 const GALERIAS = {
