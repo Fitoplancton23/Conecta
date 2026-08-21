@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>.Conecta — Redes sociales y desarrollo web</title>
-<meta name="description" content="Gestionamos tus redes sociales y desarrollamos tu tienda online, tu app o tu landing page. Planes desde $100.000 por mes y presupuestos a medida.">
+<meta name="description" content="Gestionamos tus redes sociales y desarrollamos tu tienda online, tu app o tu landing page. Planes desde $150.000 por mes y presupuestos a medida.">
 <meta property="og:title" content=".Conecta — Redes sociales y desarrollo web">
 <meta property="og:description" content="Gestionamos tus redes y desarrollamos tu tienda online, tu app o tu landing page.">
 <meta property="og:image" content="assets/hero.png">
@@ -74,19 +74,30 @@ button{font:inherit;color:inherit}
   mask-image:linear-gradient(to bottom,#000 93%,transparent 100%);
 }
 .hero__marca{
+  /* ---- perillas del logo: tocá solo estos tres valores ----
+     --logo-ancho   qué tan grande se ve el logo (100% = todo el bloque)
+     --marca-alto   posición vertical sobre la foto
+     --tagline-sep  separación entre el logo y la bajada (admite negativos,
+                    útil si tu PNG tiene aire transparente abajo)         */
+  --logo-ancho:   100%;
+  --marca-alto:   57%;
+  --tagline-sep:  6px;
+
   position:absolute;
   left:50%;
-  top:57%;
+  top:var(--marca-alto);
   transform:translate(-50%,-50%);
-  width:min(74%,470px);
+  width:min(78%,500px);
   text-align:center;
 }
 .hero__logo{
-  width:100%;
+  width:var(--logo-ancho);
+  height:auto;
+  margin-inline:auto;          /* el <img> es display:block: sin esto queda a la izquierda */
   filter:drop-shadow(0 8px 34px rgba(0,0,0,.30));
 }
 .hero__tagline{
-  margin:6px 0 0;
+  margin:var(--tagline-sep) 0 0;
   font-family:"Manrope",sans-serif;
   font-weight:700;
   font-size:clamp(11px,1.35vw,14.5px);
@@ -374,10 +385,9 @@ button{font:inherit;color:inherit}
 .seccion__co{width:clamp(46px,5vw,62px);opacity:.9;margin-bottom:6px}
 
 /* ---------- 5. VISTAS --------------------------------------- */
-.vista{display:none}
+/* el padding de abajo evita que la moto pise el contenido */
+.vista{display:none;padding-bottom:clamp(56px,8vw,112px)}
 .vista.is-activa{display:block;animation:entrar .5s ease both}
-/* aire abajo para que la moto no pise el contenido */
-.vista{padding-bottom:clamp(56px,8vw,112px)}
 @keyframes entrar{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* ---------- 6. GRILLA DE PLANES 2 + 1 ----------------------- */
@@ -953,7 +963,7 @@ body[data-vista="web"] .contacto .btn--wa{
 @media (max-width:760px){
   .grilla{grid-template-columns:1fr;max-width:440px}
   .grilla > .card--solo{width:100%}
-  .hero__logo{width:82%}
+  .hero__marca{width:88%}
   .panel{margin-top:-34px}
   .cierre{min-height:180px;margin-top:8px}
   .cierre__motito{width:min(74%,300px);right:-14px}
@@ -998,7 +1008,7 @@ body[data-vista="web"] .contacto .btn--wa{
     <div class="hero__marca">
       <picture>
         <source srcset="assets/logo.webp" type="image/webp">
-        <img class="hero__logo" src="assets/logo.png" alt=".Conecta" width="732" height="170">
+        <img class="hero__logo" src="assets/logo.png" alt=".Conecta">
       </picture>
       <p class="hero__tagline">Redes sociales <i></i> Desarrollo web</p>
     </div>
@@ -1381,7 +1391,7 @@ body[data-vista="web"] .contacto .btn--wa{
         <div class="cruce__texto">
           <span class="cruce__kicker">Lo otro que hacemos</span>
           <h3>¿Y quién te maneja las redes?</h3>
-          <p>Planificamos, editamos y publicamos el contenido todos los meses. Planes desde $100.000.</p>
+          <p>Planificamos, editamos y publicamos el contenido todos los meses. Planes desde $150.000.</p>
         </div>
         <button class="btn btn--cruce" data-ir="redes">
           Ver los planes
