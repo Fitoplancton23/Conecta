@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>.Conecta — Redes sociales y desarrollo web</title>
+<meta name="description" content="Gestionamos tus redes sociales y desarrollamos tu tienda online, tu app o tu landing page. Planes desde $100.000 por mes y presupuestos a medida.">
+<meta property="og:title" content=".Conecta — Redes sociales y desarrollo web">
+<meta property="og:description" content="Gestionamos tus redes y desarrollamos tu tienda online, tu app o tu landing page.">
+<meta property="og:image" content="assets/hero.png">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="assets/logo-co.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   .Conecta — hoja de estilos única
+   Para cambiar los datos de contacto, editá el bloque CONFIG
+   que está en el <script> al final del archivo.
+   ============================================================ */
+:root{
+  --naranja:      #ff3000;
+  --naranja-alto: #ff6a2a;
+  --azul:         #2440e0;
+  --azul-alto:    #4f6bff;
+  --negro:        #080808;
+  --panel:        #0a0a0a;
+  --card:         #131313;
+  --card-borde:   rgba(255,255,255,.07);
+  --texto:        #ffffff;
+  --texto-2:      #b5b5b5;
+  --texto-3:      #8a8a8a;
+  --fondo-hero:   #e4e4e4;
+  --radio-panel:  34px;
+  --radio-card:   22px;
+  --ancho:        1000px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--fondo-hero);
+  color:var(--texto);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+.contenedor{width:min(100% - 40px,var(--ancho));margin-inline:auto}
+
+/* ---------- 1. HERO ---------------------------------------- */
+.hero{
+  position:relative;
+  background:var(--fondo-hero);
+  padding:clamp(28px,5vw,56px) 0 0;
+  overflow:hidden;
+}
+.hero__inner{
+  position:relative;
+  width:min(100% - 32px,780px);
+  margin-inline:auto;
+  display:flex;
+  justify-content:center;
+}
+.hero__foto{
+  width:min(100%,660px);
+  height:auto;
+  -webkit-mask-image:linear-gradient(to bottom,#000 93%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 93%,transparent 100%);
+}
+.hero__logo{
+  position:absolute;
+  left:50%;
+  top:58%;
+  transform:translate(-50%,-50%);
+  width:min(74%,470px);
+  filter:drop-shadow(0 8px 34px rgba(0,0,0,.30));
+}
+
+/* ---------- 2. PANEL OSCURO -------------------------------- */
+.panel{
+  --acento:      var(--naranja);
+  --acento-alto: var(--naranja-alto);
+  position:relative;
+  margin-top:clamp(-90px,-9vw,-40px);
+  border-radius:var(--radio-panel) var(--radio-panel) 0 0;
+  background:var(--panel);
+  padding:clamp(26px,4vw,40px) 0 0;
+  overflow:hidden;
+  isolation:isolate;
+}
+.panel[data-vista="web"]{
+  --acento:      var(--azul);
+  --acento-alto: var(--azul-alto);
+}
+/* resplandor superior — dos capas que se cruzan al cambiar de vista */
+.brillo{
+  position:absolute;
+  inset:0 0 auto 0;
+  height:460px;
+  z-index:-1;
+  pointer-events:none;
+  transition:opacity .55s ease;
+}
+.brillo--naranja{
+  background:radial-gradient(120% 150% at -5% -30%, #ff4a12 0%, rgba(196,58,16,.75) 26%, rgba(90,26,8,.35) 52%, rgba(10,10,10,0) 78%);
+  opacity:1;
+}
+.brillo--azul{
+  background:
+    radial-gradient(115% 145% at 100% -30%, #2b46f0 0%, rgba(30,52,190,.72) 26%, rgba(18,26,80,.34) 54%, rgba(10,10,10,0) 78%),
+    radial-gradient(70% 110% at -8% -26%, rgba(255,80,26,.5) 0%, rgba(120,34,12,.22) 42%, rgba(10,10,10,0) 74%);
+  opacity:0;
+}
+.panel[data-vista="web"] .brillo--naranja{opacity:0}
+.panel[data-vista="web"] .brillo--azul{opacity:1}
+
+/* ---------- 3. SWITCH REDES / WEB --------------------------- */
+.switcher{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+  width:min(100%,430px);
+  margin:0 auto clamp(28px,4.4vw,44px);
+  padding:5px;
+  border-radius:999px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.11);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 14px 40px -22px rgba(0,0,0,.95);
+}
+.switcher__pill{
+  position:absolute;
+  top:5px;left:5px;
+  width:calc(50% - 5px);
+  height:calc(100% - 10px);
+  border-radius:999px;
+  background:linear-gradient(180deg,var(--acento-alto),var(--acento));
+  box-shadow:0 8px 22px -8px color-mix(in srgb, var(--acento) 85%, transparent);
+  transition:transform .42s cubic-bezier(.65,.02,.2,1), background .42s ease, box-shadow .42s ease;
+  pointer-events:none;
+}
+.panel[data-vista="web"] .switcher__pill{transform:translateX(100%)}
+.switcher__opt{
+  position:relative;
+  z-index:1;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  border-radius:999px;
+  padding:12px 10px;
+  font-family:"Manrope",sans-serif;
+  font-weight:700;
+  font-size:13.5px;
+  letter-spacing:.015em;
+  color:#a5a5a5;
+  transition:color .3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.switcher__opt svg{flex:none;opacity:.85}
+.switcher__opt[aria-selected="true"]{color:#fff}
+.switcher__opt:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* ---------- 4. ENCABEZADO DE SECCIÓN ------------------------ */
+.seccion__head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  padding-bottom:clamp(20px,3.2vw,32px);
+}
+.seccion__titulo{
+  font-family:"Manrope",sans-serif;
+  font-weight:800;
+  letter-spacing:-.03em;
+  font-size:clamp(38px,6.4vw,62px);
+  line-height:1;
+  margin:0;
+}
+.seccion__bajada{
+  margin:10px 0 0;
+  max-width:44ch;
+  color:#b9b9b9;
+  font-weight:300;
+  font-size:15px;
+}
+.seccion__co{width:clamp(46px,5vw,62px);opacity:.9;margin-bottom:6px}
+
+/* ---------- 5. VISTAS --------------------------------------- */
+.vista{display:none}
+.vista.is-activa{display:block;animation:entrar .5s ease both}
+/* aire abajo para que la moto no pise el contenido */
+.vista[data-vista="web"]{padding-bottom:clamp(56px,8vw,112px)}
+@keyframes entrar{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- 6. GRILLA DE PLANES 2 + 1 ----------------------- */
+.grilla{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(18px,2.4vw,26px);
+  max-width:900px;
+  margin-inline:auto;
+}
+.grilla > .card--solo{
+  grid-column:1 / -1;
+  width:min(100%,436px);
+  margin-inline:auto;
+}
+
+/* ---------- 7. TARJETA -------------------------------------- */
+.card{
+  position:relative;
+  border-radius:var(--radio-card);
+  background:var(--card);
+  border:1px solid var(--card-borde);
+  padding:clamp(22px,2.6vw,28px);
+  padding-top:56px;
+  overflow:hidden;
+  isolation:isolate;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:58%;
+  z-index:-1;
+  pointer-events:none;
+}
+.card--naranja::before{
+  background:radial-gradient(95% 120% at 8% -18%, #ff5a20 0%, rgba(226,68,18,.85) 22%, rgba(120,32,10,.45) 48%, rgba(19,19,19,0) 76%);
+}
+.card--azul::before{
+  background:
+    radial-gradient(80% 110% at 62% -22%, #2b46f0 0%, rgba(30,52,190,.8) 26%, rgba(20,28,86,.42) 52%, rgba(19,19,19,0) 78%),
+    radial-gradient(60% 95% at -8% -18%, rgba(255,90,32,.85) 0%, rgba(150,42,14,.35) 40%, rgba(19,19,19,0) 72%);
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.9);
+}
+.card__badge{
+  position:absolute;
+  top:16px;
+  right:16px;
+  background:rgba(10,10,10,.62);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:999px;
+  padding:5px 12px;
+  font-size:11.5px;
+  font-weight:500;
+  letter-spacing:.01em;
+  color:#f0f0f0;
+  white-space:nowrap;
+}
+.card__nombre{
+  font-family:"Manrope",sans-serif;
+  font-weight:500;
+  font-size:clamp(22px,2.4vw,26px);
+  letter-spacing:-.01em;
+  margin:0 0 8px;
+}
+.card__desc{
+  margin:0 0 22px;
+  font-size:14.5px;
+  font-weight:300;
+  color:#e2e2e2;
+  max-width:28ch;
+}
+.card__precio{
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+  margin-bottom:20px;
+}
+.card__precio b{
+  font-family:"Manrope",sans-serif;
+  font-weight:600;
+  font-size:clamp(27px,3vw,32px);
+  letter-spacing:-.02em;
+}
+.card__precio span{font-size:13.5px;color:#cfcfcf}
+.card__cta{
+  display:block;
+  width:100%;
+  text-align:center;
+  border:0;
+  cursor:pointer;
+  border-radius:11px;
+  padding:14px 12px;
+  background:linear-gradient(180deg,#ff5f22 0%,#ff3000 100%);
+  color:#fff;
+  font-family:"Manrope",sans-serif;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+  box-shadow:0 6px 20px -8px rgba(255,48,0,.85);
+  transition:filter .2s ease, transform .2s ease;
+}
+.card__cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.card__cta:active{transform:translateY(0)}
+.card__ajustes{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:16px;
+  font-size:13.5px;
+  font-weight:300;
+  color:#d2d2d2;
+}
+.card__ajustes svg{flex:none;opacity:.8}
+.card__sep{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:20px 0 16px;
+  font-size:11px;
+  letter-spacing:.16em;
+  color:#8d8d8d;
+}
+.card__sep::before,.card__sep::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:rgba(255,255,255,.13);
+}
+.card__lista{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.card__lista li{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:13.5px;
+  font-weight:300;
+  color:#cfcfcf;
+}
+.card__lista svg{flex:none;margin-top:2px;opacity:.75}
+.card__mail{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:18px;
+  font-size:12.5px;
+  color:#9a9a9a;
+  border-bottom:1px solid transparent;
+  transition:color .2s ease,border-color .2s ease;
+}
+.card__mail:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+
+/* ---------- 8. SERVICIOS DE DESARROLLO ---------------------- */
+.servicios{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,1.8vw,20px);
+  max-width:900px;
+  margin:0 auto clamp(46px,6vw,74px);
+}
+.servicio{
+  position:relative;
+  border-radius:18px;
+  background:linear-gradient(180deg,#161616,#111);
+  border:1px solid var(--card-borde);
+  padding:clamp(20px,2.2vw,24px);
+  overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;
+}
+.servicio::after{
+  content:"";
+  position:absolute;
+  inset:auto -30% -70% -30%;
+  height:150px;
+  background:radial-gradient(60% 100% at 50% 100%, color-mix(in srgb, var(--acento) 55%, transparent) 0%, transparent 70%);
+  opacity:.5;
+  transition:opacity .35s ease;
+  pointer-events:none;
+}
+.servicio:hover{
+  transform:translateY(-5px);
+  border-color:rgba(255,255,255,.16);
+  box-shadow:0 24px 54px -26px rgba(0,0,0,.95);
+}
+.servicio:hover::after{opacity:.95}
+.servicio__icono{
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  border-radius:12px;
+  margin-bottom:16px;
+  background:color-mix(in srgb, var(--acento) 20%, #ffffff08);
+  border:1px solid color-mix(in srgb, var(--acento) 40%, transparent);
+  color:#fff;
+}
+.servicio h3{
+  font-family:"Manrope",sans-serif;
+  font-weight:600;
+  font-size:18px;
+  letter-spacing:-.01em;
+  margin:0 0 8px;
+}
+.servicio p{
+  margin:0 0 16px;
+  font-size:13.5px;
+  font-weight:300;
+  color:#b8b8b8;
+}
+.servicio ul{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:9px}
+.servicio li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:12.8px;font-weight:300;color:#c9c9c9;
+}
+.servicio li svg{flex:none;margin-top:3px;color:var(--acento-alto)}
+.servicio__pie{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.09);
+  font-size:12.5px;color:#8f8f8f;
+}
+.servicio__pie a{
+  display:inline-flex;align-items:center;gap:5px;
+  color:#fff;font-weight:500;
+  border-bottom:1px solid rgba(255,255,255,.28);
+  transition:border-color .2s ease,color .2s ease;
+}
+.servicio__pie a:hover{color:var(--acento-alto);border-color:var(--acento-alto)}
+
+/* ---------- 9. GALERÍA DE TRABAJOS -------------------------- */
+.trabajos__head{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;
+  margin-bottom:clamp(18px,2.4vw,26px);
+}
+.trabajos__head h3{
+  font-family:"Manrope",sans-serif;
+  font-weight:800;letter-spacing:-.025em;
+  font-size:clamp(24px,3.4vw,34px);
+  margin:0;
+}
+.trabajos__head span{font-size:12.5px;color:#8a8a8a;letter-spacing:.02em}
+.trabajos{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(16px,2vw,22px);
+}
+.trabajo{
+  grid-column:span 1;
+  border-radius:20px;
+  background:#121212;
+  border:1px solid var(--card-borde);
+  overflow:hidden;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;
+}
+.trabajo--ancho{grid-column:1 / -1}
+/* en escritorio las tarjetas anchas van con la captura al costado */
+@media (min-width:861px){
+  .trabajo--ancho{display:grid;grid-template-columns:1.12fr .88fr;align-items:stretch}
+  .trabajo--ancho .marco{
+    display:flex;flex-direction:column;
+    margin:12px 0 12px 12px;
+    border-radius:12px;
+    border-bottom:1px solid rgba(255,255,255,.09);
+  }
+  .trabajo--ancho .marco__shot{aspect-ratio:auto;flex:1;min-height:300px}
+  .trabajo--ancho .trabajo__info{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(22px,2.6vw,32px);
+  }
+  .trabajo--ancho .trabajo__info p{max-width:38ch}
+  /* la segunda tarjeta ancha se espeja para dar ritmo */
+  .trabajo--espejo{grid-template-columns:.88fr 1.12fr}
+  .trabajo--espejo .marco{order:2;margin:12px 12px 12px 0}
+  .trabajo--espejo .trabajo__info{order:1}
+}
+.trabajo:hover{
+  transform:translateY(-5px);
+  border-color:rgba(255,255,255,.17);
+  box-shadow:0 30px 64px -30px rgba(0,0,0,1);
+}
+/* marco de navegador */
+.marco{
+  margin:12px 12px 0;
+  border-radius:12px 12px 0 0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.09);
+  border-bottom:0;
+  background:#0d0d0d;
+  cursor:zoom-in;
+}
+.marco__barra{
+  display:flex;align-items:center;gap:6px;
+  padding:9px 12px;
+  background:#1b1b1b;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.marco__punto{width:8px;height:8px;border-radius:50%;background:#3a3a3a;flex:none}
+.marco__url{
+  flex:1;
+  margin-left:8px;
+  padding:3px 10px;
+  border-radius:999px;
+  background:#0f0f0f;
+  font-size:10.5px;
+  color:#7c7c7c;
+  letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.marco__shot{
+  position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  background:#0a0a0a;
+}
+.marco__shot img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  transition:transform .7s cubic-bezier(.2,.8,.2,1), opacity .5s ease;
+}
+.trabajo:hover .marco__shot img{transform:scale(1.045)}
+.marco__lupa{
+  position:absolute;
+  right:10px;bottom:10px;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 11px;
+  border-radius:999px;
+  background:rgba(8,8,8,.72);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.16);
+  font-size:11px;color:#efefef;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .3s ease, transform .3s ease;
+  pointer-events:none;
+}
+.trabajo:hover .marco__lupa{opacity:1;transform:none}
+.trabajo__info{padding:16px clamp(16px,2vw,22px) clamp(18px,2.2vw,22px)}
+.trabajo__meta{display:flex;align-items:center;gap:9px;margin-bottom:9px;flex-wrap:wrap}
+.trabajo__tag{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  background:color-mix(in srgb, var(--acento) 22%, transparent);
+  border:1px solid color-mix(in srgb, var(--acento) 48%, transparent);
+  color:#fff;
+}
+.trabajo__anio{font-size:11.5px;color:#7d7d7d;letter-spacing:.04em}
+.trabajo__info h4{
+  font-family:"Manrope",sans-serif;
+  font-weight:600;font-size:19px;letter-spacing:-.015em;
+  margin:0 0 6px;
+}
+.trabajo__info p{margin:0 0 14px;font-size:13.3px;font-weight:300;color:#adadad;max-width:52ch}
+.trabajo__acciones{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.enlace{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12.5px;font-weight:500;
+  color:#e8e8e8;
+  border:0;background:none;padding:0;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.24);
+  transition:color .2s ease,border-color .2s ease;
+}
+.enlace:hover{color:var(--acento-alto);border-color:var(--acento-alto)}
+.enlace--apagado{color:#787878;border-bottom-style:dashed;cursor:default}
+.enlace--apagado:hover{color:#787878;border-color:rgba(255,255,255,.24)}
+
+/* ---------- 10. BANDA DE PRESUPUESTO ------------------------ */
+.presu{
+  position:relative;
+  margin-top:clamp(38px,5vw,58px);
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.11);
+  background:linear-gradient(140deg,#141414 0%,#0f0f0f 60%);
+  padding:clamp(26px,3.6vw,40px);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:26px;flex-wrap:wrap;
+}
+.presu::before{
+  content:"";position:absolute;inset:-60% -20% auto auto;
+  width:520px;height:420px;
+  background:radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--acento) 70%, transparent) 0%, transparent 72%);
+  opacity:.55;pointer-events:none;
+}
+.presu > *{position:relative}
+.presu h3{
+  font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:-.028em;
+  font-size:clamp(23px,3.2vw,32px);line-height:1.1;margin:0 0 8px;max-width:16ch;
+}
+.presu p{margin:0;font-size:14px;font-weight:300;color:#b4b4b4;max-width:40ch}
+.presu__acciones{display:flex;gap:11px;flex-wrap:wrap}
+
+/* ---------- 11. LIGHTBOX ------------------------------------ */
+.lightbox{
+  position:fixed;inset:0;z-index:90;
+  display:none;
+  align-items:center;justify-content:center;
+  padding:clamp(14px,3vw,40px);
+  background:rgba(5,5,5,.93);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.lightbox.is-abierto{display:flex;animation:aparecer .28s ease both}
+@keyframes aparecer{from{opacity:0}to{opacity:1}}
+.lightbox__caja{
+  position:relative;
+  width:min(100%,1180px);
+  display:flex;flex-direction:column;gap:14px;
+}
+.lightbox__img{
+  width:100%;
+  max-height:76vh;
+  object-fit:contain;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#0a0a0a;
+  box-shadow:0 40px 90px -40px #000;
+}
+.lightbox__pie{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;
+  font-size:13px;color:#c2c2c2;
+}
+.lightbox__pie b{font-family:"Manrope",sans-serif;font-weight:600;color:#fff;font-size:14.5px}
+.lightbox__nav{display:flex;align-items:center;gap:8px}
+.lb-btn{
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.06);
+  cursor:pointer;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.lb-btn:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3)}
+.lb-btn:active{transform:scale(.94)}
+.lb-btn[disabled]{opacity:.3;cursor:default}
+.lightbox__contador{font-size:12px;color:#8f8f8f;min-width:42px;text-align:center;font-variant-numeric:tabular-nums}
+.lightbox__cerrar{
+  position:absolute;
+  top:-46px;right:0;
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.06);
+  cursor:pointer;
+  transition:background .2s ease,transform .2s ease;
+}
+.lightbox__cerrar:hover{background:rgba(255,255,255,.16);transform:rotate(90deg)}
+
+/* ---------- 12. MOTITO + CIERRE DEL PANEL ------------------- */
+.cierre{
+  position:relative;
+  margin-top:clamp(-80px,-5vw,-24px);
+  min-height:clamp(190px,26vw,320px);
+}
+.cierre__motito{
+  position:absolute;
+  right:clamp(-40px,-2vw,0px);
+  bottom:0;
+  width:clamp(230px,42vw,470px);
+  z-index:2;
+  pointer-events:none;
+}
+.cierre__cuna{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:clamp(70px,11vw,140px);
+  background:var(--fondo-hero);
+  clip-path:polygon(0 100%, 100% 0, 100% 100%);
+  z-index:1;
+}
+
+/* ---------- 13. CONTACTO ------------------------------------ */
+.contacto{
+  background:var(--fondo-hero);
+  color:#171717;
+  padding:clamp(36px,6vw,72px) 0 clamp(28px,4vw,44px);
+}
+.contacto__grid{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:32px;
+}
+.contacto__titulo{
+  font-family:"Manrope",sans-serif;
+  font-weight:800;
+  letter-spacing:-.03em;
+  font-size:clamp(28px,4.6vw,46px);
+  line-height:1.05;
+  margin:0 0 12px;
+  max-width:11ch;
+}
+.contacto__titulo em{font-style:normal;color:var(--naranja);transition:color .4s ease}
+body[data-vista="web"] .contacto__titulo em{color:var(--azul)}
+.contacto__bajada{
+  margin:0;
+  max-width:38ch;
+  color:#4a4a4a;
+  font-weight:300;
+  font-size:15px;
+}
+.contacto__acciones{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  border-radius:12px;
+  padding:14px 22px;
+  font-family:"Manrope",sans-serif;
+  font-weight:700;
+  font-size:13.5px;
+  letter-spacing:.02em;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:transform .2s ease, filter .2s ease, background .2s ease, color .2s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn--wa{background:linear-gradient(180deg,#ff5f22,#ff3000);color:#fff;box-shadow:0 10px 26px -12px rgba(255,48,0,.9);transition:background .4s ease, box-shadow .4s ease, transform .2s ease, filter .2s ease}
+.btn--wa:hover{filter:brightness(1.07)}
+body[data-vista="web"] .contacto .btn--wa{
+  background:linear-gradient(180deg,var(--azul-alto),var(--azul));
+  box-shadow:0 10px 26px -12px rgba(36,64,224,.9);
+}
+.btn--mail{background:transparent;color:#171717;border-color:rgba(0,0,0,.22)}
+.btn--mail:hover{background:#171717;color:#fff;border-color:#171717}
+/* variantes dentro del panel oscuro */
+.presu .btn--wa{background:linear-gradient(180deg,var(--acento-alto),var(--acento));box-shadow:0 10px 28px -12px color-mix(in srgb, var(--acento) 90%, transparent)}
+.presu .btn--mail{color:#f0f0f0;border-color:rgba(255,255,255,.26)}
+.presu .btn--mail:hover{background:#fff;color:#111;border-color:#fff}
+
+.pie{
+  border-top:1px solid rgba(0,0,0,.12);
+  margin-top:clamp(30px,5vw,52px);
+  padding-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  font-size:12.5px;
+  color:#5c5c5c;
+}
+.pie__redes{display:flex;gap:18px}
+.pie__redes a{transition:color .2s ease}
+.pie__redes a:hover{color:var(--naranja)}
+
+/* ---------- 14. APARICIÓN AL SCROLL ------------------------- */
+.reveal{opacity:0;transform:translateY(22px)}
+.reveal.visible{
+  opacity:1;transform:none;
+  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);
+  transition-delay:calc(var(--i,0) * .07s);
+}
+
+/* ---------- 15. MOBILE -------------------------------------- */
+@media (max-width:860px){
+  .servicios{grid-template-columns:1fr;max-width:440px}
+  .trabajos{grid-template-columns:1fr}
+  .trabajo--ancho{grid-column:auto}
+}
+@media (max-width:760px){
+  .grilla{grid-template-columns:1fr;max-width:440px}
+  .grilla > .card--solo{width:100%}
+  .hero__logo{width:82%}
+  .panel{margin-top:-34px}
+  .cierre{min-height:180px;margin-top:8px}
+  .cierre__motito{width:min(74%,300px);right:-14px}
+  .contacto__grid{align-items:flex-start}
+  .seccion__head{align-items:flex-start}
+  .switcher{width:100%}
+  .switcher__opt{font-size:12.5px;padding:11px 6px;gap:6px}
+  .presu{flex-direction:column;align-items:flex-start;text-align:left}
+  .lightbox__cerrar{top:-42px}
+}
+@media (max-width:420px){
+  .switcher__opt svg{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+  .card:hover,.btn:hover,.servicio:hover,.trabajo:hover{transform:none}
+  .vista.is-activa{animation:none}
+  .marco__shot img{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="hero__inner">
+    <picture>
+      <source srcset="assets/hero.webp" type="image/webp">
+      <img class="hero__foto" src="assets/hero.png" alt="El equipo de .Conecta, de espaldas, con una notebook y una tablet" width="1800" height="1304" fetchpriority="high">
+    </picture>
+    <picture>
+      <source srcset="assets/logo.webp" type="image/webp">
+      <img class="hero__logo" src="assets/logo.png" alt=".Conecta — Redes sociales y desarrollo web" width="732" height="248">
+    </picture>
+  </div>
+</header>
+
+<!-- ===================== PANEL OSCURO ===================== -->
+<main class="panel" id="servicios" data-vista="redes">
+  <div class="brillo brillo--naranja"></div>
+  <div class="brillo brillo--azul"></div>
+
+  <div class="contenedor">
+
+    <!-- ---------- SWITCH ---------- -->
+    <div class="switcher" role="tablist" aria-label="Elegí el servicio">
+      <span class="switcher__pill" aria-hidden="true"></span>
+      <button class="switcher__opt" role="tab" id="tab-redes" aria-controls="vista-redes" aria-selected="true" data-vista="redes">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Redes sociales
+      </button>
+      <button class="switcher__opt" role="tab" id="tab-web" aria-controls="vista-web" aria-selected="false" data-vista="web">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Desarrollo web
+      </button>
+    </div>
+
+    <!-- ================= VISTA A · REDES ================= -->
+    <section class="vista is-activa" id="vista-redes" data-vista="redes" role="tabpanel" aria-labelledby="tab-redes">
+
+      <div class="seccion__head">
+        <div>
+          <h1 class="seccion__titulo">Planes</h1>
+          <p class="seccion__bajada">Planificamos, editamos y publicamos el contenido de tus redes. Vos seguí con lo tuyo.</p>
+        </div>
+        <picture>
+          <source srcset="assets/logo-co.webp" type="image/webp">
+          <img class="seccion__co" src="assets/logo-co.png" alt=".Co" width="80" height="44">
+        </picture>
+      </div>
+
+      <div class="grilla">
+
+        <!-- ---------- Plan Lift ---------- -->
+        <article class="card card--naranja reveal" style="--i:0" data-plan="Lift">
+          <span class="card__badge">El más popular</span>
+          <h2 class="card__nombre">Plan Lift</h2>
+          <p class="card__desc">Planificamos, editamos y publicamos el contenido</p>
+          <p class="card__precio"><b>$200.000</b><span>/mes</span></p>
+          <button class="card__cta" data-wa="Plan Lift">8 contenidos mensuales</button>
+          <p class="card__ajustes">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            hasta 3 ajustes por contenido
+          </p>
+          <p class="card__sep">INCLUYE</p>
+          <ul class="card__lista">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>5 contenidos estáticos + 3 Reels o Tik Toks</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>Planificación del calendario</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>Copies</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>Publicación del contenido (opcional)</li>
+          </ul>
+          <a class="card__mail" href="#" data-mail="Plan Lift">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Consultar por mail
+          </a>
+        </article>
+
+        <!-- ---------- Plan Boost ---------- -->
+        <article class="card card--azul reveal" style="--i:1" data-plan="Boost">
+          <span class="card__badge">El más completo</span>
+          <h2 class="card__nombre">Plan Boost</h2>
+          <p class="card__desc">Planificamos, editamos y publicamos el contenido</p>
+          <p class="card__precio"><b>$350.000</b><span>/mes</span></p>
+          <button class="card__cta" data-wa="Plan Boost">16 contenidos mensuales</button>
+          <p class="card__ajustes">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            hasta 5 ajustes por contenido
+          </p>
+          <p class="card__sep">INCLUYE</p>
+          <ul class="card__lista">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>12 contenidos estáticos + 4 Reels o Tik Toks</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>Planificación del calendario</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>Copies</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>Publicación del contenido (opcional)</li>
+          </ul>
+          <a class="card__mail" href="#" data-mail="Plan Boost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Consultar por mail
+          </a>
+        </article>
+
+        <!-- ---------- Plan Base ---------- -->
+        <article class="card card--naranja card--solo reveal" style="--i:2" data-plan="Base">
+          <span class="card__badge">Plan inicial</span>
+          <h2 class="card__nombre">Plan Base</h2>
+          <p class="card__desc">Planificamos, editamos y publicamos el contenido</p>
+          <p class="card__precio"><b>$100.000</b><span>/mes</span></p>
+          <button class="card__cta" data-wa="Plan Base">5 contenidos mensuales</button>
+          <p class="card__ajustes">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            hasta 3 ajustes por contenido
+          </p>
+          <p class="card__sep">INCLUYE</p>
+          <ul class="card__lista">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>4 contenidos estáticos + 1 Reel o Tik Tok</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>Copies</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5"/></svg>Publicación del contenido (opcional)</li>
+          </ul>
+          <a class="card__mail" href="#" data-mail="Plan Base">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Consultar por mail
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ================= VISTA B · DESARROLLO WEB ================= -->
+    <section class="vista" id="vista-web" data-vista="web" role="tabpanel" aria-labelledby="tab-web">
+
+      <div class="seccion__head">
+        <div>
+          <h2 class="seccion__titulo">Desarrollo</h2>
+          <p class="seccion__bajada">Tu tienda, tu app o tu landing. Diseño propio, código a medida y todo listo para vender desde el primer día.</p>
+        </div>
+        <picture>
+          <source srcset="assets/logo-co.webp" type="image/webp">
+          <img class="seccion__co" src="assets/logo-co.png" alt=".Co" width="80" height="44">
+        </picture>
+      </div>
+
+      <!-- ---------- Servicios ---------- -->
+      <div class="servicios">
+
+        <article class="servicio reveal" style="--i:0">
+          <div class="servicio__icono">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18l-1.5 9.5a2 2 0 0 1-2 1.7H8a2 2 0 0 1-2-1.7L3 3H1"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
+          </div>
+          <h3>Tienda online</h3>
+          <p>Catálogo, carrito y cobros online. Vendés 24/7 sin depender del DM.</p>
+          <ul>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Catálogo con filtros y stock</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pagos y envíos integrados</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Panel para cargar productos</li>
+          </ul>
+          <div class="servicio__pie">
+            <span>A medida</span>
+            <a href="#" data-wa="Tienda online">Pedir presupuesto →</a>
+          </div>
+        </article>
+
+        <article class="servicio reveal" style="--i:1">
+          <div class="servicio__icono">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.6"/><path d="M11 18.5h2"/></svg>
+          </div>
+          <h3>App mobile</h3>
+          <p>Una aplicación propia con usuarios, perfiles y todo lo que tu proyecto necesite.</p>
+          <ul>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Cuentas, perfiles y mensajes</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Panel de administración</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Métricas y reportes</li>
+          </ul>
+          <div class="servicio__pie">
+            <span>A medida</span>
+            <a href="#" data-wa="App mobile">Pedir presupuesto →</a>
+          </div>
+        </article>
+
+        <article class="servicio reveal" style="--i:2">
+          <div class="servicio__icono">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="15" rx="2.2"/><path d="M2.5 9h19M6 6.5h.01M8.6 6.5h.01"/></svg>
+          </div>
+          <h3>Landing page</h3>
+          <p>Una página que presenta tu trabajo y convierte visitas en consultas.</p>
+          <ul>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Diseño propio, no plantilla</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Optimizada para celular</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Botones a WhatsApp y mail</li>
+          </ul>
+          <div class="servicio__pie">
+            <span>A medida</span>
+            <a href="#" data-wa="Landing page">Pedir presupuesto →</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ---------- Galería de trabajos ---------- -->
+      <div class="trabajos__head">
+        <h3>Algunos trabajos</h3>
+        <span>Tocá cualquiera para ver más capturas</span>
+      </div>
+
+      <div class="trabajos">
+
+        <!-- Giulia & Co -->
+        <article class="trabajo trabajo--ancho reveal" style="--i:0">
+          <div class="marco" data-galeria="giulia" data-titulo="Giulia &amp; Co." role="button" tabindex="0" aria-label="Ver capturas de Giulia & Co.">
+            <div class="marco__barra">
+              <span class="marco__punto"></span><span class="marco__punto"></span><span class="marco__punto"></span>
+              <span class="marco__url">multimarcasgiulia.mitiendanube.com</span>
+            </div>
+            <div class="marco__shot">
+              <img src="assets/trabajos/giulia-1-t.webp" alt="Home de la tienda online Giulia &amp; Co." loading="lazy" width="820" height="369">
+              <span class="marco__lupa">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                3 capturas
+              </span>
+            </div>
+          </div>
+          <div class="trabajo__info">
+            <div class="trabajo__meta">
+              <span class="trabajo__tag">Tienda online</span>
+              <span class="trabajo__anio">Indumentaria · Rosario</span>
+            </div>
+            <h4>Giulia &amp; Co.</h4>
+            <p>Multimarca de indumentaria con catálogo por temporada, filtros por talle, gift cards y cobros en cuotas. Todo autogestionable desde el panel.</p>
+            <div class="trabajo__acciones">
+              <button class="enlace" data-galeria="giulia" data-titulo="Giulia &amp; Co.">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                Ver capturas
+              </button>
+              <a class="enlace" href="https://multimarcasgiulia.mitiendanube.com/" target="_blank" rel="noopener">
+                Visitar sitio
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Hugo Dellana -->
+        <article class="trabajo reveal" style="--i:1">
+          <div class="marco" data-galeria="hugo" data-titulo="Hugo Dellana — Press Kit" role="button" tabindex="0" aria-label="Ver capturas de Hugo Dellana">
+            <div class="marco__barra">
+              <span class="marco__punto"></span><span class="marco__punto"></span><span class="marco__punto"></span>
+              <span class="marco__url">fitoplancton23.github.io/Hugo-Dellana</span>
+            </div>
+            <div class="marco__shot">
+              <img src="assets/trabajos/hugo-1-t.webp" alt="Portada del press kit de Hugo Dellana" loading="lazy" width="820" height="422">
+              <span class="marco__lupa">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                3 capturas
+              </span>
+            </div>
+          </div>
+          <div class="trabajo__info">
+            <div class="trabajo__meta">
+              <span class="trabajo__tag">Press kit</span>
+              <span class="trabajo__anio">DJ · Rosario</span>
+            </div>
+            <h4>Hugo Dellana</h4>
+            <p>Press kit de un DJ de tech house: biografía, sets, galería de flyers en 3D y fechas, con un botón de booking siempre a mano.</p>
+            <div class="trabajo__acciones">
+              <button class="enlace" data-galeria="hugo" data-titulo="Hugo Dellana — Press Kit">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                Ver capturas
+              </button>
+              <a class="enlace" href="https://fitoplancton23.github.io/Hugo-Dellana/" target="_blank" rel="noopener">
+                Visitar sitio
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Silveris Films -->
+        <article class="trabajo reveal" style="--i:2">
+          <div class="marco" data-galeria="silveris" data-titulo="Silveris Films" role="button" tabindex="0" aria-label="Ver captura de Silveris Films">
+            <div class="marco__barra">
+              <span class="marco__punto"></span><span class="marco__punto"></span><span class="marco__punto"></span>
+              <span class="marco__url">silverisfilms.com</span>
+            </div>
+            <div class="marco__shot">
+              <img src="assets/trabajos/silveris-1-t.webp" alt="Portada del sitio de Silveris Films" loading="lazy" width="820" height="466">
+              <span class="marco__lupa">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                Ver grande
+              </span>
+            </div>
+          </div>
+          <div class="trabajo__info">
+            <div class="trabajo__meta">
+              <span class="trabajo__tag">Landing page</span>
+              <span class="trabajo__anio">Productora · Rosario</span>
+            </div>
+            <h4>Silveris Films</h4>
+            <p>Productora audiovisual: video de fondo a pantalla completa, perfil del estudio y una sección de trabajos recientes con los videoclips embebidos.</p>
+            <div class="trabajo__acciones">
+              <button class="enlace" data-galeria="silveris" data-titulo="Silveris Films">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                Ver capturas
+              </button>
+              <a class="enlace" href="https://www.silverisfilms.com" target="_blank" rel="noopener">
+                Visitar sitio
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Plataforma -->
+        <article class="trabajo trabajo--ancho trabajo--espejo reveal" style="--i:3">
+          <div class="marco" data-galeria="plataforma" data-titulo="Plataforma" role="button" tabindex="0" aria-label="Ver capturas de Plataforma">
+            <div class="marco__barra">
+              <span class="marco__punto"></span><span class="marco__punto"></span><span class="marco__punto"></span>
+              <span class="marco__url">plataforma · en desarrollo</span>
+            </div>
+            <div class="marco__shot">
+              <img src="assets/trabajos/plataforma-1-t.webp" alt="Pantalla de inicio de la app Plataforma" loading="lazy" width="820" height="461">
+              <span class="marco__lupa">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                5 capturas
+              </span>
+            </div>
+          </div>
+          <div class="trabajo__info">
+            <div class="trabajo__meta">
+              <span class="trabajo__tag">App mobile</span>
+              <span class="trabajo__anio">Red para músicos · en desarrollo</span>
+            </div>
+            <h4>Plataforma</h4>
+            <p>Una red para músicos y productores: proyectos colaborativos, perfiles profesionales, mensajería interna, cartelera y un panel de administración con métricas de la comunidad.</p>
+            <div class="trabajo__acciones">
+              <button class="enlace" data-galeria="plataforma" data-titulo="Plataforma">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                Ver capturas
+              </button>
+              <span class="enlace enlace--apagado">En desarrollo</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ---------- Banda de presupuesto ---------- -->
+      <div class="presu reveal" style="--i:0">
+        <div>
+          <h3>¿Arrancamos tu proyecto?</h3>
+          <p>Contanos qué tenés en mente y te pasamos un presupuesto sin cargo, con tiempos y alcance claros.</p>
+        </div>
+        <div class="presu__acciones">
+          <a class="btn btn--wa" href="#" data-wa="Desarrollo web">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.86 9.86 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.3-1.94 1.35-.5.05-1.13.07-1.82-.11-.42-.11-.96-.29-1.65-.59-2.9-1.25-4.8-4.17-4.95-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.17.01.41-.07.64.49.24.57.81 1.98.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.41.29.14.45.12.62-.07.17-.19.71-.83.9-1.12.19-.29.38-.24.64-.14.26.09 1.66.78 1.95.93.29.14.48.21.55.33.07.12.07.69-.17 1.36Z"/></svg>
+            Pedir presupuesto
+          </a>
+          <a class="btn btn--mail" href="#" data-mail="Desarrollo web">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Escribir un mail
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="cierre">
+    <picture>
+      <source srcset="assets/motito.webp" type="image/webp">
+      <img class="cierre__motito" src="assets/motito.png" alt="El equipo de .Conecta arriba de una moto" width="1300" height="972" loading="lazy">
+    </picture>
+    <div class="cierre__cuna"></div>
+  </div>
+</main>
+
+<!-- ===================== CONTACTO ===================== -->
+<section class="contacto" id="contacto">
+  <div class="contenedor">
+    <div class="contacto__grid">
+      <div>
+        <h2 class="contacto__titulo">Hablemos de <em id="contacto-foco">tus redes</em></h2>
+        <p class="contacto__bajada" id="contacto-bajada">Contanos qué necesitás y armamos el plan que mejor te sirva. Respondemos el mismo día.</p>
+      </div>
+      <div class="contacto__acciones">
+        <a class="btn btn--wa" href="#" data-wa="">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.86 9.86 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.3-1.94 1.35-.5.05-1.13.07-1.82-.11-.42-.11-.96-.29-1.65-.59-2.9-1.25-4.8-4.17-4.95-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.17.01.41-.07.64.49.24.57.81 1.98.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.41.29.14.45.12.62-.07.17-.19.71-.83.9-1.12.19-.29.38-.24.64-.14.26.09 1.66.78 1.95.93.29.14.48.21.55.33.07.12.07.69-.17 1.36Z"/></svg>
+          Escribinos por WhatsApp
+        </a>
+        <a class="btn btn--mail" href="#" data-mail="">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Mandanos un mail
+        </a>
+      </div>
+    </div>
+    <div class="pie">
+      <span>© <span id="anio"></span> .Conecta — Redes sociales y desarrollo web</span>
+      <nav class="pie__redes">
+        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galería de capturas">
+  <div class="lightbox__caja">
+    <button class="lightbox__cerrar" id="lb-cerrar" aria-label="Cerrar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <img class="lightbox__img" id="lb-img" src="" alt="">
+    <div class="lightbox__pie">
+      <div>
+        <b id="lb-titulo"></b>
+        <div id="lb-desc" style="font-size:12.5px;color:#8f8f8f;margin-top:2px"></div>
+      </div>
+      <div class="lightbox__nav">
+        <button class="lb-btn" id="lb-prev" aria-label="Anterior">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <span class="lightbox__contador" id="lb-contador"></span>
+        <button class="lb-btn" id="lb-next" aria-label="Siguiente">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — cambiá estos valores y listo.
+
+   whatsappLink: tu link corto de WhatsApp Business (wa.me/message/…).
+                 Abre el chat directo. El mensaje inicial se configura
+                 UNA sola vez desde la app de WhatsApp Business.
+   email:        casilla donde recibís las consultas.
+   ============================================================ */
+const CONFIG = {
+  whatsappLink: "https://wa.me/message/3RGHI45WNTN5J1",
+  email:        "studio.conecta.gestion@gmail.com",
+  marca:        ".Conecta"
+};
+
+/* ---------- Links de WhatsApp y de mail ---------- */
+function linkWhatsApp(){
+  // El link corto de WhatsApp Business abre el chat directo; no admite
+  // un mensaje distinto por plan (eso se define dentro de la app).
+  return CONFIG.whatsappLink;
+}
+function linkMail(tema){
+  const esWeb = /tienda|app|landing|desarrollo/i.test(tema || "");
+  const asunto = tema
+    ? (esWeb ? `Presupuesto — ${tema}` : `Consulta por el ${tema}`)
+    : `Consulta`;
+  const cuerpo = tema
+    ? (esWeb
+        ? `¡Hola ${CONFIG.marca}!\n\nQuiero un presupuesto de ${tema}. Les cuento sobre el proyecto:\n\n`
+        : `¡Hola ${CONFIG.marca}!\n\nMe interesa el ${tema}. Les cuento un poco sobre mi marca:\n\n`)
+    : `¡Hola ${CONFIG.marca}!\n\nQuiero hacerles una consulta. Les cuento:\n\n`;
+  return `mailto:${CONFIG.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+}
+document.querySelectorAll("[data-wa]").forEach(el => {
+  const url = linkWhatsApp();
+  if (el.tagName === "A") { el.href = url; el.target = "_blank"; el.rel = "noopener"; }
+  else el.addEventListener("click", () => window.open(url, "_blank", "noopener"));
+});
+document.querySelectorAll("[data-mail]").forEach(el => {
+  el.href = linkMail(el.dataset.mail);
+});
+
+/* ---------- Switch Redes / Desarrollo web ---------- */
+const panel   = document.getElementById("servicios");
+const opciones = document.querySelectorAll(".switcher__opt");
+const vistas   = document.querySelectorAll(".vista");
+
+const TEXTOS = {
+  redes: {
+    foco:   "tus redes",
+    bajada: "Contanos qué necesitás y armamos el plan que mejor te sirva. Respondemos el mismo día."
+  },
+  web: {
+    foco:   "tu proyecto",
+    bajada: "Contanos qué querés construir y te pasamos un presupuesto sin cargo. Respondemos el mismo día."
+  }
+};
+
+function activarVista(v, hacerFoco){
+  panel.dataset.vista = v;
+  document.body.dataset.vista = v;
+
+  opciones.forEach(o => o.setAttribute("aria-selected", String(o.dataset.vista === v)));
+  vistas.forEach(s => s.classList.toggle("is-activa", s.dataset.vista === v));
+
+  document.getElementById("contacto-foco").textContent   = TEXTOS[v].foco;
+  document.getElementById("contacto-bajada").textContent = TEXTOS[v].bajada;
+
+  // los elementos de la vista recién abierta aparecen escalonados
+  const activa = document.querySelector(`.vista[data-vista="${v}"]`);
+  activa.querySelectorAll(".reveal").forEach(el => {
+    el.classList.remove("visible");
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("visible")));
+  });
+
+  history.replaceState(null, "", v === "web" ? "#desarrollo" : "#planes");
+  if (hacerFoco) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+opciones.forEach(o => {
+  o.addEventListener("click", () => activarVista(o.dataset.vista, false));
+});
+
+// permite entrar directo con .../#desarrollo
+if (location.hash === "#desarrollo") activarVista("web", false);
+
+/* ---------- Galería / lightbox ---------- */
+const GALERIAS = {
+  giulia: {
+    sitio: "multimarcasgiulia.mitiendanube.com",
+    fotos: [
+      ["assets/trabajos/giulia-1.webp", "Home con los ingresos de temporada"],
+      ["assets/trabajos/giulia-2.webp", "Listado con filtros por talle y descuentos"],
+      ["assets/trabajos/giulia-3.webp", "Gift cards con pago en cuotas"]
+    ]
+  },
+  hugo: {
+    sitio: "fitoplancton23.github.io/Hugo-Dellana",
+    fotos: [
+      ["assets/trabajos/hugo-1.webp", "Portada del press kit"],
+      ["assets/trabajos/hugo-2.webp", "Biografía y descripción del sonido"],
+      ["assets/trabajos/hugo-3.webp", "Galería de flyers en 3D"]
+    ]
+  },
+  silveris: {
+    sitio: "silverisfilms.com",
+    fotos: [
+      ["assets/trabajos/silveris-1.webp", "Portada con video a pantalla completa"]
+    ]
+  },
+  plataforma: {
+    sitio: "En desarrollo",
+    fotos: [
+      ["assets/trabajos/plataforma-1.webp", "Inicio: proyectos activos y destacados"],
+      ["assets/trabajos/plataforma-2.webp", "Panel de administración con métricas"],
+      ["assets/trabajos/plataforma-3.webp", "Mensajería interna"],
+      ["assets/trabajos/plataforma-4.webp", "Perfil profesional editable"],
+      ["assets/trabajos/plataforma-5.webp", "La app corriendo en el celular"]
+    ]
+  }
+};
+
+const lb        = document.getElementById("lightbox");
+const lbImg     = document.getElementById("lb-img");
+const lbTitulo  = document.getElementById("lb-titulo");
+const lbDesc    = document.getElementById("lb-desc");
+const lbCont    = document.getElementById("lb-contador");
+const lbPrev    = document.getElementById("lb-prev");
+const lbNext    = document.getElementById("lb-next");
+let galActual = null, indice = 0;
+
+function pintar(){
+  const g = GALERIAS[galActual];
+  if (!g) return;
+  const [src, desc] = g.fotos[indice];
+  lbImg.src = src;
+  lbImg.alt = desc;
+  lbDesc.textContent = desc;
+  lbCont.textContent = `${indice + 1} / ${g.fotos.length}`;
+  const solaUna = g.fotos.length < 2;
+  lbPrev.disabled = solaUna;
+  lbNext.disabled = solaUna;
+}
+function abrir(clave, titulo){
+  if (!GALERIAS[clave]) return;
+  galActual = clave;
+  indice = 0;
+  lbTitulo.textContent = titulo;
+  pintar();
+  lb.classList.add("is-abierto");
+  document.body.style.overflow = "hidden";
+  document.getElementById("lb-cerrar").focus();
+}
+function cerrar(){
+  lb.classList.remove("is-abierto");
+  document.body.style.overflow = "";
+  galActual = null;
+}
+function mover(paso){
+  const g = GALERIAS[galActual];
+  if (!g) return;
+  indice = (indice + paso + g.fotos.length) % g.fotos.length;
+  pintar();
+}
+
+document.querySelectorAll("[data-galeria]").forEach(el => {
+  const abrirlo = () => abrir(el.dataset.galeria, el.dataset.titulo || "");
+  el.addEventListener("click", abrirlo);
+  if (el.getAttribute("role") === "button") {
+    el.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrirlo(); }
+    });
+  }
+});
+lbPrev.addEventListener("click", () => mover(-1));
+lbNext.addEventListener("click", () => mover(1));
+document.getElementById("lb-cerrar").addEventListener("click", cerrar);
+lb.addEventListener("click", e => { if (e.target === lb) cerrar(); });
+document.addEventListener("keydown", e => {
+  if (!lb.classList.contains("is-abierto")) return;
+  if (e.key === "Escape")     cerrar();
+  if (e.key === "ArrowLeft")  mover(-1);
+  if (e.key === "ArrowRight") mover(1);
+});
+
+/* ---------- Año del pie ---------- */
+document.getElementById("anio").textContent = new Date().getFullYear();
+
+/* ---------- Aparición suave al hacer scroll ---------- */
+const io = new IntersectionObserver(entradas => {
+  entradas.forEach(e => { if (e.isIntersecting){ e.target.classList.add("visible"); io.unobserve(e.target); } });
+}, { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
