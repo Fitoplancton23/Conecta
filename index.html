@@ -994,6 +994,51 @@ body[data-vista="web"] .contacto .btn--wa{
   .switcher.avisar .switcher__opt[aria-selected="false"]{animation:none}
   .cruce:hover .cruce__thumbs img{transform:none}
 }
+
+   /* ---------- 8b. PROMO DESTACADA (tienda online) ------------ */
+.promo{
+  position:relative;
+  max-width:900px;
+  margin:0 auto clamp(46px,6vw,74px);
+  border-radius:var(--radio-card);
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.10);
+  padding:clamp(24px,3vw,38px);
+  overflow:hidden;
+  isolation:isolate;
+}
+.promo::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:72%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(80% 120% at 72% -20%, #2b46f0 0%, rgba(30,52,190,.7) 26%, rgba(20,28,86,.4) 52%, rgba(19,19,19,0) 78%),
+    radial-gradient(60% 100% at -6% -18%, rgba(255,90,32,.7) 0%, rgba(150,42,14,.3) 42%, rgba(19,19,19,0) 74%);
+}
+.promo__head{display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(16px,3vw,32px);flex-wrap:wrap;margin-bottom:20px}
+.promo__kicker{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#cdd4ff;margin-bottom:10px}
+.promo__titulo{font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:-.025em;font-size:clamp(24px,3.4vw,34px);line-height:1.1;margin:0 0 8px;max-width:20ch}
+.promo__desc{margin:0;font-size:14.5px;font-weight:300;color:#c4c4c4;max-width:42ch}
+.promo__precio{flex:none;text-align:right;min-width:160px}
+.promo__badge{display:inline-block;background:linear-gradient(180deg,#ff6a2a,#ff3000);color:#fff;border-radius:999px;padding:5px 13px;font-family:"Manrope",sans-serif;font-weight:800;font-size:12px;letter-spacing:.03em;box-shadow:0 8px 22px -8px rgba(255,48,0,.8)}
+.promo__antes{display:block;margin-top:12px;font-size:14px;color:#8f8f8f;text-decoration:line-through}
+.promo__ahora{display:flex;align-items:baseline;gap:8px;justify-content:flex-end}
+.promo__ahora b{font-family:"Manrope",sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,44px);letter-spacing:-.02em;color:#fff}
+.promo__ahora span{font-size:13px;color:#cfcfcf}
+.promo__off{display:inline-block;margin-top:6px;font-size:12px;font-weight:600;color:#ff8a5c}
+.promo__sep{display:flex;align-items:center;gap:14px;margin:6px 0 16px;font-size:11px;letter-spacing:.16em;color:#8d8d8d}
+.promo__sep::before,.promo__sep::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.13)}
+.promo__incluye{list-style:none;margin:0 0 20px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px}
+.promo__incluye li{display:flex;align-items:flex-start;gap:9px;font-size:13px;font-weight:300;color:#d0d0d0}
+.promo__incluye svg{flex:none;margin-top:2px;color:#7f95ff}
+.promo__entrega{border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.03);padding:14px 16px;margin-bottom:22px;font-size:13px;font-weight:300;color:#bcbcbc}
+.promo__entrega b{color:#fff;font-weight:600}
+.promo__acciones{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.promo .btn--wa{background:linear-gradient(180deg,var(--azul-alto),var(--azul));box-shadow:0 10px 28px -12px rgba(36,64,224,.9)}
+.promo .card__mail{margin-top:0}
+@media (max-width:760px){
+  .promo__incluye{grid-template-columns:1fr}
+  .promo__precio{text-align:left;min-width:0}
+  .promo__ahora{justify-content:flex-start}
+}
 </style>
 </head>
 <body>
@@ -1164,6 +1209,55 @@ body[data-vista="web"] .contacto .btn--wa{
           <img class="seccion__co" src="assets/logo-co.png" alt=".Co" width="80" height="44">
         </picture>
       </div>
+
+       <!-- ---------- Promo destacada: tienda online ---------- -->
+<article class="promo reveal" style="--i:0">
+  <div class="promo__head">
+    <div>
+      <span class="promo__kicker">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L3 13V3h10l7.59 7.59a2 2 0 0 1 0 2.82Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>
+        Promo de lanzamiento · Tiendanube o Shopify
+      </span>
+      <h3 class="promo__titulo">Publicá tu tienda online</h3>
+      <p class="promo__desc">Creación completa, lista para vender. Nos ocupamos de todo el armado; vos solo cargás tus productos.</p>
+    </div>
+    <div class="promo__precio">
+      <span class="promo__badge">40% OFF</span>
+      <span class="promo__antes">Antes $380.000</span>
+      <span class="promo__ahora"><b>$228.000</b><span>final</span></span>
+      <span class="promo__off">Ahorrás $152.000</span>
+    </div>
+  </div>
+  <p class="promo__sep">QUÉ INCLUYE</p>
+  <ul class="promo__incluye">
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Creación y configuración de Tiendanube o Shopify</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Aplicación de tu identidad visual</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Personalización de la plantilla</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Home y estructura general</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Categorías / colecciones</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Menú y navegación</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Páginas institucionales básicas</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Configuración de dominio</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Medios de pago</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Métodos de envío / retiro</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>WhatsApp y redes conectadas</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Configuración responsive</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pruebas del proceso de compra</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Publicación de la tienda</li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Capacitación breve para administrar productos y pedidos</li>
+  </ul>
+  <p class="promo__entrega"><b>El cliente entrega:</b> logo / identidad, textos, fotografías y datos comerciales, y carga sus propios productos.</p>
+  <div class="promo__acciones">
+    <a class="btn btn--wa" href="#" data-wa="Promo tienda online (Tiendanube o Shopify)">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.86 9.86 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.3-1.94 1.35-.5.05-1.13.07-1.82-.11-.42-.11-.96-.29-1.65-.59-2.9-1.25-4.8-4.17-4.95-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.17.01.41-.07.64.49.24.57.81 1.98.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.41.29.14.45.12.62-.07.17-.19.71-.83.9-1.12.19-.29.38-.24.64-.14.26.09 1.66.78 1.95.93.29.14.48.21.55.33.07.12.07.69-.17 1.36Z"/></svg>
+      Aprovechar la promo
+    </a>
+    <a class="card__mail" href="#" data-mail="Promo tienda online">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      Consultar por mail
+    </a>
+  </div>
+</article>
 
       <!-- ---------- Servicios ---------- -->
       <div class="servicios">
@@ -1434,8 +1528,8 @@ body[data-vista="web"] .contacto .btn--wa{
     <div class="pie">
       <span>© <span id="anio"></span> .Conecta — Redes sociales y desarrollo web</span>
       <nav class="pie__redes">
-        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-      </nav>
+  <a href="mailto:studio.conecta.gestion@gmail.com">studio.conecta.gestion@gmail.com</a>
+</nav>
     </div>
   </div>
 </section>
