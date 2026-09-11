@@ -78,6 +78,9 @@ main {
     @include m.respond("tablet") { font-size: 5.5rem; }
   }
 
+  // el h1 de las páginas internas necesita aire antes del texto
+  > h1 { margin-bottom: 1.4rem; }
+
   // secciones cuyo h2 es hijo directo
   > h2 {
     position: relative;

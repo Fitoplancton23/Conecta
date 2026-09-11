@@ -191,6 +191,9 @@ main {
     font-size: 5.5rem;
   }
 }
+.seccion > h1 {
+  margin-bottom: 1.4rem;
+}
 .seccion > h2 {
   position: relative;
   padding-bottom: 1.3rem;
