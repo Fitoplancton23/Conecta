@@ -1,7 +1,10 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
-footer {
+// Se acota a body > footer a propósito: el ticket del presupuesto
+// también tiene su propio <footer>, y un selector de elemento suelto
+// le pisaba el fondo y la tipografía.
+body > footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

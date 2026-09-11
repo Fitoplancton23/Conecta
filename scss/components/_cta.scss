@@ -1,0 +1,86 @@
+// ============================================================
+//  CTA — las tres acciones que tienen que estar a mano:
+//  hablar por WhatsApp, ver los planes y armar el presupuesto.
+//  Viven sobre el panel claro del hero, así que la jerarquía se
+//  construye con relleno (fuerte) contra contorno (secundario).
+// ============================================================
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+// Tres acciones en dos filas, a propósito: las dos primeras se
+// reparten el ancho y la tercera lo toma completo. Dejarlas en
+// flex-wrap las partía 2 + 1 y el corte parecía un accidente.
+.ctas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .7rem;
+  max-width: 30rem;
+  margin-top: 1.6rem;
+  padding: 0;
+  list-style: none;
+
+  li:last-child { grid-column: 1 / -1; }
+
+  @include m.respond("chico") {
+    grid-template-columns: 1fr;
+    gap: .55rem;
+
+    li:last-child { grid-column: auto; }
+  }
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  min-height: 46px;
+  padding: .85rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  @include m.mono(.68rem, .14em, #fff);
+  transition: transform .25s v.$ease, background .25s v.$ease,
+              border-color .25s v.$ease, box-shadow .25s v.$ease;
+
+  // El punto de la marca, al principio de cada acción.
+  &::before { @include m.punto(7px, currentColor); }
+
+  &:hover  { transform: translateY(-2px); }
+  &:active { transform: none; }
+
+  &:focus-visible {
+    outline: 2px solid v.$naranja;
+    outline-offset: 3px;
+  }
+
+  // --- Primaria: hablar con la dupla --------------------------
+  &--a {
+    background: linear-gradient(180deg, v.$naranja-alto, v.$naranja);
+    box-shadow: 0 10px 24px -12px rgba(255, 48, 0, .8);
+
+    &:hover { box-shadow: 0 16px 30px -12px rgba(255, 48, 0, .9); }
+  }
+
+  // --- Fuerte pero neutra: la calculadora --------------------
+  &--oscuro {
+    background: #141414;
+
+    &:hover { background: #262626; }
+  }
+
+  // --- Secundaria: solo contorno -----------------------------
+  &--linea {
+    border-color: rgba(0, 0, 0, .22);
+    color: #16181c;
+    background: transparent;
+
+    &:hover {
+      border-color: #16181c;
+      background: rgba(0, 0, 0, .04);
+    }
+  }
+
+  width: 100%;
+}

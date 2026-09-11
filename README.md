@@ -4,7 +4,8 @@ Sitio web estático de **.Conecta**, una dupla de gestión de redes sociales y
 desarrollo web formada por **Amalia Gross** (Lic. en Comunicación Social) y
 **Facundo Silveira** (Diseñador Digital / UX-UI).
 
-🔗 **Sitio en producción:** _(pendiente de deploy en Netlify)_
+🔗 **Sitio en producción:** https://celadon-meerkat-376bb0.netlify.app
+📦 **Repositorio:** https://github.com/Fitoplancton23/Conecta
 
 ---
 
@@ -45,7 +46,8 @@ naranja al azul, dibujándose a medida que se hace scroll: la página se va
 - **Bootstrap 5.3.3** — navbar responsiva con menú hamburguesa, re-estilada
   por completo desde SCSS.
 - **AOS 2.3.4** — animaciones de aparición al hacer scroll.
-- **JavaScript sin dependencias** — 45 líneas para el trazo de conexión.
+- **JavaScript sin dependencias** — el trazo de conexión y el indicador de
+  scroll, en un único archivo sin librerías.
 
 Bootstrap y AOS están incorporados localmente en `assets/vendor/` en lugar de
 por CDN: el sitio no depende de que un servicio externo esté disponible.
@@ -68,7 +70,7 @@ por CDN: el sitio no depende de que un servicio externo esté disponible.
 │   ├── base/               → _tokens, _reset, _tipografia, _texturas
 │   ├── layout/             → _main, _footer
 │   ├── components/         → _navbar, _meta, _ticker, _card, _plan,
-│   │                          _form, _cierre, _motion
+│   │                          _form, _cierre, _scroll-hint, _motion
 │   └── pages/              → _home, _planes
 ├── styles/
 │   └── main.css            → CSS compilado

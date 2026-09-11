@@ -67,11 +67,14 @@
       <!--
         FUENTE DE VERDAD DE PRECIOS (sin base de datos):
         Cada servicio es un <input> con data-precio (en pesos) y data-unidad.
-        En la etapa de JavaScript, el script recorre los inputs con cantidad > 0,
-        multiplica data-precio por la cantidad y arma el ticket. Para cambiar un
-        precio o sumar un servicio, se edita/agrega una línea acá. No hay backend.
+        js/presupuesto.js recorre los inputs con cantidad > 0, multiplica
+        data-precio por la cantidad y arma el ticket. Para cambiar un precio o
+        sumar un servicio, se edita/agrega una línea acá. No hay backend.
+
+        El form no tiene action ni method a propósito: no hay servidor a donde
+        enviarlo. El botón recalcula y "imprime" el ticket desde el navegador.
       -->
-      <form action="#" method="post" id="form-presupuesto">
+      <form id="form-presupuesto">
         <fieldset>
           <legend>Planes mensuales</legend>
           <p>Elegí un plan como base (opcional) y después sumale extras.</p>
@@ -185,12 +188,50 @@
 
     <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-resumen">
       <h2 id="titulo-resumen">Tu presupuesto</h2>
+
+      <p id="ticket-vacio">
+        Elegí las cantidades de arriba y acá vas a ver el detalle de tu
+        presupuesto.
+      </p>
+
       <!--
-        Contenedor del ticket. En la etapa de JS se listan acá los servicios
-        elegidos (nombre, cantidad, subtotal) y el total, con la animación de
-        "impresión". Por ahora es la estructura semántica del resumen.
+        El ticket. Lo completa js/presupuesto.js: una fila por servicio
+        elegido y el total. aria-live avisa al lector de pantalla cada vez
+        que el total cambia.
       -->
-      <p>Elegí las cantidades de arriba y acá vas a ver el detalle de tu presupuesto.</p>
+      <article class="ticket" id="ticket" aria-live="polite" hidden>
+        <header class="ticket__cabecera">
+          <p class="ticket__marca">.Conecta</p>
+          <p class="ticket__sub">Presupuesto de servicios</p>
+        </header>
+
+        <table class="ticket__tabla">
+          <caption class="ticket__caption">Detalle de los servicios elegidos</caption>
+          <thead>
+            <tr>
+              <th scope="col">Servicio</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="ticket-lineas"></tbody>
+          <tfoot>
+            <tr class="ticket__total">
+              <th scope="row">Total</th>
+              <td id="ticket-total">$0</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <footer class="ticket__pie">
+          <p><span id="ticket-items">0 servicios</span> · <span id="ticket-fecha"></span></p>
+          <p>Presupuesto orientativo. Los valores se confirman al iniciar el trabajo.</p>
+        </footer>
+      </article>
+
+      <p class="ticket__acciones" id="ticket-acciones" hidden>
+        <button class="ticket__accion" type="button" id="ticket-imprimir">Imprimir o guardar PDF</button>
+        <a class="ticket__accion ticket__accion--b" id="ticket-whatsapp" href="https://wa.me/543755505926" rel="noopener" target="_blank">Enviarlo por WhatsApp</a>
+      </p>
     </section>
   </main>
 
@@ -206,5 +247,6 @@
   <script src="../assets/vendor/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/aos.js"></script>
   <script src="../js/main.js" defer></script>
+  <script src="../js/presupuesto.js" defer></script>
 </body>
 </html>
