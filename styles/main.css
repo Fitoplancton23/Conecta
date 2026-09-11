@@ -865,6 +865,69 @@ button[type=submit]:active {
   }
 }
 
+@keyframes cae {
+  0%, 100% {
+    transform: translateY(-4px);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+.scroll-hint {
+  position: fixed;
+  z-index: 15;
+  right: clamp(1rem, 3.2vw, 2.6rem);
+  top: 50%;
+  transform: translateY(calc(-50% + var(--desplazamiento, 0px)));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(14, 14, 14, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: var(--visible, 1);
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.scroll-hint__texto {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #a9a9a9;
+  writing-mode: vertical-rl;
+}
+.scroll-hint__punto {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--a);
+  animation: cae 1.9s ease-in-out infinite;
+}
+@media (max-width: 780px) {
+  .scroll-hint {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 1.1rem;
+    flex-direction: row;
+    gap: 0.6rem;
+    padding: 0.5rem 0.95rem;
+    transform: translate(-50%, var(--desplazamiento, 0px));
+  }
+  .scroll-hint__texto {
+    writing-mode: horizontal-tb;
+  }
+}
+
 .rv {
   opacity: 0;
   transform: translateY(22px);
@@ -885,6 +948,9 @@ button[type=submit]:active {
     transform: none;
   }
   .ticker__pista {
+    animation: none;
+  }
+  .scroll-hint__punto {
     animation: none;
   }
   .trazo__fill {

@@ -11,6 +11,18 @@
 
   const menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- 0. El indicador de scroll ----------
+     Se desvanece y baja mientras el visitante scrollea. */
+  const indicador = document.querySelector(".scroll-hint");
+
+  const actualizarIndicador = () => {
+    if (!indicador) return;
+    const recorrido = 220;                       // px hasta que desaparece
+    const p = Math.min(1, window.scrollY / recorrido);
+    indicador.style.setProperty("--visible", (1 - p).toFixed(3));
+    indicador.style.setProperty("--desplazamiento", (p * 44).toFixed(1) + "px");
+  };
+
   /* ---------- 1. El trazo que conecta ---------- */
   const relleno = document.querySelector(".trazo__fill");
   const contenido = document.querySelector("main");
@@ -25,6 +37,7 @@
         ? (window.innerHeight * 0.5 - caja.top) / recorrido
         : 1;
       relleno.style.setProperty("--p", Math.min(1, Math.max(0, avance)).toFixed(4));
+      actualizarIndicador();
       pidiendoCuadro = false;
     };
 
@@ -38,6 +51,11 @@
     window.addEventListener("resize", alScrollear, { passive: true });
     dibujar();
   }
+
+  if (indicador && (!relleno || menosMovimiento)) {
+    window.addEventListener("scroll", actualizarIndicador, { passive: true });
+  }
+  actualizarIndicador();
 
   /* ---------- 2. Aparición al entrar en pantalla (AOS) ---------- */
   if (window.AOS) {

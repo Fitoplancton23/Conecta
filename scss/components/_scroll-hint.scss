@@ -1,0 +1,61 @@
+// ============================================================
+//  INDICADOR DE SCROLL
+//  Una pill de vidrio con EL PUNTO de la marca cayendo dentro.
+//  Solo aparece arriba de todo: el JS baja su opacidad y la
+//  desplaza hacia abajo a medida que se scrollea.
+// ============================================================
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+@keyframes cae {
+  0%, 100% { transform: translateY(-4px); opacity: .35; }
+  50%      { transform: translateY(6px);  opacity: 1; }
+}
+
+.scroll-hint {
+  position: fixed;
+  z-index: 15;
+  right: clamp(1rem, 3.2vw, 2.6rem);
+  top: 50%;
+  transform: translateY(calc(-50% + var(--desplazamiento, 0px)));
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  padding: .9rem .55rem;
+
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: rgba(14, 14, 14, .5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  opacity: var(--visible, 1);
+  pointer-events: none;
+  transition: opacity .35s v.$ease;
+
+  &__texto {
+    @include m.mono(.58rem, .24em, v.$tx-2);
+    writing-mode: vertical-rl;
+  }
+
+  &__punto {
+    @include m.punto(7px, var(--a));
+    animation: cae 1.9s ease-in-out infinite;
+  }
+
+  // En mobile no hay margen libre: la pill baja al centro, horizontal.
+  @include m.respond("tablet") {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 1.1rem;
+    flex-direction: row;
+    gap: .6rem;
+    padding: .5rem .95rem;
+    transform: translate(-50%, var(--desplazamiento, 0px));
+
+    &__texto { writing-mode: horizontal-tb; }
+  }
+}
