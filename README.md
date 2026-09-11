@@ -46,8 +46,8 @@ naranja al azul, dibujándose a medida que se hace scroll: la página se va
 - **Bootstrap 5.3.3** — navbar responsiva con menú hamburguesa, re-estilada
   por completo desde SCSS.
 - **AOS 2.3.4** — animaciones de aparición al hacer scroll.
-- **JavaScript sin dependencias** — el trazo de conexión y el indicador de
-  scroll, en un único archivo sin librerías.
+- **JavaScript sin dependencias** — el trazo de conexión, el indicador de
+  scroll y la calculadora de presupuesto, sin una sola librería.
 
 Bootstrap y AOS están incorporados localmente en `assets/vendor/` en lugar de
 por CDN: el sitio no depende de que un servicio externo esté disponible.
@@ -69,13 +69,15 @@ por CDN: el sitio no depende de que un servicio externo esté disponible.
 │   ├── abstracts/          → _variables, _mixins, _placeholders
 │   ├── base/               → _tokens, _reset, _tipografia, _texturas
 │   ├── layout/             → _main, _footer
-│   ├── components/         → _navbar, _meta, _ticker, _card, _plan,
-│   │                          _form, _cierre, _scroll-hint, _motion
+│   ├── components/         → _navbar, _meta, _ticker, _cta, _card,
+│   │                          _plan, _form, _ficha, _cierre, _ticket,
+│   │                          _scroll-hint, _motion
 │   └── pages/              → _home, _planes
 ├── styles/
 │   └── main.css            → CSS compilado
 ├── js/
-│   └── main.js
+│   ├── main.js             → trazo, indicador de scroll, AOS
+│   └── presupuesto.js      → calculadora del ticket
 └── assets/
     ├── img/                → imágenes y logotipo
     └── vendor/             → Bootstrap y AOS

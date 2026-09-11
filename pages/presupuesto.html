@@ -52,136 +52,199 @@
     <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-presupuesto">
       <h1 id="titulo-presupuesto">Armá tu presupuesto</h1>
       <p>
-        Sumá los servicios que necesités y armamos el detalle al instante. Cada
-        servicio tiene un precio fijo: elegís las cantidades y se imprime el ticket
-        con el total.
+        Tocá los servicios que necesités y armamos el detalle al instante. Cada
+        ficha tiene un precio fijo: elegís las que van y se imprime el ticket con
+        el total.
       </p>
-      <figure>
-        <img src="../assets/img/presupuesto.svg" alt="Ilustración de referencia de un ticket de presupuesto de Conecta" width="800" height="500">
-        <figcaption>El presupuesto se entrega como un ticket con el detalle de tu proyecto.</figcaption>
-      </figure>
     </section>
 
     <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-catalogo">
       <h2 id="titulo-catalogo">Elegí los servicios</h2>
       <!--
         FUENTE DE VERDAD DE PRECIOS (sin base de datos):
-        Cada servicio es un <input> con data-precio (en pesos) y data-unidad.
-        js/presupuesto.js recorre los inputs con cantidad > 0, multiplica
-        data-precio por la cantidad y arma el ticket. Para cambiar un precio o
-        sumar un servicio, se edita/agrega una línea acá. No hay backend.
+        Cada servicio es un checkbox con data-precio (en pesos) y data-unidad.
+        js/presupuesto.js suma los que están marcados y arma el ticket. Para
+        cambiar un precio o sumar un servicio, se edita/agrega una ficha acá.
+        No hay backend.
+
+        El checkbox está oculto a la vista pero sigue siendo el control real:
+        la ficha es su <label>, así que funciona con teclado y con lector de
+        pantalla sin una línea de JavaScript.
 
         El form no tiene action ni method a propósito: no hay servidor a donde
-        enviarlo. El botón recalcula y "imprime" el ticket desde el navegador.
+        enviarlo. El botón imprime el ticket desde el navegador.
       -->
       <form id="form-presupuesto">
         <fieldset>
           <legend>Planes mensuales</legend>
-          <p>Elegí un plan como base (opcional) y después sumale extras.</p>
-          <ul>
+          <p class="fichas__ayuda">Elegí un plan como base. Podés sumarle extras de los otros grupos.</p>
+          <ul class="fichas">
             <li>
-              <label for="plan-base">Plan Base — $150.000 / mes (5 contenidos)</label>
-              <input type="number" id="plan-base" name="plan-base" min="0" max="1" value="0" data-precio="150000" data-unidad="mes">
+              <input class="ficha__check" type="checkbox" id="plan-base" name="plan-base" data-precio="150000" data-unidad="por mes">
+              <label class="ficha" for="plan-base">
+                <span class="ficha__nombre">Plan Base</span>
+                <span class="ficha__precio">$150.000 <em>por mes</em></span>
+                <span class="ficha__nota">5 contenidos</span>
+              </label>
             </li>
             <li>
-              <label for="plan-lift">Plan Lift — $200.000 / mes (8 contenidos)</label>
-              <input type="number" id="plan-lift" name="plan-lift" min="0" max="1" value="0" data-precio="200000" data-unidad="mes">
+              <input class="ficha__check" type="checkbox" id="plan-lift" name="plan-lift" data-precio="200000" data-unidad="por mes">
+              <label class="ficha" for="plan-lift">
+                <span class="ficha__nombre">Plan Lift</span>
+                <span class="ficha__precio">$200.000 <em>por mes</em></span>
+                <span class="ficha__nota">8 contenidos</span>
+              </label>
             </li>
             <li>
-              <label for="plan-boost">Plan Boost — $400.000 / mes (16 contenidos)</label>
-              <input type="number" id="plan-boost" name="plan-boost" min="0" max="1" value="0" data-precio="400000" data-unidad="mes">
-            </li>
-          </ul>
-        </fieldset>
-
-        <fieldset>
-          <legend>Contenido (por pieza)</legend>
-          <ul>
-            <li>
-              <label for="placa-estatica">Placa estática (post) — $25.000</label>
-              <input type="number" id="placa-estatica" name="placa-estatica" min="0" value="0" data-precio="25000" data-unidad="pieza">
-            </li>
-            <li>
-              <label for="flyer">Flyer promocional — $30.000</label>
-              <input type="number" id="flyer" name="flyer" min="0" value="0" data-precio="30000" data-unidad="pieza">
-            </li>
-            <li>
-              <label for="carrusel">Carrusel (hasta 5 placas) — $50.000</label>
-              <input type="number" id="carrusel" name="carrusel" min="0" value="0" data-precio="50000" data-unidad="pieza">
-            </li>
-            <li>
-              <label for="historia">Placa para historia (Story) — $15.000</label>
-              <input type="number" id="historia" name="historia" min="0" value="0" data-precio="15000" data-unidad="pieza">
-            </li>
-            <li>
-              <label for="portadas">Pack de portadas de destacados (x5) — $20.000</label>
-              <input type="number" id="portadas" name="portadas" min="0" value="0" data-precio="20000" data-unidad="pack">
+              <input class="ficha__check" type="checkbox" id="plan-boost" name="plan-boost" data-precio="400000" data-unidad="por mes">
+              <label class="ficha" for="plan-boost">
+                <span class="ficha__nombre">Plan Boost</span>
+                <span class="ficha__precio">$400.000 <em>por mes</em></span>
+                <span class="ficha__nota">16 contenidos</span>
+              </label>
             </li>
           </ul>
         </fieldset>
 
         <fieldset>
-          <legend>Video (por pieza)</legend>
-          <ul>
+          <legend>Contenido</legend>
+          <ul class="fichas">
             <li>
-              <label for="reel">Edición de Reel / TikTok — $30.000</label>
-              <input type="number" id="reel" name="reel" min="0" value="0" data-precio="30000" data-unidad="pieza">
+              <input class="ficha__check" type="checkbox" id="placa-estatica" name="placa-estatica" data-precio="25000" data-unidad="por pieza">
+              <label class="ficha" for="placa-estatica">
+                <span class="ficha__nombre">Placa estática</span>
+                <span class="ficha__precio">$25.000 <em>por pieza</em></span>
+                <span class="ficha__nota">Post de feed</span>
+              </label>
             </li>
             <li>
-              <label for="guion">Guion e idea de Reel — $15.000</label>
-              <input type="number" id="guion" name="guion" min="0" value="0" data-precio="15000" data-unidad="pieza">
+              <input class="ficha__check" type="checkbox" id="flyer" name="flyer" data-precio="30000" data-unidad="por pieza">
+              <label class="ficha" for="flyer">
+                <span class="ficha__nombre">Flyer promocional</span>
+                <span class="ficha__precio">$30.000 <em>por pieza</em></span>
+              </label>
+            </li>
+            <li>
+              <input class="ficha__check" type="checkbox" id="carrusel" name="carrusel" data-precio="50000" data-unidad="por pieza">
+              <label class="ficha" for="carrusel">
+                <span class="ficha__nombre">Carrusel</span>
+                <span class="ficha__precio">$50.000 <em>por pieza</em></span>
+                <span class="ficha__nota">Hasta 5 placas</span>
+              </label>
+            </li>
+            <li>
+              <input class="ficha__check" type="checkbox" id="historia" name="historia" data-precio="15000" data-unidad="por pieza">
+              <label class="ficha" for="historia">
+                <span class="ficha__nombre">Placa para historia</span>
+                <span class="ficha__precio">$15.000 <em>por pieza</em></span>
+                <span class="ficha__nota">Story</span>
+              </label>
+            </li>
+            <li>
+              <input class="ficha__check" type="checkbox" id="portadas" name="portadas" data-precio="20000" data-unidad="por pack">
+              <label class="ficha" for="portadas">
+                <span class="ficha__nombre">Pack de portadas</span>
+                <span class="ficha__precio">$20.000 <em>por pack</em></span>
+                <span class="ficha__nota">5 destacados</span>
+              </label>
             </li>
           </ul>
         </fieldset>
 
         <fieldset>
-          <legend>Estrategia y gestión (por mes)</legend>
-          <ul>
+          <legend>Video</legend>
+          <ul class="fichas">
             <li>
-              <label for="calendario">Calendario mensual + presentación al cliente — $50.000</label>
-              <input type="number" id="calendario" name="calendario" min="0" value="0" data-precio="50000" data-unidad="mes">
+              <input class="ficha__check" type="checkbox" id="reel" name="reel" data-precio="30000" data-unidad="por pieza">
+              <label class="ficha" for="reel">
+                <span class="ficha__nombre">Edición de Reel / TikTok</span>
+                <span class="ficha__precio">$30.000 <em>por pieza</em></span>
+              </label>
             </li>
             <li>
-              <label for="copies">Redacción de copies (pack mensual) — $30.000</label>
-              <input type="number" id="copies" name="copies" min="0" value="0" data-precio="30000" data-unidad="mes">
+              <input class="ficha__check" type="checkbox" id="guion" name="guion" data-precio="15000" data-unidad="por pieza">
+              <label class="ficha" for="guion">
+                <span class="ficha__nombre">Guion e idea de Reel</span>
+                <span class="ficha__precio">$15.000 <em>por pieza</em></span>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <legend>Estrategia y gestión</legend>
+          <ul class="fichas">
+            <li>
+              <input class="ficha__check" type="checkbox" id="calendario" name="calendario" data-precio="50000" data-unidad="por mes">
+              <label class="ficha" for="calendario">
+                <span class="ficha__nombre">Calendario mensual</span>
+                <span class="ficha__precio">$50.000 <em>por mes</em></span>
+                <span class="ficha__nota">Con presentación al cliente</span>
+              </label>
             </li>
             <li>
-              <label for="community">Community management (mensajes y comentarios) — $40.000</label>
-              <input type="number" id="community" name="community" min="0" value="0" data-precio="40000" data-unidad="mes">
+              <input class="ficha__check" type="checkbox" id="copies" name="copies" data-precio="30000" data-unidad="por mes">
+              <label class="ficha" for="copies">
+                <span class="ficha__nombre">Redacción de copies</span>
+                <span class="ficha__precio">$30.000 <em>por mes</em></span>
+                <span class="ficha__nota">Pack mensual</span>
+              </label>
             </li>
             <li>
-              <label for="publicacion">Programación y publicación — $20.000</label>
-              <input type="number" id="publicacion" name="publicacion" min="0" value="0" data-precio="20000" data-unidad="mes">
+              <input class="ficha__check" type="checkbox" id="community" name="community" data-precio="40000" data-unidad="por mes">
+              <label class="ficha" for="community">
+                <span class="ficha__nombre">Community management</span>
+                <span class="ficha__precio">$40.000 <em>por mes</em></span>
+                <span class="ficha__nota">Mensajes y comentarios</span>
+              </label>
+            </li>
+            <li>
+              <input class="ficha__check" type="checkbox" id="publicacion" name="publicacion" data-precio="20000" data-unidad="por mes">
+              <label class="ficha" for="publicacion">
+                <span class="ficha__nombre">Programación y publicación</span>
+                <span class="ficha__precio">$20.000 <em>por mes</em></span>
+              </label>
             </li>
           </ul>
         </fieldset>
 
         <fieldset>
           <legend>Consultoría y auditoría</legend>
-          <ul>
+          <ul class="fichas">
             <li>
-              <label for="consultoria">Consultoría de comunicación (reunión de 2 h) — $100.000. El seguimiento se cotiza aparte.</label>
-              <input type="number" id="consultoria" name="consultoria" min="0" value="0" data-precio="100000" data-unidad="sesion">
+              <input class="ficha__check" type="checkbox" id="consultoria" name="consultoria" data-precio="100000" data-unidad="por sesión">
+              <label class="ficha" for="consultoria">
+                <span class="ficha__nombre">Consultoría de comunicación</span>
+                <span class="ficha__precio">$100.000 <em>por sesión</em></span>
+                <span class="ficha__nota">Reunión de 2 h. El seguimiento se cotiza aparte</span>
+              </label>
             </li>
             <li>
-              <label for="auditoria">Auditoría de una red social — $50.000 por red. Aplica a LinkedIn, TikTok, Instagram, Facebook, Behance, Upwork y Workana.</label>
-              <input type="number" id="auditoria" name="auditoria" min="0" value="0" data-precio="50000" data-unidad="red">
+              <input class="ficha__check" type="checkbox" id="auditoria" name="auditoria" data-precio="50000" data-unidad="por red">
+              <label class="ficha" for="auditoria">
+                <span class="ficha__nombre">Auditoría de una red social</span>
+                <span class="ficha__precio">$50.000 <em>por red</em></span>
+                <span class="ficha__nota">LinkedIn, TikTok, Instagram, Facebook, Behance, Upwork o Workana</span>
+              </label>
             </li>
           </ul>
         </fieldset>
 
         <fieldset>
-          <legend>Extras (una vez)</legend>
-          <ul>
+          <legend>Extras</legend>
+          <ul class="fichas">
             <li>
-              <label for="plantillas">Kit de plantillas editables — $45.000</label>
-              <input type="number" id="plantillas" name="plantillas" min="0" value="0" data-precio="45000" data-unidad="unica">
+              <input class="ficha__check" type="checkbox" id="plantillas" name="plantillas" data-precio="45000" data-unidad="pago único">
+              <label class="ficha" for="plantillas">
+                <span class="ficha__nombre">Kit de plantillas editables</span>
+                <span class="ficha__precio">$45.000 <em>pago único</em></span>
+              </label>
             </li>
           </ul>
         </fieldset>
 
         <p>
-          <button type="submit">Calcular presupuesto</button>
+          <button type="submit">Imprimir el presupuesto</button>
         </p>
       </form>
     </section>

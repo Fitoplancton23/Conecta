@@ -788,25 +788,6 @@ fieldset {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.018);
 }
-fieldset ul {
-  display: grid;
-  gap: 0.75rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-fieldset li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-@media (max-width: 640px) {
-  fieldset li {
-    justify-content: flex-start;
-  }
-}
 
 legend {
   padding: 0 0.5rem;
@@ -839,18 +820,6 @@ select:focus {
   outline: 2px solid var(--acento);
   outline-offset: 1px;
   border-color: transparent;
-}
-
-input[type=number] {
-  width: 5.5rem;
-  text-align: right;
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-@media (max-width: 640px) {
-  input[type=number] {
-    width: 100%;
-    text-align: left;
-  }
 }
 
 input[type=text],
@@ -890,6 +859,122 @@ button[type=submit]:active {
   transform: none;
 }
 
+.fichas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.fichas li {
+  display: flex;
+  margin: 0;
+}
+.fichas__ayuda {
+  margin: 0 0 0.9rem;
+  font-size: 0.85rem;
+  color: #6f6f6f;
+}
+
+.ficha__check {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  max-width: 21rem;
+  padding: 0.6rem 0.95rem 0.65rem 2rem;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.022);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ficha::before {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  top: 1.06rem;
+  width: 9px;
+  height: 9px;
+  margin-top: -4.5px;
+  border: 1px solid #6f6f6f;
+  border-radius: 50%;
+  transition: background 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ficha:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.05);
+}
+.ficha:active {
+  transform: scale(0.985);
+}
+.ficha__nombre {
+  font-size: 0.88rem;
+  line-height: 1.3;
+  color: #f2f2f2;
+}
+.ficha__precio {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6f6f6f;
+}
+.ficha__precio em {
+  font-style: normal;
+  opacity: 0.72;
+}
+.ficha__nota {
+  margin-top: 0.1rem;
+  max-width: 17rem;
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: #6f6f6f;
+}
+
+.ficha__check:checked + .ficha {
+  border-color: rgba(255, 48, 0, 0.55);
+  background: rgba(255, 48, 0, 0.1);
+}
+.ficha__check:checked + .ficha::before {
+  border-color: #ff3000;
+  background: #ff3000;
+  box-shadow: 0 0 10px rgba(255, 48, 0, 0.9);
+}
+.ficha__check:checked + .ficha .ficha__nombre {
+  color: #fff;
+}
+.ficha__check:checked + .ficha .ficha__precio {
+  color: #ff6a2a;
+}
+
+.ficha__check:focus-visible + .ficha {
+  outline: 2px solid #ff3000;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ficha,
+  .ficha::before {
+    transition: none;
+  }
+  .ficha:active {
+    transform: none;
+  }
+}
 .cierre {
   display: flex;
   align-items: center;

@@ -10,23 +10,9 @@ fieldset {
   border-radius: v.$radio-sm;
   background: rgba(255, 255, 255, .018);
 
-  ul {
-    display: grid;
-    gap: .75rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-
-    @include m.respond("chico") { justify-content: flex-start; }
-  }
+  // Las listas de adentro las maneja cada componente: hoy el único
+  // fieldset con lista es el catálogo del presupuesto, y lo resuelve
+  // .fichas. Dejar acá un layout de grilla solo le peleaba.
 }
 
 legend {
@@ -55,14 +41,6 @@ select {
     outline-offset: 1px;
     border-color: transparent;
   }
-}
-
-input[type="number"] {
-  width: 5.5rem;
-  text-align: right;
-  font-family: v.$mono;
-
-  @include m.respond("chico") { width: 100%; text-align: left; }
 }
 
 input[type="text"],
