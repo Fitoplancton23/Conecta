@@ -909,10 +909,24 @@ button[type=submit]:active {
   background: rgba(16, 16, 16, 0.62);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
   opacity: var(--visible, 1);
-  pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   animation: latido 2.6s ease-in-out infinite;
+}
+.scroll-hint:hover {
+  background: rgba(24, 24, 24, 0.82);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.scroll-hint:active {
+  background: rgba(32, 32, 32, 0.9);
+}
+.scroll-hint.esta-ido {
+  visibility: hidden;
 }
 .scroll-hint__texto {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -950,7 +964,8 @@ button[type=submit]:active {
     bottom: 1.1rem;
     flex-direction: row;
     gap: 0.7rem;
-    padding: 0.55rem 1.05rem;
+    padding: 0.7rem 1.15rem;
+    min-height: 44px;
     transform: translate(-50%, var(--desplazamiento, 0px));
   }
   .scroll-hint__texto {

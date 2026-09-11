@@ -46,10 +46,26 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
+  // es un boton de verdad: al tocarlo baja una pantalla
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+
   opacity: var(--visible, 1);
-  pointer-events: none;
-  transition: opacity .35s v.$ease;
+  transition: opacity .35s v.$ease, background .25s v.$ease, border-color .25s v.$ease;
   animation: latido 2.6s ease-in-out infinite;
+
+  &:hover {
+    background: rgba(24, 24, 24, .82);
+    border-color: rgba(255, 255, 255, .4);
+  }
+
+  &:active { background: rgba(32, 32, 32, .9); }
+
+  // una vez desvanecido sale del camino: ni clics ni foco de teclado
+  &.esta-ido { visibility: hidden; }
 
   &__texto {
     @include m.mono(.62rem, .26em, #dcdcdc);
@@ -82,7 +98,8 @@
     bottom: 1.1rem;
     flex-direction: row;
     gap: .7rem;
-    padding: .55rem 1.05rem;
+    padding: .7rem 1.15rem;
+    min-height: 44px;        // area de toque comoda en mobile
     transform: translate(-50%, var(--desplazamiento, 0px));
 
     &__texto { writing-mode: horizontal-tb; }

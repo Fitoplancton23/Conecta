@@ -21,7 +21,18 @@
     const p = Math.min(1, window.scrollY / recorrido);
     indicador.style.setProperty("--visible", (1 - p).toFixed(3));
     indicador.style.setProperty("--desplazamiento", (p * 44).toFixed(1) + "px");
+    // ya desvanecido: que no capture clics ni foco
+    indicador.classList.toggle("esta-ido", p > 0.9);
   };
+
+  if (indicador) {
+    indicador.addEventListener("click", () => {
+      window.scrollBy({
+        top: window.innerHeight * 0.85,
+        behavior: menosMovimiento ? "auto" : "smooth"
+      });
+    });
+  }
 
   /* ---------- 1. El trazo que conecta ---------- */
   const relleno = document.querySelector(".trazo__fill");
