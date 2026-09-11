@@ -1,0 +1,48 @@
+// Dos pistas en sentido opuesto: los dos polos yendo uno hacia el
+// otro. Es el concepto, en movimiento. (Animación nativa con keyframes)
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+@keyframes corre {
+  to { transform: translateX(-50%); }
+}
+
+.tira { margin-block: clamp(2.5rem, 6vw, 4rem); }
+
+.ticker {
+  --dur: 46s;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding-block: .7rem;
+  overflow: hidden;
+  border-block: 1px solid v.$linea;
+  background: #0d0d0d;
+
+  + .ticker { border-top: 0; }
+
+  &--b {
+    --acento: var(--b);
+    --dur: 54s;
+
+    .ticker__pista { animation-direction: reverse; }
+  }
+
+  &__pista {
+    display: flex;
+    width: max-content;
+    animation: corre var(--dur) linear infinite;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.6rem;
+    padding-inline: .8rem;
+    white-space: nowrap;
+    @include m.mono(.72rem, .22em, v.$tx-2);
+
+    &::after { @include m.punto(5px); }
+  }
+
+  &:hover .ticker__pista { animation-play-state: paused; }
+}

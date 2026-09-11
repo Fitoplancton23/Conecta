@@ -1,0 +1,17 @@
+// ============================================================
+//  TOKENS EN TIEMPO DE EJECUCIÓN
+//  Las variables SCSS se resuelven al compilar; estas viven en
+//  el navegador. Las necesitamos porque cada sección cambia su
+//  polo en caliente con [data-polo], y eso SCSS solo no puede.
+// ============================================================
+@use "../abstracts/variables" as v;
+
+:root {
+  --a:  #{v.$naranja};
+  --a2: #{v.$naranja-alto};
+  --b:  #{v.$azul};
+  --b2: #{v.$azul-alto};
+  --acento: var(--a);
+}
+
+[data-polo="b"] { --acento: var(--b); }

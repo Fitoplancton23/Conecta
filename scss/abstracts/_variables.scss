@@ -1,0 +1,40 @@
+// ============================================================
+//  VARIABLES — los valores del sistema, en un solo lugar
+// ============================================================
+
+// --- Los dos polos de la marca ---------------------------------
+$naranja:       #ff3000;   // Polo A · redes sociales
+$naranja-alto:  #ff6a2a;
+$azul:          #2440e0;   // Polo B · desarrollo web
+$azul-alto:     #4f6bff;
+
+// --- Superficies ------------------------------------------------
+$negro:         #0a0a0a;
+$card:          #141414;
+$linea:         rgba(255, 255, 255, .09);
+$claro:         #e9ebee;
+$claro-2:       #d5d9de;
+
+// --- Texto ------------------------------------------------------
+$tx:            #f2f2f2;
+$tx-2:          #a9a9a9;
+$tx-3:          #6f6f6f;
+
+// --- Tipografías ------------------------------------------------
+$display: "Manrope", system-ui, sans-serif;
+$texto:   "Inter", system-ui, sans-serif;
+$mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// --- Forma y ritmo ----------------------------------------------
+$radio:     20px;
+$radio-sm:  10px;
+$ancho:     1060px;
+$ease:      cubic-bezier(.2, .8, .2, 1);
+
+// --- Puntos de quiebre (los usa el mixin respond) ---------------
+$puntos: (
+  "chico":   640px,
+  "tablet":  780px,
+  "medio":   992px,
+  "ancho":   1180px
+);

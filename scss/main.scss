@@ -1,0 +1,35 @@
+// ============================================================
+//  .Conecta — hoja principal
+//  ------------------------------------------------------------
+//  Este archivo NO tiene estilos: solo reúne los partials.
+//  El sistema completo está documentado en abstracts/_variables
+//  y en el README del proyecto.
+//
+//  CONCEPTO: "El punto que une". Conecta es una dupla, así que
+//  todo se deriva del punto y la línea que unen dos polos:
+//  naranja (redes sociales) y azul (desarrollo web).
+// ============================================================
+
+// --- Base -------------------------------------------------------
+@use "base/tokens";
+@use "base/reset";
+@use "base/tipografia";
+@use "base/texturas";
+
+// --- Layout -----------------------------------------------------
+@use "layout/main";
+@use "layout/footer";
+
+// --- Componentes ------------------------------------------------
+@use "components/navbar";
+@use "components/meta";
+@use "components/ticker";
+@use "components/card";
+@use "components/plan";
+@use "components/form";
+@use "components/cierre";
+@use "components/motion";
+
+// --- Páginas ----------------------------------------------------
+@use "pages/home";
+@use "pages/planes";

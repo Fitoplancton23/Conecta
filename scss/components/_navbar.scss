@@ -1,0 +1,93 @@
+// ============================================================
+//  NAVBAR — componente de Bootstrap, re-estilado por completo
+//  desde SCSS para que tenga la identidad de Conecta.
+// ============================================================
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.conecta-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding-block: .65rem;
+  @include m.centrado();
+  border-bottom: 1px solid v.$linea;
+  background: rgba(10, 10, 10, .72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  .container-fluid { padding-inline: 0; }
+
+  // --- marca ---
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .marca__logo {
+    display: block;
+    width: auto;
+    height: 23px;
+
+    @include m.respond("chico") { height: 20px; }
+  }
+
+  // --- botón hamburguesa ---
+  .navbar-toggler {
+    padding: .35rem .55rem;
+    background: transparent;
+    border: 1px solid v.$linea;
+    border-radius: 8px;
+    transition: border-color .25s v.$ease;
+
+    &:hover { border-color: rgba(255, 255, 255, .3); }
+
+    &:focus {
+      box-shadow: none;
+      outline: 2px solid v.$naranja-alto;
+      outline-offset: 2px;
+    }
+  }
+
+  .navbar-toggler-icon {
+    width: 1.2em;
+    height: 1.2em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.2' d='M4 8h22M4 15h22M4 22h22'/%3E%3C/svg%3E");
+  }
+
+  // --- enlaces ---
+  .navbar-nav { gap: .25rem; }
+
+  .nav-link {
+    @include m.mono(.7rem, .12em, v.$tx-2);
+    padding: .42rem .85rem;
+    border-radius: 999px;
+    transition: color .25s v.$ease, background .25s v.$ease;
+
+    &:hover,
+    &:focus { color: #fff; background: rgba(255, 255, 255, .07); }
+
+    &.active {
+      color: #fff;
+      background: v.$naranja;
+    }
+  }
+
+  // --- menú desplegado en mobile ---
+  @include m.respond("medio") {
+    .navbar-collapse { padding-block: .7rem 0; }
+
+    .navbar-nav {
+      gap: .15rem;
+      padding-top: .6rem;
+      border-top: 1px solid v.$linea;
+    }
+
+    .nav-link {
+      display: block;
+      width: max-content;
+    }
+  }
+}

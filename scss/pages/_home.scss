@@ -1,0 +1,95 @@
+// HERO — panel claro: es la única forma de que el blanco y negro
+// de la dupla respire. El corte claro/oscuro también es un polo.
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
+
+.hero {
+  @extend %panel-claro;
+  display: grid;
+  grid-template-columns: 1fr .92fr;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  margin-bottom: 0;
+  padding: clamp(1.8rem, 4vw, 3rem);
+  padding-bottom: 0;
+
+  &__texto {
+    grid-column: 1;
+    padding-bottom: clamp(1.8rem, 4vw, 3rem);
+
+    p { color: #43474b; }
+  }
+
+  .meta { color: #6a6a6a; }
+
+  h1 {
+    color: #111;
+
+    // la palabra clave en contorno naranja: el acento del hero
+    em {
+      font-style: normal;
+      color: transparent;
+      -webkit-text-stroke: 2px v.$naranja;
+    }
+  }
+
+  &__bajada {
+    margin-top: 1.3rem;
+    max-width: 42ch;
+    font-size: 1.05rem;
+  }
+
+  &__hint {
+    margin: 1.8rem 0 0;
+    color: #8b8f94;
+
+    &::before { background: #9aa0a6; }
+  }
+
+  &__foto {
+    position: relative;
+    grid-column: 2;
+    display: flex;
+    align-items: flex-end;
+    align-self: end;
+    margin: 0;
+
+    img {
+      width: 100%;
+      border: 0;
+      border-radius: 0;
+      filter: grayscale(1) contrast(1.06);
+    }
+
+    // Semitono enmascarado con la propia silueta: si no, se ve el
+    // rectángulo de la trama sobre el panel claro.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(0, 0, 0, .20) 32%, transparent 33%);
+      background-size: 3px 3px;
+      mix-blend-mode: multiply;
+      -webkit-mask-image: url("../assets/img/equipo.png");
+              mask-image: url("../assets/img/equipo.png");
+      -webkit-mask-size: 100% auto;         mask-size: 100% auto;
+      -webkit-mask-position: bottom center; mask-position: bottom center;
+      -webkit-mask-repeat: no-repeat;       mask-repeat: no-repeat;
+    }
+  }
+
+  @include m.respond("tablet") {
+    grid-template-columns: 1fr;
+    padding-bottom: 0;
+
+    &__texto { padding-bottom: 1.5rem; }
+
+    &__foto {
+      grid-column: 1;
+      max-width: 340px;
+      margin-inline: auto;
+    }
+  }
+}

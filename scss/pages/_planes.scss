@@ -1,0 +1,13 @@
+// Grilla de planes y de servicios de desarrollo.
+@use "../abstracts/mixins" as m;
+
+.planes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  gap: 1.2rem;
+  align-items: stretch;
+
+  > h2,
+  > p,
+  > figure { grid-column: 1 / -1; }
+}

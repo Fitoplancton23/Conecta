@@ -1,0 +1,31 @@
+// ============================================================
+//  PLACEHOLDERS — bases reutilizables con @extend
+// ============================================================
+@use "variables" as v;
+
+// Panel claro: lo comparten el hero y el cierre.
+%panel-claro {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: v.$radio;
+  background: linear-gradient(155deg, v.$claro 0%, v.$claro-2 100%);
+}
+
+// Base de cualquier tarjeta oscura.
+%tarjeta-base {
+  position: relative;
+  border: 1px solid v.$linea;
+  border-radius: v.$radio-sm;
+  background: v.$card;
+}
+
+// Enlace de metadata con subrayado que se enciende.
+%enlace-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  width: max-content;
+  border-bottom: 1px solid transparent;
+  transition: color .25s v.$ease, border-color .25s v.$ease;
+}

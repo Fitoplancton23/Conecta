@@ -1,0 +1,54 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
+
+article {
+  @extend %tarjeta-base;
+  margin-bottom: 1rem;
+  padding: clamp(1.3rem, 3vw, 1.7rem);
+  transition: transform .35s v.$ease, border-color .35s v.$ease, box-shadow .35s v.$ease;
+
+  // marca de esquina, como en un dibujo técnico
+  &::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 9px;
+    height: 9px;
+    border-right: 1px solid v.$linea;
+    border-bottom: 1px solid v.$linea;
+    transition: border-color .35s v.$ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--acento) 55%, transparent);
+    box-shadow: 0 24px 60px -30px #000;
+
+    &::after { border-color: var(--acento); }
+  }
+
+  h3 { margin: 0 0 .5rem; }
+
+  > ul {
+    display: grid;
+    gap: .75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      position: relative;
+      padding-left: 1.6rem;
+      color: v.$tx-2;
+
+      &::before {
+        @include m.punto();
+        position: absolute;
+        left: 0;
+        top: .62em;
+      }
+    }
+  }
+}

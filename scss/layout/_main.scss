@@ -1,0 +1,133 @@
+// Layout y TRAZO DE CONEXIÓN: la línea que une los dos polos.
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+main {
+  position: relative;
+  width: min(100% - 3rem, v.$ancho);
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.trazo {
+  position: absolute;
+  left: -2.6rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  overflow: hidden;
+  background: v.$linea;
+
+  &__fill {
+    position: absolute;
+    inset: 0;
+    transform: scaleY(var(--p, 0));
+    transform-origin: top;
+    background: linear-gradient(180deg,
+      v.$naranja 0%, v.$naranja-alto 22%, v.$azul-alto 74%, v.$azul 100%);
+  }
+
+  @include m.respond("ancho") { display: none; }
+}
+
+.seccion {
+  position: relative;
+  margin-bottom: clamp(3.5rem, 9vw, 7rem);
+
+  // el nodo que cada sección apoya sobre el trazo
+  &::before {
+    @include m.punto(7px, v.$negro);
+    position: absolute;
+    left: -2.9rem;
+    top: .55rem;
+    border: 1px solid var(--acento);
+
+    @include m.respond("ancho") { display: none; }
+  }
+
+  &__head {
+    position: relative;
+    margin-bottom: 2.2rem;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1px;
+      margin-top: 1.3rem;
+      background: linear-gradient(90deg, var(--acento), transparent 70%);
+    }
+
+    h2 { max-width: 18ch; }
+  }
+
+  // el numeral gigante en contorno: textura y orden a la vez
+  &__num {
+    position: absolute;
+    right: -.02em;
+    top: -.42em;
+    font-family: v.$display;
+    font-weight: 800;
+    font-size: clamp(5rem, 15vw, 11rem);
+    line-height: 1;
+    letter-spacing: -.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, .075);
+    pointer-events: none;
+    user-select: none;
+
+    @include m.respond("tablet") { font-size: 5.5rem; }
+  }
+
+  // secciones cuyo h2 es hijo directo
+  > h2 {
+    position: relative;
+    padding-bottom: 1.3rem;
+    margin-bottom: 1.5rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--acento), transparent 70%);
+    }
+  }
+
+  // listas de contenido: la viñeta es EL PUNTO de la marca
+  > ul {
+    display: grid;
+    gap: .75rem;
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      position: relative;
+      padding-left: 1.6rem;
+      color: v.$tx-2;
+
+      &::before {
+        @include m.punto();
+        position: absolute;
+        left: 0;
+        top: .62em;
+      }
+    }
+  }
+}
+
+figure {
+  margin: 1.6rem 0 0;
+
+  img {
+    border: 1px solid v.$linea;
+    border-radius: v.$radio-sm;
+  }
+}
+
+figcaption {
+  @include m.mono(.66rem, .14em);
+  margin-top: .7rem;
+}

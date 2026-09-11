@@ -1,0 +1,39 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 2rem clamp(2rem, 4vw, 3rem);
+  @include m.centrado();
+  border-top: 1px solid v.$linea;
+  background: rgba(0, 0, 0, .4);
+
+  p {
+    @include m.mono(.66rem, .12em);
+    margin: 0;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 1.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    @include m.mono(.66rem, .12em, v.$tx-2);
+    transition: color .25s v.$ease;
+
+    &:hover { color: v.$naranja; }
+  }
+
+  @include m.respond("chico") {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

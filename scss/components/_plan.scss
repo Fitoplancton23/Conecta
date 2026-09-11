@@ -1,0 +1,156 @@
+// Tarjetas de plan: el resplandor de cada polo sale del mixin.
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
+
+.plan {
+  @extend %tarjeta-base;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 2.7rem 1.4rem 1.4rem;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform .35s v.$ease, border-color .35s v.$ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 56%;
+    z-index: -1;
+    pointer-events: none;
+    @include m.resplandor(v.$naranja);
+  }
+
+  &::after { display: none; }
+
+  &--azul {
+    --acento: var(--b);
+
+    &::before { @include m.resplandor(v.$azul); }
+  }
+
+  &:hover { transform: translateY(-6px); }
+
+  &__badge {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    padding: 5px 11px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 999px;
+    background: rgba(10, 10, 10, .55);
+    backdrop-filter: blur(6px);
+    @include m.mono(.62rem, .12em, #f0f0f0);
+  }
+
+  &__nombre {
+    margin: 0 0 .3rem;
+    font-family: v.$display;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -.02em;
+    color: #fff;
+  }
+
+  &__desc {
+    margin: 0 0 1.1rem;
+    max-width: 24ch;
+    font-size: .88rem;
+    color: #e6e6e6;
+  }
+
+  &__precio {
+    display: flex;
+    align-items: baseline;
+    gap: .35rem;
+    margin: 0 0 1.1rem;
+
+    b {
+      font-family: v.$display;
+      font-weight: 800;
+      font-size: 2.1rem;
+      letter-spacing: -.04em;
+      color: #fff;
+    }
+
+    span {
+      font-family: v.$mono;
+      font-size: .8rem;
+      color: #cfcfcf;
+    }
+  }
+
+  &__cta {
+    display: block;
+    margin: 0 0 1.1rem;
+    padding: .85rem;
+    border-radius: 8px;
+    text-align: center;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--acento) 78%, #fff), var(--acento));
+    @include m.mono(.68rem, .14em, #fff);
+  }
+
+  &__ajustes {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 0 0 1.1rem;
+    font-size: .82rem;
+    color: #d4d4d4;
+
+    svg { flex: none; opacity: .8; }
+  }
+
+  &__sep {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    margin: 0 0 1rem;
+    @include m.mono(.62rem, .2em);
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: v.$linea;
+    }
+  }
+
+  &__lista {
+    display: grid;
+    gap: .7rem;
+    margin: 0 0 1.3rem;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      gap: .6rem;
+      padding-left: 0;
+      font-size: .86rem;
+      color: #cfcfcf;
+
+      &::before { content: none; }
+    }
+
+    svg {
+      flex: none;
+      margin-top: 3px;
+      color: color-mix(in srgb, var(--acento) 70%, #fff);
+    }
+  }
+
+  &__mail {
+    @extend %enlace-mono;
+    margin-top: auto;
+    @include m.mono(.64rem, .12em, #8f8f8f);
+
+    &:hover {
+      color: #fff;
+      border-bottom-color: rgba(255, 255, 255, .35);
+    }
+  }
+}

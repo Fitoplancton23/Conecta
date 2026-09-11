@@ -1,0 +1,52 @@
+// ============================================================
+//  MIXINS — todos reciben parámetros
+// ============================================================
+@use "sass:map";
+@use "variables" as v;
+
+// 1. Media queries por nombre de punto de quiebre.
+//    Uso: @include respond("tablet") { ... }
+@mixin respond($punto) {
+  @if map.has-key(v.$puntos, $punto) {
+    @media (max-width: map.get(v.$puntos, $punto)) {
+      @content;
+    }
+  } @else {
+    @error "El punto de quiebre '#{$punto}' no existe en $puntos.";
+  }
+}
+
+// 2. Resplandor radial de un polo. Es el degradado que llevan las
+//    tarjetas de plan; el color y la fuerza se pasan por parámetro.
+@mixin resplandor($color, $fuerza: 1, $x: 12%, $y: -15%) {
+  background: radial-gradient(95% 120% at $x $y,
+    rgba($color, 1 * $fuerza)    0%,
+    rgba($color, .72 * $fuerza) 24%,
+    rgba($color, .32 * $fuerza) 50%,
+    transparent                 78%);
+}
+
+// 3. Texto monoespaciado de metadata, con tamaño e interletrado
+//    configurables.
+@mixin mono($tam: .68rem, $track: .2em, $color: v.$tx-3) {
+  font-family: v.$mono;
+  font-size: $tam;
+  letter-spacing: $track;
+  text-transform: uppercase;
+  color: $color;
+}
+
+// 4. Punto de la marca: la unidad mínima del sistema.
+@mixin punto($tam: 6px, $color: var(--acento)) {
+  content: "";
+  flex: none;
+  width: $tam;
+  height: $tam;
+  border-radius: 50%;
+  background: $color;
+}
+
+// 5. Contenido centrado a la grilla, con el fondo a todo el ancho.
+@mixin centrado($max: v.$ancho, $min: 1.5rem) {
+  padding-inline: max($min, calc((100% - #{$max}) / 2));
+}

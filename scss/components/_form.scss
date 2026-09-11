@@ -1,0 +1,90 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+form { margin-top: 1.2rem; }
+
+fieldset {
+  margin: 0 0 1rem;
+  padding: 1rem 1.2rem 1.2rem;
+  border: 1px solid v.$linea;
+  border-radius: v.$radio-sm;
+  background: rgba(255, 255, 255, .018);
+
+  ul {
+    display: grid;
+    gap: .75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    @include m.respond("chico") { justify-content: flex-start; }
+  }
+}
+
+legend {
+  padding: 0 .5rem;
+  @include m.mono(.66rem, .18em, var(--acento));
+}
+
+label {
+  font-size: .9rem;
+  color: v.$tx-2;
+}
+
+input,
+textarea,
+select {
+  padding: .55rem .7rem;
+  font: inherit;
+  color: v.$tx;
+  border: 1px solid v.$linea;
+  border-radius: 6px;
+  background: #0c0c0c;
+  transition: border-color .25s v.$ease;
+
+  &:focus {
+    outline: 2px solid var(--acento);
+    outline-offset: 1px;
+    border-color: transparent;
+  }
+}
+
+input[type="number"] {
+  width: 5.5rem;
+  text-align: right;
+  font-family: v.$mono;
+
+  @include m.respond("chico") { width: 100%; text-align: left; }
+}
+
+input[type="text"],
+input[type="email"],
+textarea { width: 100%; }
+
+textarea { resize: vertical; }
+
+form p > label { display: block; margin-bottom: .4rem; }
+
+// Acotado al botón de envío: si no, pisa el hamburguesa de la navbar,
+// que también es un <button>.
+button[type="submit"] {
+  padding: .9rem 1.6rem;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(180deg, v.$naranja-alto, v.$naranja);
+  @include m.mono(.7rem, .16em, #fff);
+  transition: filter .25s v.$ease, transform .25s v.$ease;
+
+  &:hover { filter: brightness(1.1); transform: translateY(-2px); }
+  &:active { transform: none; }
+}

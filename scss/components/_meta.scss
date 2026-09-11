@@ -1,0 +1,26 @@
+// La metadata monoespaciada deja el "sistema" a la vista.
+// Siempre arranca con EL PUNTO de la marca.
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin: 0 0 1rem;
+  @include m.mono();
+
+  &::before { @include m.punto(); }
+
+  a {
+    @extend %enlace-mono;
+    color: v.$tx-2;
+    border-bottom-color: rgba(255, 255, 255, .22);
+
+    &:hover {
+      color: #fff;
+      border-bottom-color: var(--acento);
+    }
+  }
+}
