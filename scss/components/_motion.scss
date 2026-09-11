@@ -20,7 +20,9 @@
 
   .rv { opacity: 1; transform: none; }
   .ticker__pista { animation: none; }
+  .scroll-hint { animation: none; }
   .scroll-hint__punto { animation: none; }
+  .scroll-hint__punto::after { animation: none; opacity: 0; }
   .trazo__fill { transform: scaleY(1); }
 
   article:hover,

@@ -1,15 +1,30 @@
 // ============================================================
 //  INDICADOR DE SCROLL
 //  Una pill de vidrio con EL PUNTO de la marca cayendo dentro.
-//  Solo aparece arriba de todo: el JS baja su opacidad y la
+//  Para que se note sin subir el volumen visual usamos movimiento,
+//  no tamaño: un halo que late y un anillo que se expande desde el
+//  punto. Solo aparece arriba de todo: el JS baja su opacidad y la
 //  desplaza hacia abajo a medida que se scrollea.
 // ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
+// el punto cae dentro de la pill
 @keyframes cae {
-  0%, 100% { transform: translateY(-4px); opacity: .35; }
-  50%      { transform: translateY(6px);  opacity: 1; }
+  0%, 100% { transform: translateY(-5px); opacity: .45; }
+  50%      { transform: translateY(7px);  opacity: 1; }
+}
+
+// halo de marca que late alrededor de la pill
+@keyframes latido {
+  0%, 100% { box-shadow: 0 10px 30px -12px #000, 0 0 16px 0px  rgba(255, 48, 0, .45); }
+  55%      { box-shadow: 0 10px 30px -12px #000, 0 0 34px 14px rgba(255, 48, 0, 0); }
+}
+
+// anillo que se expande desde el punto, como un radar
+@keyframes anillo {
+  0%        { transform: scale(.5); opacity: .85; }
+  70%, 100% { transform: scale(2.4); opacity: 0; }
 }
 
 .scroll-hint {
@@ -22,27 +37,41 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .75rem;
-  padding: .9rem .55rem;
+  gap: .85rem;
+  padding: 1rem .6rem;
 
-  border: 1px solid rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 999px;
-  background: rgba(14, 14, 14, .5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(16, 16, 16, .62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
   opacity: var(--visible, 1);
   pointer-events: none;
   transition: opacity .35s v.$ease;
+  animation: latido 2.6s ease-in-out infinite;
 
   &__texto {
-    @include m.mono(.58rem, .24em, v.$tx-2);
+    @include m.mono(.62rem, .26em, #dcdcdc);
+    font-weight: 500;
     writing-mode: vertical-rl;
   }
 
   &__punto {
-    @include m.punto(7px, var(--a));
+    position: relative;
+    @include m.punto(8px, var(--a));
+    box-shadow: 0 0 12px rgba(255, 48, 0, .95);
     animation: cae 1.9s ease-in-out infinite;
+
+    // el anillo del radar
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 48, 0, .75);
+      animation: anillo 1.9s ease-out infinite;
+    }
   }
 
   // En mobile no hay margen libre: la pill baja al centro, horizontal.
@@ -52,8 +81,8 @@
     top: auto;
     bottom: 1.1rem;
     flex-direction: row;
-    gap: .6rem;
-    padding: .5rem .95rem;
+    gap: .7rem;
+    padding: .55rem 1.05rem;
     transform: translate(-50%, var(--desplazamiento, 0px));
 
     &__texto { writing-mode: horizontal-tb; }

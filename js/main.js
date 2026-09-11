@@ -17,7 +17,7 @@
 
   const actualizarIndicador = () => {
     if (!indicador) return;
-    const recorrido = 220;                       // px hasta que desaparece
+    const recorrido = 300;                       // px hasta que desaparece
     const p = Math.min(1, window.scrollY / recorrido);
     indicador.style.setProperty("--visible", (1 - p).toFixed(3));
     indicador.style.setProperty("--desplazamiento", (p * 44).toFixed(1) + "px");

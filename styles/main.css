@@ -867,12 +867,30 @@ button[type=submit]:active {
 
 @keyframes cae {
   0%, 100% {
-    transform: translateY(-4px);
-    opacity: 0.35;
+    transform: translateY(-5px);
+    opacity: 0.45;
   }
   50% {
-    transform: translateY(6px);
+    transform: translateY(7px);
     opacity: 1;
+  }
+}
+@keyframes latido {
+  0%, 100% {
+    box-shadow: 0 10px 30px -12px #000, 0 0 16px 0px rgba(255, 48, 0, 0.45);
+  }
+  55% {
+    box-shadow: 0 10px 30px -12px #000, 0 0 34px 14px rgba(255, 48, 0, 0);
+  }
+}
+@keyframes anillo {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.85;
+  }
+  70%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
   }
 }
 .scroll-hint {
@@ -884,33 +902,45 @@ button[type=submit]:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.9rem 0.55rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  gap: 0.85rem;
+  padding: 1rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
-  background: rgba(14, 14, 14, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(16, 16, 16, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   opacity: var(--visible, 1);
   pointer-events: none;
   transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: latido 2.6s ease-in-out infinite;
 }
 .scroll-hint__texto {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.24em;
+  font-size: 0.62rem;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: #a9a9a9;
+  color: #dcdcdc;
+  font-weight: 500;
   writing-mode: vertical-rl;
 }
 .scroll-hint__punto {
+  position: relative;
   content: "";
   flex: none;
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--a);
+  box-shadow: 0 0 12px rgba(255, 48, 0, 0.95);
   animation: cae 1.9s ease-in-out infinite;
+}
+.scroll-hint__punto::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 48, 0, 0.75);
+  animation: anillo 1.9s ease-out infinite;
 }
 @media (max-width: 780px) {
   .scroll-hint {
@@ -919,8 +949,8 @@ button[type=submit]:active {
     top: auto;
     bottom: 1.1rem;
     flex-direction: row;
-    gap: 0.6rem;
-    padding: 0.5rem 0.95rem;
+    gap: 0.7rem;
+    padding: 0.55rem 1.05rem;
     transform: translate(-50%, var(--desplazamiento, 0px));
   }
   .scroll-hint__texto {
@@ -950,8 +980,15 @@ button[type=submit]:active {
   .ticker__pista {
     animation: none;
   }
+  .scroll-hint {
+    animation: none;
+  }
   .scroll-hint__punto {
     animation: none;
+  }
+  .scroll-hint__punto::after {
+    animation: none;
+    opacity: 0;
   }
   .trazo__fill {
     transform: scaleY(1);
