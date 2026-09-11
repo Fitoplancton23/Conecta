@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="g" cx="16%" cy="-6%" r="95%">
+      <stop offset="0%" stop-color="#2440e0" stop-opacity="0.60"/>
+      <stop offset="45%" stop-color="#2440e0" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#141414" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="480" fill="#141414"/>
+  <rect width="1200" height="480" fill="url(#g)"/>
+  <text x="600" y="232" font-family="Manrope, Arial, sans-serif" font-size="44" font-weight="700" fill="#f2f2f2" text-anchor="middle">Desarrollo web</text>
+  <text x="600" y="282" font-family="Inter, Arial, sans-serif" font-size="20" fill="#9a9a9a" text-anchor="middle">.Conecta — imagen de referencia</text>
+</svg>

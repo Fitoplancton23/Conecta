@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Armá tu presupuesto a medida | .Conecta</title>
+  <meta name="description" content="Elegí los servicios de social media que necesitás —placas, reels, copies, calendario, auditorías— y armá tu presupuesto al instante.">
+  <meta name="keywords" content="presupuesto redes sociales, precio reel, precio placa, calendario de contenidos, auditoría de redes, cotizar community manager">
+  <meta name="author" content="Conecta — Amalia Gross y Facundo Silveira">
+  <meta property="og:title" content="Armá tu presupuesto a medida | .Conecta">
+  <meta property="og:description" content="Elegí los servicios de social media que necesitás —placas, reels, copies, calendario, auditorías— y armá tu presupuesto al instante.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="../assets/img/logo-conecta.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/vendor/aos.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+  <div class="grano" aria-hidden="true"></div>
+  <header>
+    <nav class="navbar navbar-expand-lg conecta-nav" data-bs-theme="dark" aria-label="Navegación principal">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html" rel="home">
+          <img class="marca__logo" src="../assets/img/logo-conecta.svg" alt="Conecta — inicio">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir el menú de navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="planes.html">Planes</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="presupuesto.html">Presupuesto</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="trazo" aria-hidden="true"><span class="trazo__fill"></span></div>
+    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-presupuesto">
+      <h1 id="titulo-presupuesto">Armá tu presupuesto</h1>
+      <p>
+        Sumá los servicios que necesités y armamos el detalle al instante. Cada
+        servicio tiene un precio fijo: elegís las cantidades y se imprime el ticket
+        con el total.
+      </p>
+      <figure>
+        <img src="../assets/img/presupuesto.svg" alt="Ilustración de referencia de un ticket de presupuesto de Conecta" width="800" height="500">
+        <figcaption>El presupuesto se entrega como un ticket con el detalle de tu proyecto.</figcaption>
+      </figure>
+    </section>
+
+    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-catalogo">
+      <h2 id="titulo-catalogo">Elegí los servicios</h2>
+      <!--
+        FUENTE DE VERDAD DE PRECIOS (sin base de datos):
+        Cada servicio es un <input> con data-precio (en pesos) y data-unidad.
+        En la etapa de JavaScript, el script recorre los inputs con cantidad > 0,
+        multiplica data-precio por la cantidad y arma el ticket. Para cambiar un
+        precio o sumar un servicio, se edita/agrega una línea acá. No hay backend.
+      -->
+      <form action="#" method="post" id="form-presupuesto">
+        <fieldset>
+          <legend>Planes mensuales</legend>
+          <p>Elegí un plan como base (opcional) y después sumale extras.</p>
+          <ul>
+            <li>
+              <label for="plan-base">Plan Base — $150.000 / mes (5 contenidos)</label>
+              <input type="number" id="plan-base" name="plan-base" min="0" max="1" value="0" data-precio="150000" data-unidad="mes">
+            </li>
+            <li>
+              <label for="plan-lift">Plan Lift — $200.000 / mes (8 contenidos)</label>
+              <input type="number" id="plan-lift" name="plan-lift" min="0" max="1" value="0" data-precio="200000" data-unidad="mes">
+            </li>
+            <li>
+              <label for="plan-boost">Plan Boost — $400.000 / mes (16 contenidos)</label>
+              <input type="number" id="plan-boost" name="plan-boost" min="0" max="1" value="0" data-precio="400000" data-unidad="mes">
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <legend>Contenido (por pieza)</legend>
+          <ul>
+            <li>
+              <label for="placa-estatica">Placa estática (post) — $25.000</label>
+              <input type="number" id="placa-estatica" name="placa-estatica" min="0" value="0" data-precio="25000" data-unidad="pieza">
+            </li>
+            <li>
+              <label for="flyer">Flyer promocional — $30.000</label>
+              <input type="number" id="flyer" name="flyer" min="0" value="0" data-precio="30000" data-unidad="pieza">
+            </li>
+            <li>
+              <label for="carrusel">Carrusel (hasta 5 placas) — $50.000</label>
+              <input type="number" id="carrusel" name="carrusel" min="0" value="0" data-precio="50000" data-unidad="pieza">
+            </li>
+            <li>
+              <label for="historia">Placa para historia (Story) — $15.000</label>
+              <input type="number" id="historia" name="historia" min="0" value="0" data-precio="15000" data-unidad="pieza">
+            </li>
+            <li>
+              <label for="portadas">Pack de portadas de destacados (x5) — $20.000</label>
+              <input type="number" id="portadas" name="portadas" min="0" value="0" data-precio="20000" data-unidad="pack">
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <legend>Video (por pieza)</legend>
+          <ul>
+            <li>
+              <label for="reel">Edición de Reel / TikTok — $30.000</label>
+              <input type="number" id="reel" name="reel" min="0" value="0" data-precio="30000" data-unidad="pieza">
+            </li>
+            <li>
+              <label for="guion">Guion e idea de Reel — $15.000</label>
+              <input type="number" id="guion" name="guion" min="0" value="0" data-precio="15000" data-unidad="pieza">
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <legend>Estrategia y gestión (por mes)</legend>
+          <ul>
+            <li>
+              <label for="calendario">Calendario mensual + presentación al cliente — $50.000</label>
+              <input type="number" id="calendario" name="calendario" min="0" value="0" data-precio="50000" data-unidad="mes">
+            </li>
+            <li>
+              <label for="copies">Redacción de copies (pack mensual) — $30.000</label>
+              <input type="number" id="copies" name="copies" min="0" value="0" data-precio="30000" data-unidad="mes">
+            </li>
+            <li>
+              <label for="community">Community management (mensajes y comentarios) — $40.000</label>
+              <input type="number" id="community" name="community" min="0" value="0" data-precio="40000" data-unidad="mes">
+            </li>
+            <li>
+              <label for="publicacion">Programación y publicación — $20.000</label>
+              <input type="number" id="publicacion" name="publicacion" min="0" value="0" data-precio="20000" data-unidad="mes">
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <legend>Consultoría y auditoría</legend>
+          <ul>
+            <li>
+              <label for="consultoria">Consultoría de comunicación (reunión de 2 h) — $100.000. El seguimiento se cotiza aparte.</label>
+              <input type="number" id="consultoria" name="consultoria" min="0" value="0" data-precio="100000" data-unidad="sesion">
+            </li>
+            <li>
+              <label for="auditoria">Auditoría de una red social — $50.000 por red. Aplica a LinkedIn, TikTok, Instagram, Facebook, Behance, Upwork y Workana.</label>
+              <input type="number" id="auditoria" name="auditoria" min="0" value="0" data-precio="50000" data-unidad="red">
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <legend>Extras (una vez)</legend>
+          <ul>
+            <li>
+              <label for="plantillas">Kit de plantillas editables — $45.000</label>
+              <input type="number" id="plantillas" name="plantillas" min="0" value="0" data-precio="45000" data-unidad="unica">
+            </li>
+          </ul>
+        </fieldset>
+
+        <p>
+          <button type="submit">Calcular presupuesto</button>
+        </p>
+      </form>
+    </section>
+
+    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-resumen">
+      <h2 id="titulo-resumen">Tu presupuesto</h2>
+      <!--
+        Contenedor del ticket. En la etapa de JS se listan acá los servicios
+        elegidos (nombre, cantidad, subtotal) y el total, con la animación de
+        "impresión". Por ahora es la estructura semántica del resumen.
+      -->
+      <p>Elegí las cantidades de arriba y acá vas a ver el detalle de tu presupuesto.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 .Conecta — Redes sociales y desarrollo web.</p>
+    <nav aria-label="Redes de contacto">
+      <ul>
+        <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
+        <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
+      </ul>
+    </nav>
+  </footer>
+  <script src="../assets/vendor/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos.js"></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

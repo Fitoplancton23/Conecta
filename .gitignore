@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Capturas y material de trabajo (no forman parte del sitio)
+Claude outputs/
+
+# Hoja de estilos vieja, reemplazada por styles/main.css
+css/
+
+# Artefactos de Sass
+.sass-cache/
+*.css.map
+
+# Sistema operativo y editor
+.DS_Store
+Thumbs.db
+.vscode/
