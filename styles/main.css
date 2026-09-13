@@ -762,6 +762,70 @@ article > ul > li::before {
   border-bottom-color: rgba(255, 255, 255, 0.35);
 }
 
+.plan--ancho {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  padding: 2.7rem clamp(1.4rem, 3vw, 2.2rem) clamp(1.6rem, 3vw, 2.2rem);
+  border-radius: 20px;
+}
+.plan--ancho:hover {
+  transform: none;
+}
+.plan--ancho::before {
+  height: 100%;
+}
+.plan--ancho .plan__nombre {
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+}
+.plan--ancho .plan__col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.plan--ancho .plan__lista {
+  margin-top: 0.2rem;
+}
+@media (max-width: 780px) {
+  .plan--ancho {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+}
+
+.plan__precio s {
+  margin-right: 0.6rem;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6f6f6f;
+  text-decoration-thickness: 1px;
+}
+
+.plan__entrega {
+  margin: 1rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #6f6f6f;
+}
+
+.plan__badge--off {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(180deg, #ff6a2a, #ff3000);
+  box-shadow: 0 8px 20px -10px rgba(255, 48, 0, 0.9);
+}
+
+.plan--ancho .plan__desc {
+  max-width: 34ch;
+}
+
+.plan--ancho .plan__mail {
+  margin-top: 1.2rem;
+}
+
 form {
   margin-top: 1.2rem;
 }
@@ -1574,6 +1638,7 @@ button[type=submit]:active {
 }
 .hero h1 {
   color: #111;
+  text-wrap: balance;
 }
 .hero h1 em {
   font-style: normal;

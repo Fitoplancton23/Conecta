@@ -154,3 +154,71 @@
     }
   }
 }
+
+// ============================================================
+//  PROMO — la misma tarjeta, a lo ancho y en dos columnas.
+//  Va antes de los planes porque es la oferta con precio
+//  rebajado: si entra abajo, nadie la ve.
+// ============================================================
+.plan--ancho {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  padding: 2.7rem clamp(1.4rem, 3vw, 2.2rem) clamp(1.6rem, 3vw, 2.2rem);
+  border-radius: v.$radio;
+
+  &:hover { transform: none; }          // no salta: no está en una grilla
+
+  &::before { height: 100%; }
+
+  .plan__nombre { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+
+  .plan__col {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .plan__lista { margin-top: .2rem; }
+
+  @include m.respond("tablet") {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+}
+
+// El precio viejo, tachado, antes del nuevo.
+.plan__precio s {
+  margin-right: .6rem;
+  font-family: v.$mono;
+  font-size: 1rem;
+  font-weight: 400;
+  color: v.$tx-3;
+  text-decoration-thickness: 1px;
+}
+
+// Qué pone el cliente de su lado: es parte del trato, no letra chica.
+.plan__entrega {
+  margin: 1rem 0 0;
+  padding-top: .9rem;
+  border-top: 1px solid v.$linea;
+  font-size: .82rem;
+  line-height: 1.55;
+  color: v.$tx-3;
+}
+
+// El badge del descuento pesa más que el de un plan común.
+.plan__badge--off {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(180deg, v.$naranja-alto, v.$naranja);
+  box-shadow: 0 8px 20px -10px rgba(255, 48, 0, .9);
+}
+
+// En la promo la descripción tiene todo el ancho de su columna: el
+// max-width de las tarjetas angostas la partía en tres renglones.
+.plan--ancho .plan__desc { max-width: 34ch; }
+
+// El enlace de consulta se va al fondo de su columna, para que las
+// dos columnas terminen parejas.
+.plan--ancho .plan__mail { margin-top: 1.2rem; }

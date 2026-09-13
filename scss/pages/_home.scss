@@ -30,6 +30,11 @@
 
   h1 {
     color: #111;
+    // Reparte el texto entre las líneas en lugar de llenar cada una
+    // hasta el borde. Sin esto la "y" quedaba sola en un renglón:
+    // un display de este tamaño no perdona una línea huérfana.
+    // Los navegadores que no lo soportan simplemente lo ignoran.
+    text-wrap: balance;
 
     // la palabra clave en contorno naranja: el acento del hero
     em {
