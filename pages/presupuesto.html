@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Armá tu presupuesto a medida | .Conecta</title>
-  <meta name="description" content="Elegí los servicios de social media que necesitás —placas, reels, copies, calendario, auditorías— y armá tu presupuesto al instante.">
-  <meta name="keywords" content="presupuesto redes sociales, precio reel, precio placa, calendario de contenidos, auditoría de redes, cotizar community manager">
+  <meta name="description" content="Elegí los servicios que necesitás —placas, reels, copies, calendario, landing, tienda online, auditorías— y armá tu presupuesto al instante.">
+  <meta name="keywords" content="presupuesto redes sociales, precio reel, precio placa, calendario de contenidos, auditoría de redes, cotizar community manager, precio landing page, precio tienda online, auditoría UX UI">
   <meta name="author" content="Conecta — Amalia Gross y Facundo Silveira">
   <meta property="og:title" content="Armá tu presupuesto a medida | .Conecta">
-  <meta property="og:description" content="Elegí los servicios de social media que necesitás —placas, reels, copies, calendario, auditorías— y armá tu presupuesto al instante.">
+  <meta property="og:description" content="Elegí los servicios que necesitás —placas, reels, copies, calendario, landing, tienda online, auditorías— y armá tu presupuesto al instante.">
   <meta property="og:type" content="website">
   <link rel="icon" href="../assets/img/logo-conecta.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/vendor/bootstrap.min.css">
@@ -220,6 +220,35 @@
         </fieldset>
 
         <fieldset>
+          <legend>Desarrollo web</legend>
+          <p class="fichas__ayuda">La auditoría incluye un diagnóstico escrito con las mejoras priorizadas.</p>
+          <ul class="fichas">
+            <li>
+              <input class="ficha__check" type="checkbox" id="landing" name="landing" data-precio="150000" data-unidad="pago único">
+              <label class="ficha" for="landing">
+                <span class="ficha__nombre">Landing simple</span>
+                <span class="ficha__precio">$150.000</span>
+              </label>
+            </li>
+            <li>
+              <input class="ficha__check" type="checkbox" id="tienda-online" name="tienda-online" data-precio="228000" data-unidad="pago único">
+              <label class="ficha" for="tienda-online">
+                <span class="ficha__nombre">Tienda online</span>
+                <span class="ficha__precio">$228.000</span>
+                <span class="ficha__off">40% off</span>
+              </label>
+            </li>
+            <li>
+              <input class="ficha__check" type="checkbox" id="auditoria-ux" name="auditoria-ux" data-precio="50000" data-unidad="por sitio">
+              <label class="ficha" for="auditoria-ux">
+                <span class="ficha__nombre">Auditoría UX/UI de tu web</span>
+                <span class="ficha__precio">$50.000</span>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
           <legend>Extras</legend>
           <ul class="fichas">
             <li>
@@ -234,6 +263,17 @@
 
         <p class="fichas__accion">
           <button type="submit">Obtener presupuesto</button>
+        </p>
+
+        <!--
+          La salida para lo que no entra en el catálogo. Va acá, justo
+          después del botón: es el momento en que alguien descubre que
+          su caso no está en la lista.
+        -->
+        <p class="fichas__aparte">
+          ¿Tu proyecto no entra en la lista?
+          <a href="https://wa.me/543755505926?text=Hola%20.Conecta!%20Quiero%20pedir%20un%20presupuesto%20personalizado." rel="noopener" target="_blank">Pedir un presupuesto personalizado</a>
+          — nos adaptamos a lo que necesites.
         </p>
       </form>
     </section>

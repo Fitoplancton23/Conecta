@@ -125,3 +125,37 @@
   .ficha::before { transition: none; }
   .ficha:active { transform: none; }
 }
+
+// --- Marca de descuento dentro de la ficha ---------------------
+// Solo la lleva la promo de tienda online: el precio ya es el final,
+// esto avisa que está rebajado sin ocupar otra línea.
+.ficha__off {
+  padding: .12rem .42rem;
+  border-radius: 999px;
+  background: rgba(255, 48, 0, .16);
+  border: 1px solid rgba(255, 48, 0, .45);
+  @include m.mono(.52rem, .1em, v.$naranja-alto);
+}
+
+.ficha__check:checked + .ficha .ficha__off {
+  background: v.$naranja;
+  border-color: v.$naranja;
+  color: #fff;
+}
+
+// --- La salida para lo que no está en el catálogo --------------
+.fichas__aparte {
+  max-width: 46ch;
+  margin: 1.1rem 0 0;
+  font-size: .85rem;
+  line-height: 1.6;
+  color: v.$tx-3;
+
+  a {
+    color: v.$tx;
+    border-bottom: 1px solid rgba(255, 48, 0, .55);
+    transition: color .25s v.$ease, border-color .25s v.$ease;
+
+    &:hover { color: v.$naranja-alto; border-color: v.$naranja-alto; }
+  }
+}
