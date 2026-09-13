@@ -116,7 +116,7 @@
 
       <article aria-labelledby="titulo-planes-redes">
         <h3 id="titulo-planes-redes">Planes mensuales</h3>
-        <p>Desde $150.000 por mes. Elegí el qu más se adapte a tu marca.</p>
+        <p>Desde $150.000 por mes. Elegí el que más se adapte a tu marca.</p>
         <p class="meta"><a href="pages/planes.html">Ver planes</a></p>
       </article>
     </section>
@@ -148,13 +148,29 @@
   </main>
 
   <footer>
-    <p>&copy; 2026 .Conecta — Comunicación y desarrollo</p>
-    <nav aria-label="Redes de contacto">
-      <ul>
-        <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
-        <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
+    <!--
+      Las mismas tres acciones del hero, al final del recorrido. Se omite
+      la que corresponde a la página actual: acá no falta ninguna porque
+      esta es Inicio, que no es destino de ningún CTA.
+    -->
+    <section class="pie__cta" aria-labelledby="titulo-pie-cta">
+      <h2 class="meta" id="titulo-pie-cta">¿Arrancamos?</h2>
+      <ul class="ctas ctas--pie">
+        <li><a class="cta cta--a" href="https://wa.me/543755505926" rel="noopener" target="_blank">Escribinos por WhatsApp</a></li>
+        <li><a class="cta cta--linea" href="pages/planes.html">Ver los planes</a></li>
+        <li><a class="cta cta--linea" href="pages/presupuesto.html">Calcular presupuesto</a></li>
       </ul>
-    </nav>
+    </section>
+
+    <div class="pie__legal">
+      <p>&copy; 2026 .Conecta — Comunicación y desarrollo</p>
+      <nav aria-label="Redes de contacto">
+        <ul>
+          <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
+          <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
   <script src="assets/vendor/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos.js"></script>

@@ -27,6 +27,38 @@
 
     li:last-child { grid-column: auto; }
   }
+
+  // --- En el pie -------------------------------------------------
+  // Acá no hay panel claro que las contenga ni un ancho de columna
+  // que respetar: se acomodan en fila y ocupan lo que necesitan.
+  &--pie {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: none;
+    margin-top: 0;
+
+    li:last-child { grid-column: auto; }
+
+    .cta { width: auto; }
+
+    // El contorno del hero es oscuro porque va sobre panel claro.
+    // Sobre el negro del pie sería invisible: se invierte.
+    .cta--linea {
+      border-color: rgba(255, 255, 255, .2);
+      color: v.$tx;
+
+      &:hover {
+        border-color: rgba(255, 255, 255, .45);
+        background: rgba(255, 255, 255, .05);
+      }
+    }
+
+    @include m.respond("chico") {
+      flex-direction: column;
+
+      .cta { width: 100%; }
+    }
+  }
 }
 
 .cta {

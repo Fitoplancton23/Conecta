@@ -5,15 +5,28 @@
 // también tiene su propio <footer>, y un selector de elemento suelto
 // le pisaba el fondo y la tipografía.
 body > footer {
+  @include m.centrado();
+  padding-block: clamp(2.6rem, 6vw, 4rem) clamp(1.8rem, 4vw, 2.6rem);
+  border-top: 1px solid v.$linea;
+  background: rgba(0, 0, 0, .4);
+}
+
+// --- Cierre: las mismas acciones del hero, al final del recorrido ---
+.pie__cta {
+  margin-bottom: clamp(2rem, 4vw, 2.8rem);
+
+  h2 { margin: 0 0 1.1rem; }
+}
+
+// --- Fila legal: copyright y canales -------------------------------
+.pie__legal {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 2rem clamp(2rem, 4vw, 3rem);
-  @include m.centrado();
+  padding-top: clamp(1.4rem, 3vw, 2rem);
   border-top: 1px solid v.$linea;
-  background: rgba(0, 0, 0, .4);
 
   p {
     @include m.mono(.66rem, .12em);
