@@ -1,0 +1,179 @@
+// ============================================================
+//  IMPRESORA — el presupuesto no se "muestra": se imprime.
+//
+//  Dos estados, y el mismo componente:
+//    · En reposo ocupa poco. Solo el visor, con el total que se va
+//      actualizando mientras el visitante elige fichas.
+//    · Al pedir el presupuesto, el papel sale por la ranura y el
+//      conjunto pasa a ocupar el centro de la pantalla.
+//
+//  El papel se revela animando grid-template-rows de 0fr a 1fr:
+//  es la única forma de animar un alto automático sin tener que
+//  fijarlo a mano en píxeles.
+// ============================================================
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.impresora {
+  position: relative;
+  max-width: 26rem;
+  margin: 1.5rem auto 0;
+  transition: max-width .6s v.$ease;
+
+  // Con el papel afuera el conjunto se agranda: es el protagonista.
+  &.tiene-papel { max-width: 30rem; }
+
+  // --- El cuerpo de la máquina ---------------------------------
+  &__cuerpo {
+    position: relative;
+    z-index: 2;
+    padding: .8rem .8rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 18px;
+    background: linear-gradient(180deg, #242424 0%, #171717 60%, #121212 100%);
+    box-shadow: 0 20px 50px -26px #000, inset 0 1px 0 rgba(255, 255, 255, .07);
+  }
+
+  // --- Barra superior: marca y etiqueta -------------------------
+  &__barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .75rem;
+    padding: 0 .3rem;
+  }
+
+  &__marca {
+    width: auto;
+    height: 18px;
+    opacity: .85;
+  }
+
+  &__etiqueta {
+    padding: .35rem .75rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .07);
+    @include m.mono(.56rem, .18em, #c9c9c9);
+  }
+
+  // --- Visor: lo que la máquina "sabe" hasta ahora --------------
+  &__visor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .95rem 1rem;
+    border-radius: 12px;
+    background: #0b0b0b;
+    border: 1px solid rgba(255, 255, 255, .06);
+  }
+
+  &__titulo {
+    margin: 0;
+    font-family: v.$display;
+    font-size: .95rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    color: #f4f4f4;
+  }
+
+  &__sub {
+    margin: .15rem 0 0;
+    font-size: .74rem;
+    color: v.$tx-3;
+  }
+
+  &__total {
+    margin: 0;
+    text-align: right;
+
+    span {
+      display: block;
+      @include m.mono(.54rem, .2em, v.$tx-3);
+    }
+
+    b {
+      display: block;
+      margin-top: .1rem;
+      font-family: v.$display;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  // --- Línea de estado ------------------------------------------
+  &__estado {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    margin: .8rem 0 0;
+    padding: 0 .35rem;
+    @include m.mono(.6rem, .1em, v.$tx-3);
+    text-transform: none;
+  }
+
+  // La aguja gira solo mientras imprime.
+  &__aguja {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, .16);
+    border-top-color: v.$naranja;
+    opacity: .5;
+  }
+
+  &.esta-imprimiendo &__aguja {
+    opacity: 1;
+    animation: gira .7s linear infinite;
+  }
+
+  &.tiene-papel:not(.esta-imprimiendo) &__aguja {
+    border-color: v.$naranja;
+    background: v.$naranja;
+    opacity: 1;
+  }
+
+  // --- La ranura por donde sale el papel ------------------------
+  &__ranura {
+    position: relative;
+    z-index: 3;
+    width: calc(100% - 2.6rem);
+    height: 7px;
+    margin: -11px auto 0;
+    border-radius: 4px;
+    background: #060606;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .9),
+                0 1px 0 rgba(255, 255, 255, .05);
+  }
+
+  // --- La salida: acá crece el papel ----------------------------
+  &__salida {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 1.5s v.$ease;
+  }
+
+  &.tiene-papel &__salida { grid-template-rows: 1fr; }
+
+  &__rollo {
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 1.4rem;
+  }
+}
+
+@keyframes gira { to { transform: rotate(360deg); } }
+
+// El papel no debe "aparecer" antes de empezar a salir.
+.impresora:not(.tiene-papel) .ticket { visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .impresora,
+  .impresora__salida { transition: none; }
+  .impresora.esta-imprimiendo .impresora__aguja { animation: none; }
+}
