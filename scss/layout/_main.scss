@@ -104,6 +104,12 @@ main {
   // listas de contenido: la viñeta es EL PUNTO de la marca
   > ul {
     display: grid;
+    // minmax(0, 1fr) y no el 1fr implícito: por defecto un track de
+    // grilla crece hasta el min-content de su contenido, así que una
+    // palabra larga sin espacios (un mail) empujaba la lista más ancha
+    // que la pantalla. Con el mínimo en 0 el track no pasa del
+    // contenedor y el texto corta.
+    grid-template-columns: minmax(0, 1fr);
     gap: .75rem;
     margin: 0 0 1rem;
     padding: 0;

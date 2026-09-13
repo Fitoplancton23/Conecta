@@ -17,6 +17,10 @@ body {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.65;
+  // Red de contención: una palabra sin espacios más ancha que la
+  // pantalla (un mail largo, una URL) rompe el ancho de su contenedor
+  // y aparece scroll horizontal. Solo corta cuando no entra.
+  overflow-wrap: break-word;
   color: v.$tx;
   background-color: v.$negro;
   -webkit-font-smoothing: antialiased;
