@@ -4,6 +4,11 @@
 @use "../abstracts/mixins" as m;
 @use "../abstracts/placeholders";
 
+// El hero no lleva margen abajo (la foto tiene que apoyar en el borde),
+// así que el aire con la sección siguiente lo pone ella. Antes lo daba
+// la marquesina que iba en el medio.
+.hero + .seccion { margin-top: clamp(3.5rem, 8vw, 6rem); }
+
 .hero {
   @extend %panel-claro;
   display: grid;

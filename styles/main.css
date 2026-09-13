@@ -431,63 +431,6 @@ body > footer nav a:hover {
   border-bottom-color: var(--acento);
 }
 
-@keyframes corre {
-  to {
-    transform: translateX(-50%);
-  }
-}
-.tira {
-  margin-block: clamp(2.5rem, 6vw, 4rem);
-}
-
-.ticker {
-  --dur: 46s;
-  width: 100vw;
-  margin-inline: calc(50% - 50vw);
-  padding-block: 0.7rem;
-  overflow: hidden;
-  border-block: 1px solid rgba(255, 255, 255, 0.09);
-  background: #0d0d0d;
-}
-.ticker + .ticker {
-  border-top: 0;
-}
-.ticker--b {
-  --acento: var(--b);
-  --dur: 54s;
-}
-.ticker--b .ticker__pista {
-  animation-direction: reverse;
-}
-.ticker__pista {
-  display: flex;
-  width: max-content;
-  animation: corre var(--dur) linear infinite;
-}
-.ticker span {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.6rem;
-  padding-inline: 0.8rem;
-  white-space: nowrap;
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #a9a9a9;
-}
-.ticker span::after {
-  content: "";
-  flex: none;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--acento);
-}
-.ticker:hover .ticker__pista {
-  animation-play-state: paused;
-}
-
 .ctas {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1357,9 +1300,6 @@ button[type=submit]:active {
     opacity: 1;
     transform: none;
   }
-  .ticker__pista {
-    animation: none;
-  }
   .scroll-hint {
     animation: none;
   }
@@ -1384,6 +1324,10 @@ button[type=submit]:active {
     transition: none !important;
   }
 }
+.hero + .seccion {
+  margin-top: clamp(3.5rem, 8vw, 6rem);
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1fr 0.92fr;

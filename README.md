@@ -21,7 +21,7 @@ idea: **el punto y la línea que unen dos polos**.
 
 El punto —el mismo con el que arranca el logotipo `.Conecta`— es la unidad
 mínima del sistema: aparece como viñeta de cada lista, como nodo de cada
-sección y como separador del ticker. Y una línea recorre la página del polo
+sección y como viñeta de cada ficha. Y una línea recorre la página del polo
 naranja al azul, dibujándose a medida que se hace scroll: la página se va
 *conectando* mientras se lee.
 
@@ -69,7 +69,7 @@ por CDN: el sitio no depende de que un servicio externo esté disponible.
 │   ├── abstracts/          → _variables, _mixins, _placeholders
 │   ├── base/               → _tokens, _reset, _tipografia, _texturas
 │   ├── layout/             → _main, _footer
-│   ├── components/         → _navbar, _meta, _ticker, _cta, _card,
+│   ├── components/         → _navbar, _meta, _cta, _card,
 │   │                          _plan, _form, _ficha, _cierre, _ticket,
 │   │                          _scroll-hint, _motion
 │   └── pages/              → _home, _planes
