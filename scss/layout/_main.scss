@@ -11,7 +11,7 @@ main {
 
 .trazo {
   position: absolute;
-  left: -2.6rem;
+  left: -#{v.$trazo-x};
   top: 0;
   bottom: 0;
   width: 1px;
@@ -34,11 +34,14 @@ main {
   position: relative;
   margin-bottom: clamp(3.5rem, 9vw, 7rem);
 
-  // el nodo que cada sección apoya sobre el trazo
+  // El nodo que cada sección apoya sobre el trazo. Se centra sobre la
+  // línea, no se apoya al lado: su borde izquierdo va medio nodo a la
+  // izquierda del centro del trazo (3,5 px), menos el medio píxel que
+  // la propia línea ocupa. De ahí los 3 px.
   &::before {
-    @include m.punto(7px, v.$negro);
+    @include m.punto(v.$nodo, v.$negro);
     position: absolute;
-    left: -2.9rem;
+    left: calc(-1 * #{v.$trazo-x} - 3px);
     top: .55rem;
     border: 1px solid var(--acento);
 

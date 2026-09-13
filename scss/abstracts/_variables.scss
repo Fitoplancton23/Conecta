@@ -25,6 +25,13 @@ $display: "Manrope", system-ui, sans-serif;
 $texto:   "Inter", system-ui, sans-serif;
 $mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
+// --- El trazo de conexión ---------------------------------------
+// Distancia del trazo al borde del contenido y diámetro del nodo
+// que cada sección apoya sobre él. Viven acá porque los usan dos
+// reglas distintas y tienen que quedar alineadas entre sí.
+$trazo-x:   2.6rem;
+$nodo:      7px;
+
 // --- Forma y ritmo ----------------------------------------------
 $radio:     20px;
 $radio-sm:  10px;
