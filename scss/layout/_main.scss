@@ -101,8 +101,11 @@ main {
     }
   }
 
-  // listas de contenido: la viñeta es EL PUNTO de la marca
-  > ul {
+  // Listas de contenido: la viñeta es EL PUNTO de la marca.
+  // :not([class]) las acota a las listas sueltas de prosa. Las listas
+  // que son componentes (.fichas, .ctas, .proyectos) traen su propio
+  // layout y este selector se las pisaba por tener más especificidad.
+  > ul:not([class]) {
     display: grid;
     // minmax(0, 1fr) y no el 1fr implícito: por defecto un track de
     // grilla crece hasta el min-content de su contenido, así que una
@@ -115,7 +118,7 @@ main {
     padding: 0;
     list-style: none;
 
-    > li {
+    > li:not([class]) {
       position: relative;
       padding-left: 1.6rem;
       color: v.$tx-2;

@@ -1,0 +1,102 @@
+// ============================================================
+//  PLATAFORMAS — la banda de herramientas con las que trabajamos.
+//
+//  Es una marquesina, pero no la de siempre: sin puntitos de
+//  separación, sin texto suelto flotando. Cada plataforma va en
+//  su placa con contorno, la banda tiene filetes arriba y abajo
+//  para que se lea como una franja de la página, y los extremos
+//  se desvanecen con una máscara en lugar de cortarse de golpe.
+//  Se detiene al pasar el mouse: si alguien quiere leer, puede.
+// ============================================================
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+@keyframes corre {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.plataformas {
+  // A todo el ancho de la ventana, aunque main esté centrado.
+  margin-inline: calc(50% - 50vw);
+  padding-block: 1.1rem;
+  border-top: 1px solid v.$linea;
+  border-bottom: 1px solid v.$linea;
+  background: rgba(255, 255, 255, .018);
+  overflow: hidden;
+
+  // Los extremos se disuelven en el fondo.
+  mask-image: linear-gradient(90deg,
+    transparent 0, #000 9rem, #000 calc(100% - 9rem), transparent 100%);
+
+  &:hover &__cinta { animation-play-state: paused; }
+
+  &__cinta {
+    display: flex;
+    width: max-content;
+    animation: corre 34s linear infinite;
+  }
+
+  // Las dos mitades son idénticas: cuando la primera termina de
+  // salir, la segunda ya está exactamente en su lugar y el salto
+  // no se ve.
+  &__mitad {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding-right: .7rem;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    flex: none;
+    padding: .5rem 1.1rem;
+    border: 1px solid v.$linea;
+    border-radius: 8px;
+    background: v.$card;
+    @include m.mono(.66rem, .14em, v.$tx-2);
+    white-space: nowrap;
+    transition: border-color .25s v.$ease, color .25s v.$ease;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, .3);
+      color: v.$tx;
+    }
+
+    // Cuando haya logos oficiales, la imagen entra acá y el texto
+    // se convierte en su alt. Hasta entonces la placa lleva el
+    // nombre escrito, que es un dato, no una marca dibujada.
+    img {
+      display: block;
+      height: 18px;
+      width: auto;
+    }
+  }
+
+  @include m.respond("tablet") {
+    mask-image: linear-gradient(90deg,
+      transparent 0, #000 3rem, #000 calc(100% - 3rem), transparent 100%);
+  }
+}
+
+// Si el visitante pidió menos movimiento, la banda se queda quieta
+// y muestra una sola vuelta, acomodada en varias líneas.
+@media (prefers-reduced-motion: reduce) {
+  .plataformas {
+    mask-image: none;
+
+    &__cinta {
+      animation: none;
+      width: 100%;
+      @include m.centrado();
+    }
+
+    &__mitad {
+      flex-wrap: wrap;
+      row-gap: .55rem;
+
+      &:last-child { display: none; }
+    }
+  }
+}
