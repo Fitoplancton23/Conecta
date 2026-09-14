@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Armá tu presupuesto a medida | .Conecta</title>
-  <meta name="description" content="Elegí los servicios que necesitás —placas, reels, copies, calendario, landing, tienda online, auditorías— y armá tu presupuesto al instante.">
-  <meta name="keywords" content="presupuesto redes sociales, precio reel, precio placa, calendario de contenidos, auditoría de redes, cotizar community manager, precio landing page, precio tienda online, auditoría UX UI">
+  <meta name="description" content="Elegí los servicios que necesitás —placas, reels, calendario, community, mantenimiento web, landing, tienda online, auditorías— y armá tu presupuesto al instante.">
+  <meta name="keywords" content="presupuesto redes sociales, precio reel, precio placa, calendario de contenidos, auditoría de redes, cotizar community manager, precio landing page, precio tienda online, auditoría UX UI, mantenimiento web, gestión de tienda online">
   <meta name="author" content="Conecta — Amalia Gross y Facundo Silveira">
   <meta property="og:title" content="Armá tu presupuesto a medida | .Conecta">
-  <meta property="og:description" content="Elegí los servicios que necesitás —placas, reels, copies, calendario, landing, tienda online, auditorías— y armá tu presupuesto al instante.">
+  <meta property="og:description" content="Elegí los servicios que necesitás —placas, reels, calendario, community, mantenimiento web, landing, tienda online, auditorías— y armá tu presupuesto al instante.">
   <meta property="og:type" content="website">
   <link rel="icon" href="../assets/img/logo-conecta.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/vendor/bootstrap.min.css">
@@ -52,7 +52,7 @@
     <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-presupuesto">
       <h1 id="titulo-presupuesto">Armá tu presupuesto</h1>
       <p>
-        Tocá los servicios que necesites.
+        Elegí los servicios que necesites. Los precios son orientativos.
       </p>
     </section>
 
@@ -102,7 +102,7 @@
         </fieldset>
 
         <fieldset>
-          <legend>Contenido</legend>
+          <legend>Contenido estático</legend>
           <ul class="fichas">
             <li>
               <input class="ficha__check" type="checkbox" id="placa-estatica" name="placa-estatica" data-precio="25000" data-unidad="por pieza">
@@ -164,6 +164,7 @@
 
         <fieldset>
           <legend>Estrategia y gestión</legend>
+          <p class="fichas__ayuda">Los servicios mensuales se cotizan según el volumen de trabajo: el valor de acá es el mínimo.</p>
           <ul class="fichas">
             <li>
               <input class="ficha__check" type="checkbox" id="calendario" name="calendario" data-precio="50000" data-unidad="por mes">
@@ -173,24 +174,24 @@
               </label>
             </li>
             <li>
-              <input class="ficha__check" type="checkbox" id="copies" name="copies" data-precio="30000" data-unidad="por mes">
-              <label class="ficha" for="copies">
-                <span class="ficha__nombre">Redacción de copies</span>
-                <span class="ficha__precio">$30.000</span>
-              </label>
-            </li>
-            <li>
-              <input class="ficha__check" type="checkbox" id="community" name="community" data-precio="40000" data-unidad="por mes">
+              <input class="ficha__check" type="checkbox" id="community" name="community" data-precio="100000" data-unidad="por mes" data-desde="1">
               <label class="ficha" for="community">
                 <span class="ficha__nombre">Community management</span>
-                <span class="ficha__precio">$40.000</span>
+                <span class="ficha__precio"><em>desde</em> $100.000</span>
               </label>
             </li>
             <li>
-              <input class="ficha__check" type="checkbox" id="publicacion" name="publicacion" data-precio="20000" data-unidad="por mes">
-              <label class="ficha" for="publicacion">
-                <span class="ficha__nombre">Programación y publicación</span>
-                <span class="ficha__precio">$20.000</span>
+              <input class="ficha__check" type="checkbox" id="mantenimiento" name="mantenimiento" data-precio="50000" data-unidad="por mes" data-desde="1">
+              <label class="ficha" for="mantenimiento">
+                <span class="ficha__nombre">Mantenimiento web</span>
+                <span class="ficha__precio"><em>desde</em> $50.000</span>
+              </label>
+            </li>
+            <li>
+              <input class="ficha__check" type="checkbox" id="gestion-tienda" name="gestion-tienda" data-precio="100000" data-unidad="por mes" data-desde="1">
+              <label class="ficha" for="gestion-tienda">
+                <span class="ficha__nombre">Gestión de tienda online</span>
+                <span class="ficha__precio"><em>desde</em> $100.000</span>
               </label>
             </li>
           </ul>
@@ -198,7 +199,7 @@
 
         <fieldset>
           <legend>Consultoría y auditoría</legend>
-          <p class="fichas__ayuda">La auditoría aplica a LinkedIn, TikTok, Instagram, Facebook, Behance, Upwork o Workana. El seguimiento de la consultoría se cotiza aparte.</p>
+          <p class="fichas__ayuda">La auditoría de redes aplica a LinkedIn, TikTok, Instagram, Facebook, Behance, Upwork o Workana. Las dos auditorías incluyen un diagnóstico escrito con las mejoras priorizadas; el seguimiento de la consultoría se cotiza aparte.</p>
           <ul class="fichas">
             <li>
               <input class="ficha__check" type="checkbox" id="consultoria" name="consultoria" data-precio="100000" data-unidad="por sesión">
@@ -214,12 +215,18 @@
                 <span class="ficha__precio">$50.000</span>
               </label>
             </li>
+            <li>
+              <input class="ficha__check" type="checkbox" id="auditoria-ux" name="auditoria-ux" data-precio="50000" data-unidad="por sitio">
+              <label class="ficha" for="auditoria-ux">
+                <span class="ficha__nombre">Auditoría UX/UI de tu web</span>
+                <span class="ficha__precio">$50.000</span>
+              </label>
+            </li>
           </ul>
         </fieldset>
 
         <fieldset>
           <legend>Desarrollo web</legend>
-          <p class="fichas__ayuda">La auditoría incluye un diagnóstico escrito con las mejoras priorizadas.</p>
           <ul class="fichas">
             <li>
               <input class="ficha__check" type="checkbox" id="landing" name="landing" data-precio="150000" data-unidad="pago único">
@@ -234,13 +241,6 @@
                 <span class="ficha__nombre">Tienda online</span>
                 <span class="ficha__precio">$228.000</span>
                 <span class="ficha__off">40% off</span>
-              </label>
-            </li>
-            <li>
-              <input class="ficha__check" type="checkbox" id="auditoria-ux" name="auditoria-ux" data-precio="50000" data-unidad="por sitio">
-              <label class="ficha" for="auditoria-ux">
-                <span class="ficha__nombre">Auditoría UX/UI de tu web</span>
-                <span class="ficha__precio">$50.000</span>
               </label>
             </li>
           </ul>
@@ -334,7 +334,7 @@
                 <tbody id="ticket-lineas"></tbody>
                 <tfoot>
                   <tr class="ticket__total">
-                    <th scope="row">Total</th>
+                    <th scope="row" id="ticket-total-rotulo">Total</th>
                     <td id="ticket-total">$0</td>
                   </tr>
                 </tfoot>

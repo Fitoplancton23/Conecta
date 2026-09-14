@@ -1290,6 +1290,11 @@ button[type=submit]:active {
   border-color: #ff6a2a;
 }
 
+.ficha__precio em {
+  font-style: normal;
+  opacity: 0.7;
+}
+
 .cierre {
   display: flex;
   align-items: center;

@@ -24,6 +24,7 @@
   const contEl   = ticket.querySelector("#ticket-items");
   const fechaEl  = ticket.querySelector("#ticket-fecha");
   const codigoEl = ticket.querySelector("#ticket-codigo");
+  const rotuloEl = ticket.querySelector("#ticket-total-rotulo");
   const botones  = document.querySelector("#ticket-acciones");
 
   const visorTitulo  = document.querySelector("#visor-titulo");
@@ -58,15 +59,20 @@
       .map((ficha) => ({
         nombre: nombreDe(ficha),
         unidad: ficha.dataset.unidad,
-        precio: parseInt(ficha.dataset.precio, 10) || 0
+        precio: parseInt(ficha.dataset.precio, 10) || 0,
+        // "desde": el precio es el mínimo, no el final. Cambia cómo se
+        // lee la línea y cómo se rotula el total.
+        desde: ficha.dataset.desde === "1"
       }));
 
   const sumar = (items) => items.reduce((suma, i) => suma + i.precio, 0);
+  const hayDesde = (items) => items.some((i) => i.desde);
 
   /* --- 1. El visor: se actualiza en cada click --------------- */
   const actualizarVisor = () => {
     const items = elegidos();
-    visorTotal.textContent = pesos.format(sumar(items));
+    visorTotal.textContent = (hayDesde(items) ? "desde " : "") +
+      pesos.format(sumar(items));
     visorDetalle.textContent = items.length
       ? contar(items.length)
       : "Ningún servicio elegido";
@@ -96,7 +102,9 @@
     if (item.unidad) {
       const detalle = document.createElement("span");
       detalle.className = "ticket__unidad";
-      detalle.textContent = item.unidad;
+      detalle.textContent = item.desde
+        ? `${item.unidad} · desde`
+        : item.unidad;
       th.appendChild(detalle);
     }
 
@@ -124,7 +132,12 @@
     if (!items.length) return null;
 
     lineas.replaceChildren(...items.map(fila));
-    totalEl.textContent = pesos.format(sumar(items));
+
+    // Con un servicio "desde" adentro, el total es un piso y no un
+    // precio: decir "Total" a secas sería mentir en el comprobante.
+    const estimado = hayDesde(items);
+    rotuloEl.textContent = estimado ? "Total estimado" : "Total";
+    totalEl.textContent = (estimado ? "desde " : "") + pesos.format(sumar(items));
     contEl.textContent = contar(items.length);
     fechaEl.textContent = new Date().toLocaleDateString("es-AR", {
       day: "2-digit", month: "2-digit", year: "numeric"
@@ -209,9 +222,10 @@
       const texto = [
         "Hola .Conecta! Armé este presupuesto en la web:",
         "",
-        ...items.map((i) => `• ${i.nombre} (${i.unidad}) — ${pesos.format(i.precio)}`),
+        ...items.map((i) =>
+          `• ${i.nombre} (${i.unidad}) — ${i.desde ? "desde " : ""}${pesos.format(i.precio)}`),
         "",
-        `TOTAL: ${pesos.format(sumar(items))}`,
+        `${hayDesde(items) ? "TOTAL ESTIMADO: desde " : "TOTAL: "}${pesos.format(sumar(items))}`,
         codigoEl.textContent ? `Comprobante ${codigoEl.textContent}` : ""
       ].filter(Boolean).join("\n");
       enviar.href =

@@ -159,3 +159,9 @@
     &:hover { color: v.$naranja-alto; border-color: v.$naranja-alto; }
   }
 }
+
+// "desde" antes del precio: el valor es un mínimo, no el final.
+.ficha__precio em {
+  font-style: normal;
+  opacity: .7;
+}
