@@ -45,6 +45,14 @@
     &:hover { background: v.$naranja; color: v.$tinta; border-color: v.$tinta; }
   }
 
+  // contorno: la caja del mismo tamaño, sin relleno
+  &--contorno {
+    background: transparent;
+    color: v.$tinta;
+
+    &:hover { background: v.$tinta; color: v.$papel; }
+  }
+
   // la más liviana: solo texto subrayado, sin caja
   &--linea {
     min-height: 0;
@@ -84,6 +92,12 @@
   }
 
   .cta--oscuro {
+    background: transparent;
+    color: v.$papel;
+    &:hover { background: v.$papel; color: v.$tinta; }
+  }
+
+  .cta--contorno {
     background: transparent;
     color: v.$papel;
     &:hover { background: v.$papel; color: v.$tinta; }

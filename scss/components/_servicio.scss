@@ -9,6 +9,9 @@
 
 .servicio {
   @include m.doce();
+  // La segunda fila absorbe el alto sobrante: así la frase de entrada
+  // queda pegada al título y no a la mitad de la columna de al lado.
+  grid-template-rows: auto 1fr;
   align-items: start;
 
   h2 {
@@ -19,11 +22,11 @@
 
   &__cuerpo {
     @include m.columnas(8, 13);
-    grid-row: 1;
+    grid-row: 1 / span 2;
     padding-top: .4rem;
 
     // el dato de cierre del bloque: precio y enlace
-    > p {
+    > p:not([class]) {
       margin: 1.4rem 0 0;
       font-size: 1.05rem;
       color: v.$tinta;
@@ -33,6 +36,19 @@
   &--espejo {
     h2 { @include m.columnas(7, 13); }
     .servicio__cuerpo { @include m.columnas(1, 6); }
+  }
+
+  // Entrada del bloque Nosotros: una frase más grande que el resto,
+  // debajo del título y en su misma columna
+  &__intro {
+    @include m.columnas(1, 7);
+    grid-row: 2;
+    max-width: 34ch;
+    margin: 1.6rem 0 0;
+    font-size: clamp(1.2rem, 1.9vw, 1.45rem);
+    font-weight: 500;
+    line-height: 1.4;
+    color: v.$tinta;
   }
 
   // Las plataformas con las que trabajamos: una frase, no un letrero.
@@ -97,4 +113,16 @@
     &__fila { display: block; }
     &__dato { margin-top: 1.6rem; }
   }
+}
+
+// --- Una persona del equipo: nombre y bio, separadas por una línea -----
+.persona {
+  @extend %renglon;
+  padding-block: 1.4rem 1.6rem;
+
+  &:last-child { border-bottom: 1px solid v.$regla; }
+
+  h3 { margin-bottom: .6rem; }
+
+  p { margin: 0; font-size: 1rem; }
 }

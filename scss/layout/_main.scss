@@ -20,6 +20,15 @@ main { display: block; }
     border-top: 2px solid v.$tinta;
   }
 
+  // Nosotros cierra más cerca de los botones que lo siguen
+  &--nosotros { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+
+  // Franja de los tres botones: sin línea propia, cuelga de Nosotros
+  &--acciones {
+    padding-top: 0;
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
   // Cabecera de las páginas internas: título a la izquierda, bajada
   // abajo a la derecha. Dos pesos distintos, nunca centrados.
   &--intro {
