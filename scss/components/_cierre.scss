@@ -1,59 +1,36 @@
-// El cierre: el logotipo gigante es la estela de nuestro paso.
+// ============================================================
+//  CIERRE — la frase y la moto. Dos pesos, un solo gesto: la
+//  imagen asoma por la derecha y la frase queda a la izquierda.
+// ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
-@use "../abstracts/placeholders";
 
 .cierre {
-  @extend %panel-claro;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(1rem, 4vw, 2.5rem);
-  margin-top: clamp(3rem, 7vw, 5rem);
-  padding: clamp(1.6rem, 4vw, 2.4rem) clamp(1.6rem, 4vw, 2.6rem);
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: -3%;
-    bottom: -10%;
-    width: 80%;
-    aspect-ratio: 920 / 178;
-    opacity: .075;
-    pointer-events: none;
-    filter: invert(1);
-    background: url("../assets/img/logo-conecta.svg") no-repeat left bottom / contain;
-
-    @include m.respond("chico") { width: 115%; bottom: -4%; }
-  }
+  @include m.doce();
+  align-items: end;
+  width: min(100% - 2 * var(--gutter), v.$ancho);
+  margin-inline: auto;
+  padding-top: clamp(3rem, 7vw, 6rem);
+  overflow-x: clip;
 
   p {
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    max-width: 16ch;
-    font-family: v.$display;
-    font-weight: 800;
-    font-size: clamp(1.3rem, 2.8vw, 1.9rem);
-    line-height: 1.05;
-    letter-spacing: -.035em;
-    color: #181818;
+    @include m.columnas(1, 7);
+    @include m.voz(clamp(2.4rem, 6vw, 5rem), 800, .98);
+    align-self: center;
+    margin: 0 0 clamp(2rem, 5vw, 4rem);
+    color: v.$tinta;
   }
 
   img {
-    position: relative;
-    z-index: 1;
-    width: min(42%, 240px);
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    filter: grayscale(1) contrast(1.06);
-
-    @include m.respond("chico") { width: min(70%, 210px); }
+    @include m.columnas(7, 13);
+    width: 100%;
+    max-width: 34rem;
+    justify-self: end;
   }
 
-  @include m.respond("chico") {
-    flex-direction: column;
-    align-items: flex-start;
+  @include m.respond("medio") {
+    display: block;
+
+    img { margin: 0 0 0 auto; max-width: 24rem; }
   }
 }

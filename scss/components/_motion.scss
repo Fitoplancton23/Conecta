@@ -1,32 +1,15 @@
-// Movimiento con propósito. Y siempre revocable.
+// ============================================================
+//  MOVIMIENTO — un momento autorado (el hero) y la aparición
+//  escalonada de AOS en listas largas. Todo es revocable.
+// ============================================================
 @use "../abstracts/variables" as v;
-
-// Aparición propia (la usa AOS como respaldo si no carga la librería)
-.rv {
-  opacity: 0;
-  transform: translateY(22px);
-
-  &.on {
-    opacity: 1;
-    transform: none;
-    transition: opacity .75s v.$ease, transform .75s v.$ease;
-    transition-delay: calc(var(--i, 0) * 80ms);
-  }
-}
 
 // El movimiento es una decisión, no una imposición.
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  .rv { opacity: 1; transform: none; }
-  .scroll-hint { animation: none; }
-  .scroll-hint__punto { animation: none; }
-  .scroll-hint__punto::after { animation: none; opacity: 0; }
-  .trazo__fill { transform: scaleY(1); }
-
-  article:hover,
-  button[type="submit"]:hover,
-  .plan:hover { transform: none; }
+  .hero__foto::before,
+  .hero__foto img { animation: none; }
 
   [data-aos] {
     opacity: 1 !important;

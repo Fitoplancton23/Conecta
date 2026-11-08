@@ -13,18 +13,16 @@
   <link rel="icon" href="../assets/img/logo-conecta.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/vendor/aos.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="../assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-  <div class="grano" aria-hidden="true"></div>
   <header>
-    <nav class="navbar navbar-expand-lg conecta-nav" data-bs-theme="dark" aria-label="Navegación principal">
+    <nav class="navbar navbar-expand-lg conecta-nav" aria-label="Navegación principal">
       <div class="container-fluid">
         <a class="navbar-brand" href="../index.html" rel="home">
-          <img class="marca__logo" src="../assets/img/logo-conecta.svg" alt="Conecta — inicio">
+          <img class="marca__logo" src="../assets/img/logo-conecta-tinta.svg" alt="Conecta — inicio" width="124" height="24">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir el menú de navegación">
           <span class="navbar-toggler-icon"></span>
@@ -42,22 +40,16 @@
     </nav>
   </header>
 
-  <button class="scroll-hint" type="button" aria-label="Bajar al contenido">
-    <span class="scroll-hint__texto" aria-hidden="true">Scroll</span>
-    <span class="scroll-hint__punto" aria-hidden="true"></span>
-  </button>
-
   <main>
-    <div class="trazo" aria-hidden="true"><span class="trazo__fill"></span></div>
-    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-presupuesto">
+    <section class="seccion seccion--intro" aria-labelledby="titulo-presupuesto">
       <h1 id="titulo-presupuesto">Armá tu presupuesto</h1>
       <p>
         Elegí los servicios que necesites. Los precios son orientativos.
       </p>
     </section>
 
-    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-catalogo">
-      <h2 id="titulo-catalogo">Elegí los servicios</h2>
+    <section class="seccion seccion--regla" aria-labelledby="titulo-catalogo">
+      <h2 class="seccion__titulo" id="titulo-catalogo">Elegí los servicios</h2>
       <!--
         FUENTE DE VERDAD DE PRECIOS (sin base de datos):
         Cada servicio es un checkbox con data-precio (en pesos) y data-unidad.
@@ -285,13 +277,15 @@
       El papel se revela animando grid-template-rows de 0fr a 1fr, que es
       la forma de animar un alto automático sin fijarlo a mano.
     -->
-    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-resumen">
-      <h2 id="titulo-resumen">Tu presupuesto</h2>
+    <section class="seccion seccion--regla" aria-labelledby="titulo-resumen">
+      <div class="presupuesto">
+      <h2 class="presupuesto__titulo" id="titulo-resumen">Tu presupuesto</h2>
 
+      <div class="presupuesto__maquina">
       <div class="impresora" id="impresora">
         <div class="impresora__cuerpo">
           <div class="impresora__barra">
-            <img class="impresora__marca" src="../assets/img/logo-conecta.svg" alt="" width="82" height="20">
+            <img class="impresora__marca" src="../assets/img/logo-conecta.svg" alt="" width="93" height="18">
             <span class="impresora__etiqueta">Presupuesto</span>
           </div>
 
@@ -357,43 +351,33 @@
         <button class="ticket__accion" type="button" id="ticket-imprimir">Imprimir o guardar PDF</button>
         <a class="ticket__accion ticket__accion--b" id="ticket-whatsapp" href="https://wa.me/543755505926" rel="noopener" target="_blank">Enviarlo por WhatsApp</a>
       </p>
+      </div>
+      </div>
     </section>
   </main>
 
   <footer>
     <!--
       Las mismas acciones del hero, al final del recorrido.
-      Se omite "Calcular presupuesto": el visitante ya esta en Presupuesto.
+      Se omite "Calcular presupuesto": el visitante ya está en Presupuesto.
     -->
     <section class="pie__cta" aria-labelledby="titulo-pie-cta">
-      <h2 class="meta" id="titulo-pie-cta">¿Arrancamos?</h2>
+      <h2 id="titulo-pie-cta">¿Arrancamos?</h2>
       <ul class="ctas ctas--pie">
         <li><a class="cta cta--a" href="https://wa.me/543755505926" rel="noopener" target="_blank">Escribinos por WhatsApp</a></li>
-        <li><a class="cta cta--linea" href="planes.html">Ver los planes</a></li>
+        <li><a class="cta cta--oscuro" href="planes.html">Ver los planes</a></li>
       </ul>
     </section>
 
     <div class="pie__legal">
-
+      <p>&copy; 2026 .Conecta — Comunicación y desarrollo</p>
+      <nav aria-label="Redes de contacto">
+        <ul>
+          <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
+          <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
+        </ul>
+      </nav>
     </div>
-  </footer>
-      </article>
-
-      <p class="ticket__acciones" id="ticket-acciones" hidden>
-        <button class="ticket__accion" type="button" id="ticket-imprimir">Imprimir o guardar PDF</button>
-        <a class="ticket__accion ticket__accion--b" id="ticket-whatsapp" href="https://wa.me/543755505926" rel="noopener" target="_blank">Enviarlo por WhatsApp</a>
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 .Conecta — Comunicación y desarrollo</p>
-    <nav aria-label="Redes de contacto">
-      <ul>
-        <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
-        <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
-      </ul>
-    </nav>
   </footer>
   <script src="../assets/vendor/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/aos.js"></script>

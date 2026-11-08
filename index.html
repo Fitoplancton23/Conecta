@@ -11,21 +11,18 @@
   <meta property="og:description" content="Somos una dupla: planificamos, editamos y publicamos el contenido de tus redes, y desarrollamos tu tienda online, tu app o tu landing page.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/img/logo-conecta.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="assets/vendor/aos.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div class="grano" aria-hidden="true"></div>
-
   <header>
-    <nav class="navbar navbar-expand-lg conecta-nav" data-bs-theme="dark" aria-label="Navegación principal">
+    <nav class="navbar navbar-expand-lg conecta-nav" aria-label="Navegación principal">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html" rel="home">
-          <img class="marca__logo" src="assets/img/logo-conecta.svg" alt="Conecta — inicio">
+          <img class="marca__logo" src="assets/img/logo-conecta-tinta.svg" alt="Conecta — inicio" width="124" height="24">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir el menú de navegación">
           <span class="navbar-toggler-icon"></span>
@@ -43,243 +40,126 @@
     </nav>
   </header>
 
-  <button class="scroll-hint" type="button" aria-label="Bajar al contenido">
-    <span class="scroll-hint__texto" aria-hidden="true">Scroll</span>
-    <span class="scroll-hint__punto" aria-hidden="true"></span>
-  </button>
-
   <main>
-    <!-- El trazo que une los dos polos: se dibuja al scrollear -->
-    <div class="trazo" aria-hidden="true"><span class="trazo__fill"></span></div>
-
     <section class="hero" aria-labelledby="titulo-presentacion">
-      <div class="hero__texto">
-        <h1 id="titulo-presentacion">Somos una <em>dupla</em> de diseño y comunicación para marcas</h1>
-        <p class="hero__bajada">
-          Planificamos y ejecutamos la comunicación de tu marca.
-        </p>
+      <h1 id="titulo-presentacion">Somos una <em>dupla</em> de diseño y comunicación para marcas</h1>
+      <div class="hero__cuerpo">
+        <p>Planificamos y ejecutamos la comunicación de tu marca.</p>
         <!--
           Las tres acciones que tienen que estar a mano. Van acá arriba,
           en el hero, para que se encuentren sin scrollear. Las páginas
           siguen estando en el menú: esto es un atajo, no un reemplazo.
+          Tres pesos distintos: relleno naranja, relleno tinta y enlace.
         -->
         <ul class="ctas">
-          <li>
-            <a class="cta cta--a" href="https://wa.me/543755505926" rel="noopener" target="_blank">
-              Escribinos por WhatsApp
-            </a>
-          </li>
-          <li>
-            <a class="cta cta--linea" href="pages/planes.html">Ver los planes</a>
-          </li>
-          <li>
-            <a class="cta cta--oscuro" href="pages/presupuesto.html">Calcular presupuesto</a>
-          </li>
+          <li><a class="cta cta--a" href="https://wa.me/543755505926" rel="noopener" target="_blank">Escribinos por WhatsApp</a></li>
+          <li><a class="cta cta--oscuro" href="pages/planes.html">Ver los planes</a></li>
+          <li><a class="cta cta--linea" href="pages/presupuesto.html">Calcular presupuesto</a></li>
         </ul>
-
-        <p class="meta hero__hint">O bajá y te contamos</p>
       </div>
       <figure class="hero__foto">
-        <img src="assets/img/equipo.png" alt="Amalia y Facundo, la dupla de Conecta, con una notebook y una tablet">
+        <img src="assets/img/equipo.png" alt="Amalia y Facundo, la dupla de Conecta, con una notebook y una tablet" width="1300" height="954">
       </figure>
     </section>
 
-    <section class="seccion" data-aos="fade-up" data-polo="a" aria-labelledby="titulo-redes">
-      <div class="seccion__head">
-        <span class="seccion__num" aria-hidden="true">01</span>
-        <p class="meta">Polo A — Redes sociales</p>
+    <section class="seccion seccion--regla" data-aos="fade-up" aria-labelledby="titulo-redes">
+      <div class="servicio">
         <h2 id="titulo-redes">Tus redes, planificadas y publicadas</h2>
+        <div class="servicio__cuerpo">
+          <ul class="renglones">
+            <li>Planificación del calendario mensual.</li>
+            <li>Copies pensados para la voz de tu marca.</li>
+            <li>Piezas estáticas, carruseles, historias, Reels y Tik Toks.</li>
+            <li>Community management.</li>
+          </ul>
+          <p>Planes mensuales desde $150.000. <a class="enlace" href="pages/planes.html">Elegí el que se adapte a tu marca</a>.</p>
+        </div>
       </div>
-      <ul>
-        <li>Planificación del calendario mensual.</li>
-        <li>Copies pensados para la voz de tu marca.</li>
-        <li>Piezas estáticas, carruseles, historias, Reels y Tik Toks.</li>
-        <li>Community management.</li>
-      </ul>
-
-      <article aria-labelledby="titulo-planes-redes">
-        <h3 id="titulo-planes-redes">Planes mensuales</h3>
-        <p>Desde $150.000 por mes. Elegí el que más se adapte a tu marca.</p>
-        <p class="meta"><a href="pages/planes.html">Ver planes</a></p>
-      </article>
     </section>
 
-    <section class="seccion" data-aos="fade-up" data-polo="b" aria-labelledby="titulo-desarrollo">
-      <div class="seccion__head">
-        <span class="seccion__num" aria-hidden="true">02</span>
-        <p class="meta">Polo B — Desarrollo web</p>
+    <section class="seccion seccion--regla" data-aos="fade-up" aria-labelledby="titulo-desarrollo">
+      <div class="servicio servicio--espejo">
         <h2 id="titulo-desarrollo">Tu proyecto, listo para vender</h2>
-      </div>
-      <ul>
-        <li>Tienda online con catálogo, pagos y gestión de stock.</li>
-        <li>App mobile a medida.</li>
-        <li>Landing pages.</li>
-        <li>Consultoría UX/UI para mejorar tu Web o App.</li>
-      </ul>
-
-      <article aria-labelledby="titulo-promo">
-        <h3 id="titulo-promo">Publicá tu tienda online</h3>
-        <p>Tu tienda online, lista para vender.</p>
-        <p class="meta"><a href="pages/planes.html">Accedé a una promoción</a></p>
-      </article>
-    </section>
-
-    <!--
-      Banda de plataformas. La cinta son DOS MITADES idénticas y la
-      animación la corre -50%: cuando la primera termina de salir, la
-      segunda está exactamente donde arrancó la primera, así el loop
-      no salta. Cada mitad repite la lista tres veces para que sea más
-      ancha que la pantalla; si no, se ve el hueco entre una y otra.
-      aria-hidden en la copia, para que el lector de pantalla no lea
-      la lista dos veces.
-    -->
-    <section class="plataformas" aria-labelledby="titulo-plataformas">
-      <h2 class="visualmente-oculto" id="titulo-plataformas">Plataformas con las que trabajamos</h2>
-      <div class="plataformas__cinta">
-        <ul class="plataformas__mitad">
-            <li class="plataformas__item">WordPress</li>
-            <li class="plataformas__item">Shopify</li>
-            <li class="plataformas__item">Tiendanube</li>
-            <li class="plataformas__item">Mercado Libre</li>
-            <li class="plataformas__item">Netlify</li>
-            <li class="plataformas__item">Hostinger</li>
-            <li class="plataformas__item">WordPress</li>
-            <li class="plataformas__item">Shopify</li>
-            <li class="plataformas__item">Tiendanube</li>
-            <li class="plataformas__item">Mercado Libre</li>
-            <li class="plataformas__item">Netlify</li>
-            <li class="plataformas__item">Hostinger</li>
-            <li class="plataformas__item">WordPress</li>
-            <li class="plataformas__item">Shopify</li>
-            <li class="plataformas__item">Tiendanube</li>
-            <li class="plataformas__item">Mercado Libre</li>
-            <li class="plataformas__item">Netlify</li>
-            <li class="plataformas__item">Hostinger</li>
-        </ul>
-        <ul class="plataformas__mitad" aria-hidden="true">
-            <li class="plataformas__item">WordPress</li>
-            <li class="plataformas__item">Shopify</li>
-            <li class="plataformas__item">Tiendanube</li>
-            <li class="plataformas__item">Mercado Libre</li>
-            <li class="plataformas__item">Netlify</li>
-            <li class="plataformas__item">Hostinger</li>
-            <li class="plataformas__item">WordPress</li>
-            <li class="plataformas__item">Shopify</li>
-            <li class="plataformas__item">Tiendanube</li>
-            <li class="plataformas__item">Mercado Libre</li>
-            <li class="plataformas__item">Netlify</li>
-            <li class="plataformas__item">Hostinger</li>
-            <li class="plataformas__item">WordPress</li>
-            <li class="plataformas__item">Shopify</li>
-            <li class="plataformas__item">Tiendanube</li>
-            <li class="plataformas__item">Mercado Libre</li>
-            <li class="plataformas__item">Netlify</li>
-            <li class="plataformas__item">Hostinger</li>
-        </ul>
+        <div class="servicio__cuerpo">
+          <ul class="renglones">
+            <li>Tienda online con catálogo, pagos y gestión de stock.</li>
+            <li>App mobile a medida.</li>
+            <li>Landing pages.</li>
+            <li>Consultoría UX/UI para mejorar tu Web o App.</li>
+          </ul>
+          <!--
+            Las plataformas, dichas en una frase. Antes era una cinta que
+            se movía sola: ocupaba el ancho entero para decir seis nombres
+            y le sumaba movimiento a la página sin explicar nada.
+          -->
+          <p class="servicio__plataformas">Trabajamos sobre WordPress, Shopify, Tiendanube, Mercado Libre, Netlify y Hostinger.</p>
+        </div>
       </div>
     </section>
 
-    <section class="seccion" data-aos="fade-up" data-polo="b" aria-labelledby="titulo-proyectos">
-      <div class="seccion__head">
-        <span class="seccion__num" aria-hidden="true">03</span>
-        <p class="meta">Proyectos recientes</p>
+    <aside class="oferta" aria-labelledby="titulo-promo">
+      <div class="oferta__fila">
+        <h2 id="titulo-promo">Publicá tu tienda online con 40% off</h2>
+        <div class="oferta__dato">
+          <p><s>$380.000</s></p>
+          <b>$228.000</b>
+          <a class="enlace" href="pages/planes.html">Ver la promoción</a>
+        </div>
+      </div>
+    </aside>
+
+    <section class="seccion" aria-labelledby="titulo-proyectos">
+      <div class="proyectos-cabecera" data-aos="fade-up">
         <h2 id="titulo-proyectos">Sitios que ya están online</h2>
       </div>
 
       <ul class="proyectos">
-        <li>
+        <li data-aos="fade-up">
           <article class="proyecto" aria-labelledby="proy-giulia">
-            <div class="proyecto__marco">
-              <div class="proyecto__barra" aria-hidden="true">
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__url">multimarcasgiulia.mitiendanube.com</span>
-              </div>
-              <figure class="proyecto__shot">
-                <img src="assets/trabajos/giulia-1-t.webp" alt="Home de la tienda online de Giulia &amp; Co." width="820" height="369" loading="lazy">
-              </figure>
-            </div>
+            <figure class="proyecto__shot">
+              <img src="assets/trabajos/giulia-1-t.webp" alt="Home de la tienda online de Giulia &amp; Co." width="820" height="369" loading="lazy">
+            </figure>
             <div class="proyecto__info">
-              <p class="proyecto__meta">
-                <span class="proyecto__tag">Tienda online</span>
-                <span class="proyecto__donde">Indumentaria · Rosario</span>
-              </p>
+              <p class="proyecto__meta">Tienda online · Indumentaria · Rosario</p>
               <h3 class="proyecto__nombre" id="proy-giulia">Giulia &amp; Co.</h3>
               <p class="proyecto__desc">Multimarca de indumentaria con catálogo por temporada, filtros por talle, gift cards y cobros en cuotas. Todo autogestionable desde el panel.</p>
-              <a class="proyecto__ir" href="https://multimarcasgiulia.mitiendanube.com/" rel="noopener" target="_blank">Visitar sitio</a>
+              <a class="proyecto__ir" href="https://multimarcasgiulia.mitiendanube.com/" rel="noopener" target="_blank">Visitar sitio<span class="visualmente-oculto"> de Giulia &amp; Co.</span></a>
             </div>
           </article>
         </li>
-
-        <li>
+        <li data-aos="fade-up">
           <article class="proyecto" aria-labelledby="proy-hugo">
-            <div class="proyecto__marco">
-              <div class="proyecto__barra" aria-hidden="true">
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__url">fitoplancton23.github.io/Hugo-Dellana</span>
-              </div>
-              <figure class="proyecto__shot">
-                <img src="assets/trabajos/hugo-1-t.webp" alt="Portada del press kit de Hugo Dellana" width="820" height="422" loading="lazy">
-              </figure>
-            </div>
+            <figure class="proyecto__shot">
+              <img src="assets/trabajos/hugo-1-t.webp" alt="Portada del press kit de Hugo Dellana" width="820" height="422" loading="lazy">
+            </figure>
             <div class="proyecto__info">
-              <p class="proyecto__meta">
-                <span class="proyecto__tag">Press kit</span>
-                <span class="proyecto__donde">DJ · Rosario</span>
-              </p>
+              <p class="proyecto__meta">Press kit · DJ · Rosario</p>
               <h3 class="proyecto__nombre" id="proy-hugo">Hugo Dellana</h3>
               <p class="proyecto__desc">Press kit de un DJ de tech house: biografía, sets, galería de flyers en 3D y fechas, con un botón de booking siempre a mano.</p>
-              <a class="proyecto__ir" href="https://fitoplancton23.github.io/Hugo-Dellana/" rel="noopener" target="_blank">Visitar sitio</a>
+              <a class="proyecto__ir" href="https://fitoplancton23.github.io/Hugo-Dellana/" rel="noopener" target="_blank">Visitar sitio<span class="visualmente-oculto"> de Hugo Dellana</span></a>
             </div>
           </article>
         </li>
-
-        <li>
+        <li data-aos="fade-up">
           <article class="proyecto" aria-labelledby="proy-silveris">
-            <div class="proyecto__marco">
-              <div class="proyecto__barra" aria-hidden="true">
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__url">silverisfilms.com</span>
-              </div>
-              <figure class="proyecto__shot">
-                <img src="assets/trabajos/silveris-1-t.webp" alt="Portada del sitio de Silveris Films" width="820" height="461" loading="lazy">
-              </figure>
-            </div>
+            <figure class="proyecto__shot">
+              <img src="assets/trabajos/silveris-1-t.webp" alt="Portada del sitio de Silveris Films" width="820" height="461" loading="lazy">
+            </figure>
             <div class="proyecto__info">
-              <p class="proyecto__meta">
-                <span class="proyecto__tag">Landing page</span>
-                <span class="proyecto__donde">Productora · Rosario</span>
-              </p>
+              <p class="proyecto__meta">Landing page · Productora · Rosario</p>
               <h3 class="proyecto__nombre" id="proy-silveris">Silveris Films</h3>
               <p class="proyecto__desc">Productora audiovisual: video de fondo a pantalla completa, perfil del estudio y una sección de trabajos recientes con los videoclips embebidos.</p>
-              <a class="proyecto__ir" href="https://www.silverisfilms.com" rel="noopener" target="_blank">Visitar sitio</a>
+              <a class="proyecto__ir" href="https://www.silverisfilms.com" rel="noopener" target="_blank">Visitar sitio<span class="visualmente-oculto"> de Silveris Films</span></a>
             </div>
           </article>
         </li>
-
-        <li>
+        <li data-aos="fade-up">
           <article class="proyecto" aria-labelledby="proy-plataforma">
-            <div class="proyecto__marco">
-              <div class="proyecto__barra" aria-hidden="true">
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__punto"></span>
-                <span class="proyecto__url">en desarrollo</span>
-              </div>
-              <figure class="proyecto__shot">
-                <img src="assets/trabajos/plataforma-1-t.webp" alt="Pantalla de la app Plataforma para músicos" width="820" height="461" loading="lazy">
-              </figure>
-            </div>
+            <figure class="proyecto__shot">
+              <img src="assets/trabajos/plataforma-1-t.webp" alt="Pantalla de la app Plataforma para músicos" width="820" height="461" loading="lazy">
+            </figure>
             <div class="proyecto__info">
-              <p class="proyecto__meta">
-                <span class="proyecto__tag">App mobile</span>
-                <span class="proyecto__donde">Red para músicos</span>
-              </p>
+              <p class="proyecto__meta">App mobile · Red para músicos</p>
               <h3 class="proyecto__nombre" id="proy-plataforma">Plataforma</h3>
               <p class="proyecto__desc">Una red para músicos y productores: proyectos colaborativos, perfiles profesionales, mensajería interna, cartelera y un panel de administración con métricas de la comunidad.</p>
               <p class="proyecto__estado">En desarrollo</p>
@@ -289,23 +169,21 @@
       </ul>
     </section>
 
-    <aside class="cierre" data-aos="zoom-in">
+    <aside class="cierre">
       <p>Nos movemos con tu marca.</p>
-      <img src="assets/img/moto.png" alt="Amalia y Facundo de Conecta arriba de una moto">
+      <img src="assets/img/moto.png" alt="Amalia y Facundo de Conecta arriba de una moto" width="1300" height="1030" loading="lazy">
     </aside>
   </main>
 
   <footer>
     <!--
-      Las mismas tres acciones del hero, al final del recorrido. Se omite
-      la que corresponde a la página actual: acá no falta ninguna porque
-      esta es Inicio, que no es destino de ningún CTA.
+      Las mismas tres acciones del hero, al final del recorrido. Acá no falta ninguna: Inicio no es destino de ningún CTA.
     -->
     <section class="pie__cta" aria-labelledby="titulo-pie-cta">
-      <h2 class="meta" id="titulo-pie-cta">¿Arrancamos?</h2>
+      <h2 id="titulo-pie-cta">¿Arrancamos?</h2>
       <ul class="ctas ctas--pie">
         <li><a class="cta cta--a" href="https://wa.me/543755505926" rel="noopener" target="_blank">Escribinos por WhatsApp</a></li>
-        <li><a class="cta cta--linea" href="pages/planes.html">Ver los planes</a></li>
+        <li><a class="cta cta--oscuro" href="pages/planes.html">Ver los planes</a></li>
         <li><a class="cta cta--linea" href="pages/presupuesto.html">Calcular presupuesto</a></li>
       </ul>
     </section>

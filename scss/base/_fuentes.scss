@@ -1,0 +1,22 @@
+// ============================================================
+//  FUENTES — alojadas en el repo (assets/fonts), no en Google.
+//  Son variables: un solo archivo por familia cubre todos los
+//  pesos. font-display: swap muestra texto de inmediato con la
+//  fuente de respaldo y cambia cuando la propia termina de bajar.
+//  El subset es latino: alcanza para todo el español.
+// ============================================================
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../assets/fonts/bricolage-grotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("../assets/fonts/schibsted-grotesk.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}

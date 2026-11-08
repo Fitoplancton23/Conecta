@@ -1,17 +1,21 @@
 // ============================================================
 //  TOKENS EN TIEMPO DE EJECUCIÓN
-//  Las variables SCSS se resuelven al compilar; estas viven en
-//  el navegador. Las necesitamos porque cada sección cambia su
-//  polo en caliente con [data-polo], y eso SCSS solo no puede.
+//  Las variables SCSS se resuelven al compilar; estas viven en el
+//  navegador. Las necesitamos para que una sección oscura (el pie)
+//  invierta tinta y papel sin reescribir cada componente.
 // ============================================================
 @use "../abstracts/variables" as v;
 
 :root {
-  --a:  #{v.$naranja};
-  --a2: #{v.$naranja-alto};
-  --b:  #{v.$azul};
-  --b2: #{v.$azul-alto};
-  --acento: var(--a);
-}
+  --tinta:  #{v.$tinta};
+  --papel:  #{v.$papel};
+  --regla:  #{v.$regla};
+  --texto-2: #{v.$tinta-2};
+  --texto-3: #{v.$tinta-3};
+  --naranja: #{v.$naranja};
+  --foco:   #{v.$tinta};
+  --gutter: clamp(1.25rem, 4vw, 3rem);
 
-[data-polo="b"] { --acento: var(--b); }
+  color-scheme: light;
+  accent-color: v.$naranja;
+}

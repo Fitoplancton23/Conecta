@@ -5,16 +5,15 @@
 //  El sistema completo está documentado en abstracts/_variables
 //  y en el README del proyecto.
 //
-//  CONCEPTO: "El punto que une". Conecta es una dupla, así que
-//  todo se deriva del punto y la línea que unen dos polos:
-//  naranja (redes sociales) y azul (desarrollo web).
+//  MUNDO VISUAL: "Papel y tinta". Una hoja, una tinta y un solo
+//  color de imprenta (el naranja de la marca), siempre plano.
 // ============================================================
 
 // --- Base -------------------------------------------------------
+@use "base/fuentes";
 @use "base/tokens";
 @use "base/reset";
 @use "base/tipografia";
-@use "base/texturas";
 
 // --- Layout -----------------------------------------------------
 @use "layout/main";
@@ -22,20 +21,17 @@
 
 // --- Componentes ------------------------------------------------
 @use "components/navbar";
-@use "components/meta";
 @use "components/cta";
-@use "components/plataformas";
+@use "components/hero";
+@use "components/servicio";
 @use "components/proyecto";
-@use "components/card";
+@use "components/cierre";
 @use "components/plan";
 @use "components/form";
 @use "components/ficha";
-@use "components/cierre";
 @use "components/impresora";
 @use "components/ticket";
-@use "components/scroll-hint";
 @use "components/motion";
 
 // --- Páginas ----------------------------------------------------
-@use "pages/home";
-@use "pages/planes";
+@use "pages/paginas";

@@ -9,32 +9,38 @@ desarrollo web formada por **Amalia Gross** (Lic. en Comunicación Social) y
 
 ---
 
-## El concepto: "El punto que une"
+## El concepto: "Papel y tinta"
 
-Conecta es una dupla, así que todo el sistema visual se deriva de una sola
-idea: **el punto y la línea que unen dos polos**.
+Una hoja, una tinta y un solo color de imprenta. Conecta es una dupla y su
+logotipo arranca con un punto: ese punto es el único gesto del sistema. Aparece
+enorme detrás de la dupla en el hero, como viñeta de cada ficha del presupuesto
+y como subrayado del enlace activo. Todo lo demás es tipografía y líneas finas.
 
-| Polo | Servicio | Color |
-| --- | --- | --- |
-| A | Redes sociales | Naranja `#ff3000` |
-| B | Desarrollo web | Azul `#2440e0` |
-
-El punto —el mismo con el que arranca el logotipo `.Conecta`— es la unidad
-mínima del sistema: aparece como viñeta de cada lista, como nodo de cada
-sección y como viñeta de cada ficha. Y una línea recorre la página del polo
-naranja al azul, dibujándose a medida que se hace scroll: la página se va
-*conectando* mientras se lee.
+| Elemento | Valor |
+| --- | --- |
+| Papel | `#eeefed` (gris papel de diario, sin tinte crema) |
+| Tinta | `#121312` |
+| Color de imprenta | Naranja `#ff3000`, siempre plano |
+| Títulos y precios | Bricolage Grotesque (variable) |
+| Texto corrido | Schibsted Grotesk (variable) |
 
 ### Criterios de diseño
 
-1. Un concepto, no efectos sueltos.
-2. Paleta severa: negro, claro y los dos polos. Nada más.
-3. Contraste tipográfico extremo: display enorme contra micro-metadata
-   monoespaciada. Nada en el medio.
-4. El vacío es material.
-5. Textura, no ruido: grano y trama siempre por debajo del 5%.
-6. Movimiento con propósito.
-7. Rendimiento y accesibilidad son parte del diseño.
+1. Un color, plano. Sin degradados, resplandores ni retículas de fondo.
+2. La jerarquía sale del tamaño, del peso y de las líneas finas, no de cajas:
+   los planes son una carta de precios, los proyectos un índice, los grupos del
+   presupuesto renglones. No hay grillas de tarjetas idénticas.
+3. Composición asimétrica: títulos alineados a la izquierda, bloques que se
+   espejan, nada centrado por defecto.
+4. Sin kickers sobre los títulos, sin numeración decorativa, sin letreros en
+   movimiento ni íconos de relleno.
+5. Un solo momento animado (el punto que crece en el hero) más la aparición
+   escalonada con AOS.
+6. Rendimiento y accesibilidad son parte del diseño: tipografías alojadas en el
+   repo, contraste AA, foco visible, `prefers-reduced-motion`.
+
+El rediseño se revisó con [Impeccable](https://impeccable.style)
+(`npx impeccable detect`), que no reporta anti-patrones sobre las cinco páginas.
 
 ---
 
@@ -46,11 +52,13 @@ naranja al azul, dibujándose a medida que se hace scroll: la página se va
 - **Bootstrap 5.3.3** — navbar responsiva con menú hamburguesa, re-estilada
   por completo desde SCSS.
 - **AOS 2.3.4** — animaciones de aparición al hacer scroll.
-- **JavaScript sin dependencias** — el trazo de conexión, el indicador de
-  scroll y la calculadora de presupuesto, sin una sola librería.
+- **JavaScript sin dependencias** — la calculadora de presupuesto, sin una
+  sola librería.
+- **Tipografías alojadas** en `assets/fonts/` (variables, subset latino).
 
 Bootstrap y AOS están incorporados localmente en `assets/vendor/` en lugar de
-por CDN: el sitio no depende de que un servicio externo esté disponible.
+por CDN, y las tipografías en `assets/fonts/`: el sitio no depende de que un
+servicio externo esté disponible.
 
 ---
 
@@ -67,19 +75,20 @@ por CDN: el sitio no depende de que un servicio externo esté disponible.
 ├── scss/                   → fuentes SCSS
 │   ├── main.scss           → solo imports con @use
 │   ├── abstracts/          → _variables, _mixins, _placeholders
-│   ├── base/               → _tokens, _reset, _tipografia, _texturas
+│   ├── base/               → _fuentes, _tokens, _reset, _tipografia
 │   ├── layout/             → _main, _footer
-│   ├── components/         → _navbar, _meta, _cta, _card,
-│   │                          _plan, _form, _ficha, _cierre, _ticket,
-│   │                          _scroll-hint, _motion
-│   └── pages/              → _home, _planes
+│   ├── components/         → _navbar, _cta, _hero, _servicio, _proyecto,
+│   │                          _cierre, _plan, _form, _ficha, _impresora,
+│   │                          _ticket, _motion
+│   └── pages/              → _paginas
 ├── styles/
 │   └── main.css            → CSS compilado
 ├── js/
-│   ├── main.js             → trazo, indicador de scroll, AOS
+│   ├── main.js             → AOS
 │   └── presupuesto.js      → calculadora del ticket
 └── assets/
-    ├── img/                → imágenes y logotipo
+    ├── fonts/              → Bricolage Grotesque y Schibsted Grotesk
+    ├── img/                → imágenes y logotipo (blanco y tinta)
     └── vendor/             → Bootstrap y AOS
 ```
 

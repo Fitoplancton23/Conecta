@@ -1,6 +1,7 @@
 // ============================================================
 //  NAVBAR — componente de Bootstrap, re-estilado por completo
-//  desde SCSS para que tenga la identidad de Conecta.
+//  desde SCSS. Papel liso, sin desenfoque ni vidrio: texto, y el
+//  enlace activo marcado con un subrayado naranja grueso.
 // ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
@@ -9,16 +10,13 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  padding-block: .65rem;
+  padding-block: .8rem;
   @include m.centrado();
-  border-bottom: 1px solid v.$linea;
-  background: rgba(10, 10, 10, .72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid v.$regla;
+  background: v.$papel;
 
   .container-fluid { padding-inline: 0; }
 
-  // --- marca ---
   .navbar-brand {
     display: flex;
     align-items: center;
@@ -29,65 +27,60 @@
   .marca__logo {
     display: block;
     width: auto;
-    height: 23px;
+    height: 24px;
 
-    @include m.respond("chico") { height: 20px; }
+    @include m.respond("chico") { height: 21px; }
   }
 
   // --- botón hamburguesa ---
   .navbar-toggler {
-    padding: .35rem .55rem;
-    background: transparent;
-    border: 1px solid v.$linea;
-    border-radius: 8px;
-    transition: border-color .25s v.$ease;
-
-    &:hover { border-color: rgba(255, 255, 255, .3); }
+    padding: .4rem .55rem;
+    border: 1px solid v.$tinta;
+    border-radius: v.$radio;
 
     &:focus {
       box-shadow: none;
-      outline: 2px solid v.$naranja-alto;
+      outline: 3px solid v.$tinta;
       outline-offset: 2px;
     }
   }
 
   .navbar-toggler-icon {
-    width: 1.2em;
-    height: 1.2em;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.2' d='M4 8h22M4 15h22M4 22h22'/%3E%3C/svg%3E");
+    width: 1.25em;
+    height: 1.25em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23121312' stroke-linecap='square' stroke-miterlimit='10' stroke-width='2.4' d='M4 8h22M4 15h22M4 22h22'/%3E%3C/svg%3E");
   }
 
   // --- enlaces ---
-  .navbar-nav { gap: .25rem; }
+  .navbar-nav { gap: 1.9rem; }
 
   .nav-link {
-    @include m.mono(.7rem, .12em, v.$tx-2);
-    padding: .42rem .85rem;
-    border-radius: 999px;
-    transition: color .25s v.$ease, background .25s v.$ease;
+    padding: .3rem 0;
+    font-size: .98rem;
+    font-weight: 600;
+    color: v.$tinta;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 3px;
+    text-underline-offset: .4em;
+    transition: text-decoration-color .2s v.$ease;
 
     &:hover,
-    &:focus { color: #fff; background: rgba(255, 255, 255, .07); }
+    &:focus { color: v.$tinta; text-decoration-color: v.$tinta; }
 
-    &.active {
-      color: #fff;
-      background: v.$naranja;
-    }
+    &.active { color: v.$tinta; text-decoration-color: v.$naranja; }
   }
 
   // --- menú desplegado en mobile ---
   @include m.respond("medio") {
-    .navbar-collapse { padding-block: .7rem 0; }
+    .navbar-collapse { padding-block: .9rem .3rem; }
 
     .navbar-nav {
-      gap: .15rem;
-      padding-top: .6rem;
-      border-top: 1px solid v.$linea;
+      gap: .2rem;
+      padding-top: .7rem;
+      border-top: 1px solid v.$regla;
     }
 
-    .nav-link {
-      display: block;
-      width: max-content;
-    }
+    .nav-link { display: block; width: max-content; padding-block: .45rem; }
   }
 }

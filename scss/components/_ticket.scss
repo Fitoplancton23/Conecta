@@ -1,9 +1,9 @@
 // ============================================================
 //  TICKET — el papel que sale de la impresora.
-//  Tipografía monoespaciada de punta a punta, como un ticket
-//  real, y el borde inferior dentado, como recién cortado.
-//  Sale dentro de .impresora__rollo: acá no hay animación de
-//  aparición, la hace el contenedor al crecer.
+//  Papel blanco, borde inferior dentado (recién cortado) y
+//  números tabulares para que los montos se alineen. Sale dentro
+//  de .impresora__rollo: acá no hay animación de aparición, la
+//  hace el contenedor al crecer.
 // ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
@@ -12,10 +12,10 @@
   --diente: 16px;
 
   position: relative;
-  padding: 1.4rem 1.3rem calc(1.2rem + var(--diente) / 2);
-  color: #16181c;
-  background: linear-gradient(178deg, #f6f7f8 0%, v.$claro-2 100%);
-  box-shadow: 0 20px 44px -26px rgba(0, 0, 0, .95);
+  padding: 1.5rem 1.4rem calc(1.2rem + var(--diente) / 2);
+  color: v.$tinta;
+  background: v.$blanco;
+  border-inline: 1px solid v.$regla;
 
   // Corte dentado abajo: el papel arrancado del rollo.
   mask:
@@ -26,32 +26,32 @@
 
   // --- Cabecera -------------------------------------------------
   &__cabecera {
-    padding-bottom: .8rem;
-    border-bottom: 1px dashed rgba(0, 0, 0, .3);
-    text-align: center;
+    padding-bottom: .9rem;
+    border-bottom: 2px solid v.$tinta;
   }
 
   &__marca {
     margin: 0;
     font-family: v.$display;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    letter-spacing: -.02em;
-    color: #0a0a0a;
+    letter-spacing: -.035em;
+    line-height: 1;
+    color: v.$tinta;
   }
 
   &__sub {
-    margin: .18rem 0 0;
-    @include m.mono(.54rem, .22em, #5d6167);
+    margin: .3rem 0 0;
+    @include m.rotulo(.85rem, v.$tinta-2);
   }
 
   // --- Tabla ----------------------------------------------------
   &__tabla {
     width: 100%;
-    margin-top: .9rem;
+    margin-top: .8rem;
     border-collapse: collapse;
-    font-family: v.$mono;
-    font-size: .74rem;
+    font-size: .92rem;
+    font-variant-numeric: tabular-nums;
   }
 
   // El título de la tabla existe para el lector de pantalla.
@@ -66,73 +66,75 @@
 
   thead th {
     padding-bottom: .45rem;
-    border-bottom: 1px solid rgba(0, 0, 0, .18);
+    border-bottom: 1px solid v.$regla;
     text-align: left;
-    @include m.mono(.52rem, .2em, #6b6f76);
+    @include m.rotulo(.78rem, v.$tinta-2);
 
     &:last-child { text-align: right; }
   }
 
   tbody th {
-    padding: .5rem .8rem .5rem 0;
-    font-weight: 500;
+    padding: .6rem .8rem .6rem 0;
+    font-weight: 600;
     text-align: left;
-    color: #16181c;
+    color: v.$tinta;
   }
 
   tbody td {
-    padding: .5rem 0;
+    padding: .6rem 0;
     text-align: right;
     white-space: nowrap;
-    font-variant-numeric: tabular-nums;
+    font-weight: 500;
   }
 
   tbody tr + tr th,
-  tbody tr + tr td { border-top: 1px dotted rgba(0, 0, 0, .2); }
+  tbody tr + tr td { border-top: 1px dotted v.$regla; }
 
   &__unidad {
     display: block;
     margin-top: .1rem;
-    @include m.mono(.5rem, .16em, #7a7e85);
+    @include m.rotulo(.78rem, v.$tinta-3);
+    font-weight: 500;
   }
 
   // --- Total ----------------------------------------------------
   &__total {
     th, td {
-      padding-top: .8rem;
-      border-top: 2px solid #16181c;
+      padding-top: .9rem;
+      border-top: 2px solid v.$tinta;
       font-family: v.$display;
       font-weight: 800;
-      color: #0a0a0a;
+      color: v.$tinta;
     }
 
-    th { text-align: left; font-size: .88rem; letter-spacing: .02em; }
+    th { text-align: left; font-size: .95rem; }
 
     td {
       text-align: right;
-      font-size: 1.35rem;
-      letter-spacing: -.02em;
-      font-variant-numeric: tabular-nums;
+      font-size: 1.6rem;
+      letter-spacing: -.03em;
     }
   }
 
   // --- Pie: los datos del comprobante ---------------------------
   &__pie {
     margin-top: 1rem;
-    padding-top: .75rem;
-    border-top: 1px dashed rgba(0, 0, 0, .3);
+    padding-top: .8rem;
+    border-top: 1px dashed v.$regla;
   }
 
   &__dato {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
+    max-width: none;
     margin: 0;
-    @include m.mono(.54rem, .12em, #6b6f76);
+    @include m.rotulo(.82rem, v.$tinta-2);
+    font-weight: 500;
 
     + .ticket__dato { margin-top: .25rem; }
 
-    span:last-child { color: #3d4046; }
+    span:last-child { color: v.$tinta; font-weight: 600; }
   }
 
   // --- Código de barras, dibujado con CSS -----------------------
@@ -140,17 +142,16 @@
     height: 34px;
     margin: 1rem 0 0;
     background-image:
-      repeating-linear-gradient(90deg, #16181c 0 2px, transparent 2px 6px),
-      repeating-linear-gradient(90deg, #16181c 0 1px, transparent 1px 4px),
-      repeating-linear-gradient(90deg, #16181c 0 4px, transparent 4px 13px);
-    opacity: .85;
+      repeating-linear-gradient(90deg, v.$tinta 0 2px, transparent 2px 6px),
+      repeating-linear-gradient(90deg, v.$tinta 0 1px, transparent 1px 4px),
+      repeating-linear-gradient(90deg, v.$tinta 0 4px, transparent 4px 13px);
   }
 
   &__letra {
-    margin: .7rem 0 0;
-    @include m.mono(.5rem, .1em, #7a7e85);
-    text-transform: none;
-    line-height: 1.5;
+    max-width: none;
+    margin: .8rem 0 0;
+    @include m.rotulo(.78rem, v.$tinta-3);
+    font-weight: 500;
     text-align: center;
   }
 
@@ -158,31 +159,29 @@
   &__acciones {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: .7rem;
-    margin-top: 1.6rem;
+    gap: .8rem;
+    max-width: none;
+    margin: 1.6rem 0 0;
   }
 
   &__accion {
-    padding: .8rem 1.3rem;
-    border: 1px solid v.$linea;
-    border-radius: 8px;
-    background: v.$card;
+    min-height: 3rem;
+    padding: .7rem 1.3rem;
+    border: 2px solid v.$tinta;
+    border-radius: v.$radio;
+    background: transparent;
+    color: v.$tinta;
+    font: inherit;
+    font-weight: 700;
+    line-height: 1.2;
     cursor: pointer;
     text-decoration: none;
-    @include m.mono(.64rem, .14em, v.$tx);
-    transition: border-color .25s v.$ease, transform .25s v.$ease,
-                background .25s v.$ease;
+    transition: background-color .2s v.$ease, color .2s v.$ease;
 
-    &:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, .3);
-      background: #1b1b1b;
-    }
+    &:hover { background: v.$tinta; color: v.$papel; }
 
-    &:active { transform: none; }
-
-    &--b:hover { border-color: v.$azul-alto; }
+    &--b { background: v.$naranja; }
+    &--b:hover { background: v.$tinta; color: v.$papel; }
   }
 }
 
@@ -190,9 +189,6 @@
 //  IMPRESIÓN — en papel solo va el ticket.
 // ============================================================
 @media print {
-  .grano,
-  .trazo,
-  .scroll-hint,
   .conecta-nav,
   body > footer,
   form,
@@ -202,7 +198,7 @@
 
   body { background: #fff !important; color: #000 !important; }
 
-  main, .seccion { padding: 0 !important; margin: 0 !important; }
+  main, .seccion { width: auto !important; padding: 0 !important; margin: 0 !important; border: 0 !important; }
 
   h1, h2 { display: none !important; }
 
@@ -214,8 +210,8 @@
 
   .ticket {
     visibility: visible !important;
-    box-shadow: none;
     background: #fff !important;
+    border: 0;
     mask: none;
   }
 }

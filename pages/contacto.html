@@ -11,20 +11,18 @@
   <meta property="og:description" content="Escribinos por WhatsApp o email y coordinamos una charla para tu proyecto de redes sociales o desarrollo web.">
   <meta property="og:type" content="website">
   <link rel="icon" href="../assets/img/logo-conecta.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/vendor/aos.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-  <div class="grano" aria-hidden="true"></div>
   <header>
-    <nav class="navbar navbar-expand-lg conecta-nav" data-bs-theme="dark" aria-label="Navegación principal">
+    <nav class="navbar navbar-expand-lg conecta-nav" aria-label="Navegación principal">
       <div class="container-fluid">
         <a class="navbar-brand" href="../index.html" rel="home">
-          <img class="marca__logo" src="../assets/img/logo-conecta.svg" alt="Conecta — inicio">
+          <img class="marca__logo" src="../assets/img/logo-conecta-tinta.svg" alt="Conecta — inicio" width="124" height="24">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir el menú de navegación">
           <span class="navbar-toggler-icon"></span>
@@ -42,74 +40,70 @@
     </nav>
   </header>
 
-  <button class="scroll-hint" type="button" aria-label="Bajar al contenido">
-    <span class="scroll-hint__texto" aria-hidden="true">Scroll</span>
-    <span class="scroll-hint__punto" aria-hidden="true"></span>
-  </button>
-
   <main>
-    <div class="trazo" aria-hidden="true"><span class="trazo__fill"></span></div>
-    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-contacto">
+    <section class="seccion seccion--intro" aria-labelledby="titulo-contacto">
       <h1 id="titulo-contacto">Hablemos de tu proyecto</h1>
       <p>
         Contanos qué necesitás y coordinamos una charla. Respondemos por el canal
         que te quede más cómodo.
       </p>
-      <p class="meta">Estamos a un mensaje de distancia</p>
     </section>
 
-    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-canales">
-      <h2 id="titulo-canales">Canales de contacto</h2>
-      <ul>
-        <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp — +54 3755 50-5926</a></li>
-        <li><a href="mailto:studio.conecta.gestion@gmail.com">studio.conecta.gestion@gmail.com</a></li>
-      </ul>
-    </section>
+    <section class="seccion seccion--regla" aria-label="Contacto">
+      <div class="contacto">
+        <div class="contacto__canales">
+          <h2 id="titulo-canales">Canales de contacto</h2>
+          <ul class="contacto__lista" aria-labelledby="titulo-canales">
+            <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp — +54 3755 50-5926</a></li>
+            <li><a href="mailto:studio.conecta.gestion@gmail.com">studio.conecta.gestion@gmail.com</a></li>
+          </ul>
+        </div>
 
-    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-form-contacto">
-      <h2 id="titulo-form-contacto">Escribinos</h2>
-      <!-- Estructura base del formulario de contacto (sin envío por ahora). -->
-      <form action="#" method="post">
-        <p>
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" autocomplete="name">
-        </p>
-        <p>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" autocomplete="email">
-        </p>
-        <p>
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="5"></textarea>
-        </p>
-        <p>
-          <button type="submit">Enviar</button>
-        </p>
-      </form>
+        <div class="contacto__form">
+          <h2 id="titulo-form-contacto">Escribinos</h2>
+          <!-- Estructura base del formulario de contacto (sin envío por ahora). -->
+          <form class="formulario" action="#" method="post" aria-labelledby="titulo-form-contacto">
+            <p>
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name">
+            </p>
+            <p>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email">
+            </p>
+            <p>
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+            </p>
+            <p>
+              <button type="submit">Enviar</button>
+            </p>
+          </form>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
     <!--
-      Las mismas acciones del hero, al final del recorrido.
-      Se omite WhatsApp: esta pagina ya lo ofrece como canal propio.
+      Las mismas acciones del hero, al final del recorrido. Se omite WhatsApp: esta página ya lo ofrece como canal propio.
     -->
     <section class="pie__cta" aria-labelledby="titulo-pie-cta">
-      <h2 class="meta" id="titulo-pie-cta">¿Arrancamos?</h2>
+      <h2 id="titulo-pie-cta">¿Arrancamos?</h2>
       <ul class="ctas ctas--pie">
-        <li><a class="cta cta--linea" href="planes.html">Ver los planes</a></li>
+        <li><a class="cta cta--oscuro" href="planes.html">Ver los planes</a></li>
         <li><a class="cta cta--linea" href="presupuesto.html">Calcular presupuesto</a></li>
       </ul>
     </section>
 
     <div class="pie__legal">
-    <p>&copy; 2026 .Conecta — Comunicación y desarrollo</p>
-    <nav aria-label="Redes de contacto">
-      <ul>
-        <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
-        <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
-      </ul>
-    </nav>
+      <p>&copy; 2026 .Conecta — Comunicación y desarrollo</p>
+      <nav aria-label="Redes de contacto">
+        <ul>
+          <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
+          <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
   <script src="../assets/vendor/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,115 @@
+// ============================================================
+//  HERO — un cartel. El título ocupa casi todo el ancho, alineado
+//  a la izquierda; la dupla se para delante del punto naranja de
+//  la marca, que es la única forma de color del bloque.
+//  Un solo momento animado: el punto crece y la dupla sube.
+// ============================================================
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.hero {
+  @include m.doce();
+  width: min(100% - 2 * var(--gutter), v.$ancho);
+  margin-inline: auto;
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+  overflow-x: clip;
+
+  h1 {
+    @include m.columnas(1, 9);
+    grid-row: 1;
+    font-size: clamp(2.5rem, 5.4vw, 4.75rem);
+    position: relative;
+    z-index: 2;
+    max-width: 15ch;
+
+    em {
+      font-style: normal;
+      color: v.$naranja;
+    }
+  }
+
+  // Bajada y acciones: abajo a la izquierda, en una columna angosta.
+  &__cuerpo {
+    @include m.columnas(1, 8);
+    grid-row: 2;
+    align-self: end;
+    position: relative;
+    z-index: 2;
+    padding-block: 2rem clamp(2rem, 5vw, 4rem);
+
+    p {
+      max-width: 30ch;
+      margin-bottom: 1.8rem;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      font-weight: 500;
+      line-height: 1.35;
+      color: v.$tinta;
+    }
+  }
+
+  // La dupla, pegada al borde de abajo y corrida a la derecha.
+  &__foto {
+    @include m.columnas(6, 13);
+    grid-row: 1 / span 2;
+    align-self: end;
+    justify-self: end;
+    position: relative;
+    width: min(100%, 40rem);
+
+    // El punto de la marca, enorme, detrás de las dos personas.
+    &::before {
+      content: "";
+      position: absolute;
+      right: 6%;
+      bottom: 2%;
+      width: 82%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: v.$naranja;
+      transform-origin: 50% 70%;
+      animation: punto-crece 1s v.$ease both;
+    }
+
+    img {
+      position: relative;
+      width: 100%;
+      animation: dupla-sube .9s v.$ease .25s both;
+    }
+  }
+
+  // En las páginas internas el hero es más bajo y el texto más largo.
+  &--interna {
+    h1 { max-width: none; }
+
+    .hero__cuerpo p {
+      max-width: 38ch;
+      font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+  }
+
+  @include m.respond("medio") {
+    display: block;
+    padding-top: 2rem;
+
+    h1 { max-width: 12ch; }
+
+    &__cuerpo { padding-bottom: 1rem; }
+
+    &__foto {
+      width: min(100%, 30rem);
+      margin: 1rem 0 0 auto;
+    }
+  }
+}
+
+@keyframes punto-crece {
+  from { transform: scale(.35); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+@keyframes dupla-sube {
+  from { transform: translateY(1.8rem); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}

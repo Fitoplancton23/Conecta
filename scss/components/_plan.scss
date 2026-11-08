@@ -1,224 +1,207 @@
-// Tarjetas de plan: el resplandor de cada polo sale del mixin.
+// ============================================================
+//  PLANES — una carta de precios, no una fila de tarjetas.
+//  Cada plan es un renglón con tres zonas: quién es, qué incluye
+//  y cuánto cuesta. La promo es el único bloque a color pleno.
+// ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 @use "../abstracts/placeholders";
 
-.plan {
-  @extend %tarjeta-base;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 2.7rem 1.4rem 1.4rem;
-  overflow: hidden;
-  isolation: isolate;
-  transition: transform .35s v.$ease, border-color .35s v.$ease;
+// --- La promo de tienda online ------------------------------------
+.promo {
+  @extend %bloque-naranja;
+  @include m.doce();
+  padding: clamp(1.8rem, 4.5vw, 3.5rem);
+  border-radius: v.$radio;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 56%;
-    z-index: -1;
-    pointer-events: none;
-    @include m.resplandor(v.$naranja);
-  }
+  &__titulo { @include m.columnas(1, 7); }
 
-  &::after { display: none; }
+  &__col-izq { @include m.columnas(1, 7); }
+  &__col-der { @include m.columnas(8, 13); }
 
-  &--azul {
-    --acento: var(--b);
-
-    &::before { @include m.resplandor(v.$azul); }
-  }
-
-  &:hover { transform: translateY(-6px); }
-
-  &__badge {
-    position: absolute;
-    top: 13px;
-    right: 13px;
-    padding: 5px 11px;
-    border: 1px solid rgba(255, 255, 255, .14);
-    border-radius: 999px;
-    background: rgba(10, 10, 10, .55);
-    backdrop-filter: blur(6px);
-    @include m.mono(.62rem, .12em, #f0f0f0);
-  }
-
-  &__nombre {
-    margin: 0 0 .3rem;
-    font-family: v.$display;
-    font-weight: 600;
-    font-size: 1.5rem;
-    letter-spacing: -.02em;
-    color: #fff;
+  h2 {
+    max-width: 11ch;
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
   }
 
   &__desc {
-    margin: 0 0 1.1rem;
-    max-width: 24ch;
-    font-size: .88rem;
-    color: #e6e6e6;
+    margin: 1.2rem 0 1.6rem;
+    max-width: 30ch;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  // 40% off en palabras, no en una pastilla
+  &__off {
+    margin: 0 0 .3rem;
+    font-size: 1rem;
+    font-weight: 800;
   }
 
   &__precio {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: .35rem;
-    margin: 0 0 1.1rem;
+    gap: .2rem 1rem;
+    margin: 0 0 1.6rem;
+    color: v.$tinta;
+
+    s { font-size: 1.2rem; font-weight: 500; text-decoration-thickness: 2px; }
 
     b {
       font-family: v.$display;
+      font-size: clamp(3rem, 6vw, 4.8rem);
       font-weight: 800;
-      font-size: 2.1rem;
       letter-spacing: -.04em;
-      color: #fff;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
 
-    span {
-      font-family: v.$mono;
-      font-size: .8rem;
-      color: #cfcfcf;
-    }
+    span { font-size: 1rem; font-weight: 600; }
   }
 
-  &__cta {
-    display: block;
-    margin: 0 0 1.1rem;
-    padding: .85rem;
-    border-radius: 8px;
-    text-align: center;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--acento) 78%, #fff), var(--acento));
-    @include m.mono(.68rem, .14em, #fff);
-  }
-
-  &__ajustes {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    margin: 0 0 1.1rem;
-    font-size: .82rem;
-    color: #d4d4d4;
-
-    svg { flex: none; opacity: .8; }
-  }
-
-  &__sep {
-    display: flex;
-    align-items: center;
-    gap: .8rem;
-    margin: 0 0 1rem;
-    @include m.mono(.62rem, .2em);
-
-    &::before,
-    &::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: v.$linea;
-    }
+  &__incluye {
+    margin: 0 0 .5rem;
+    @include m.rotulo(.9rem, v.$tinta);
   }
 
   &__lista {
-    display: grid;
-    gap: .7rem;
-    margin: 0 0 1.3rem;
-    padding: 0;
-    list-style: none;
+    @extend %lista-limpia;
 
     li {
-      display: flex;
-      gap: .6rem;
-      padding-left: 0;
-      font-size: .86rem;
-      color: #cfcfcf;
-
-      &::before { content: none; }
-    }
-
-    svg {
-      flex: none;
-      margin-top: 3px;
-      color: color-mix(in srgb, var(--acento) 70%, #fff);
+      padding-block: .65rem;
+      border-top: 1px solid rgba(v.$tinta, .35);
+      font-size: 1.05rem;
+      font-weight: 500;
     }
   }
 
-  &__mail {
-    @extend %enlace-mono;
-    margin-top: auto;
-    @include m.mono(.64rem, .12em, #8f8f8f);
+  &__entrega {
+    margin: 1.4rem 0 1.6rem;
+    max-width: 44ch;
+    font-size: .98rem;
+  }
 
-    &:hover {
-      color: #fff;
-      border-bottom-color: rgba(255, 255, 255, .35);
+  .cta--oscuro:hover { background: v.$papel; color: v.$tinta; }
+
+  @include m.respond("medio") {
+    display: block;
+
+    &__col-der { margin-top: 2.2rem; }
+  }
+}
+
+// --- Los planes de redes ------------------------------------------
+.planes-lista {
+  @extend %lista-limpia;
+
+  .plan:last-child { border-bottom: 1px solid v.$regla; }
+}
+
+.plan {
+  @include m.doce();
+  align-items: start;
+  padding-block: clamp(1.8rem, 4vw, 2.8rem);
+  border-top: 1px solid v.$regla;
+
+  &__id     { @include m.columnas(1, 5); }
+  &__detalle { @include m.columnas(5, 10); }
+  &__cobro  { @include m.columnas(10, 13); }
+
+  &__nombre { font-size: clamp(2.2rem, 4vw, 3.2rem); }
+
+  &__desc { margin: .7rem 0 .5rem; font-size: 1rem; }
+
+  // "El más popular" va en texto, sin pastilla ni etiqueta flotante
+  &__nota {
+    margin: 0;
+    @include m.rotulo(.9rem, v.$naranja-texto);
+  }
+
+  &__cantidad {
+    margin: 0 0 .3rem;
+    @include m.voz(clamp(1.5rem, 2.2vw, 1.9rem), 700, 1.1);
+    color: v.$tinta;
+  }
+
+  &__ajustes {
+    margin: 0 0 1.1rem;
+    font-size: .95rem;
+  }
+
+  // Lo que incluye: guion tipográfico, sin íconos ni tildes
+  &__lista {
+    @extend %lista-limpia;
+
+    li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: .35rem;
+      color: v.$tinta;
+      font-size: 1rem;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: .72em;
+        width: .6rem;
+        height: 2px;
+        background: v.$tinta;
+      }
+    }
+  }
+
+  &__precio {
+    margin: 0 0 1rem;
+    color: v.$tinta;
+
+    b {
+      display: block;
+      font-family: v.$display;
+      font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    span { font-size: .95rem; font-weight: 600; color: v.$tinta-2; }
+  }
+
+  &__mail { @extend %enlace; color: v.$tinta; }
+
+  @include m.respond("medio") {
+    display: block;
+
+    &__detalle { margin-top: 1.4rem; }
+    &__cobro { margin-top: 1.4rem; }
+  }
+}
+
+// --- Desarrollo web: tres renglones, sin tarjetas -----------------
+.desarrollo-lista {
+  @extend %lista-limpia;
+
+  li { border-top: 1px solid v.$regla; }
+  li:last-child { border-bottom: 1px solid v.$regla; }
+
+  article {
+    @include m.doce();
+    align-items: baseline;
+    padding-block: 1.4rem;
+
+    h3 { @include m.columnas(1, 6); }
+    p  { @include m.columnas(6, 13); margin: 0; font-size: 1.1rem; }
+
+    @include m.respond("medio") {
+      display: block;
+      h3 { margin-bottom: .5rem; }
     }
   }
 }
 
-// ============================================================
-//  PROMO — la misma tarjeta, a lo ancho y en dos columnas.
-//  Va antes de los planes porque es la oferta con precio
-//  rebajado: si entra abajo, nadie la ve.
-// ============================================================
-.plan--ancho {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: clamp(1.4rem, 4vw, 3rem);
-  padding: 2.7rem clamp(1.4rem, 3vw, 2.2rem) clamp(1.6rem, 3vw, 2.2rem);
-  border-radius: v.$radio;
-
-  &:hover { transform: none; }          // no salta: no está en una grilla
-
-  &::before { height: 100%; }
-
-  .plan__nombre { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
-
-  .plan__col {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-
-  .plan__lista { margin-top: .2rem; }
-
-  @include m.respond("tablet") {
-    grid-template-columns: 1fr;
-    gap: 1.4rem;
-  }
+.seccion__titulo {
+  margin-bottom: clamp(1.8rem, 4vw, 3rem);
 }
-
-// El precio viejo, tachado, antes del nuevo.
-.plan__precio s {
-  margin-right: .6rem;
-  font-family: v.$mono;
-  font-size: 1rem;
-  font-weight: 400;
-  color: v.$tx-3;
-  text-decoration-thickness: 1px;
-}
-
-// Qué pone el cliente de su lado: es parte del trato, no letra chica.
-.plan__entrega {
-  margin: 1rem 0 0;
-  padding-top: .9rem;
-  border-top: 1px solid v.$linea;
-  font-size: .82rem;
-  line-height: 1.55;
-  color: v.$tx-3;
-}
-
-// El badge del descuento pesa más que el de un plan común.
-.plan__badge--off {
-  border: 0;
-  color: #fff;
-  background: linear-gradient(180deg, v.$naranja-alto, v.$naranja);
-  box-shadow: 0 8px 20px -10px rgba(255, 48, 0, .9);
-}
-
-// En la promo la descripción tiene todo el ancho de su columna: el
-// max-width de las tarjetas angostas la partía en tres renglones.
-.plan--ancho .plan__desc { max-width: 34ch; }
-
-// El enlace de consulta se va al fondo de su columna, para que las
-// dos columnas terminen parejas.
-.plan--ancho .plan__mail { margin-top: 1.2rem; }

@@ -1,0 +1,92 @@
+// ============================================================
+//  PÁGINAS — lo que solo existe en una página concreta.
+// ============================================================
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
+
+// --- Inicio: el listado de proyectos abre con su propio título ----
+.proyectos-cabecera {
+  margin-bottom: clamp(1.8rem, 4vw, 3rem);
+
+  h2 { max-width: 14ch; }
+}
+
+// --- Nosotros: las dos personas, a distinta altura ----------------
+.dupla {
+  @include m.doce();
+  align-items: start;
+
+  &__persona {
+    @include m.columnas(1, 7);
+    padding-block: 1.6rem 2.2rem;
+    border-top: 1px solid v.$regla;
+
+    h2 { margin-bottom: 1rem; }
+    p  { font-size: 1.15rem; margin: 0; }
+
+    // la segunda persona baja y se corre a la derecha
+    & + & {
+      @include m.columnas(7, 13);
+      margin-top: clamp(2rem, 8vw, 6rem);
+    }
+  }
+
+  @include m.respond("medio") {
+    display: block;
+
+    &__persona + &__persona { margin-top: 0; }
+  }
+}
+
+// --- Contacto: canales a un lado, formulario al otro --------------
+.contacto {
+  @include m.doce();
+  align-items: start;
+
+  &__canales { @include m.columnas(1, 7); }
+  &__form    { @include m.columnas(8, 13); }
+
+  h2 { margin-bottom: 1.8rem; }
+
+  &__lista {
+    @extend %lista-limpia;
+
+    li { @extend %renglon; }
+    li:last-child { border-bottom: 1px solid v.$regla; }
+
+    a {
+      @include m.voz(clamp(1.05rem, 2.3vw, 1.75rem), 700, 1.15);
+      @include m.subrayado($grosor: 3px);
+      display: inline-block;
+      text-wrap: wrap;
+
+      // red de contención: a 320px el mail más largo no entra entero
+      @include m.respond("chico") { overflow-wrap: anywhere; }
+    }
+  }
+
+  @include m.respond("medio") {
+    display: block;
+
+    &__form { margin-top: 3rem; }
+  }
+}
+
+.formulario p { max-width: none; }
+.formulario > p:last-child { margin-bottom: 0; }
+
+// --- Presupuesto: el título de un lado, la impresora del otro ----
+.presupuesto {
+  @include m.doce();
+  align-items: start;
+
+  &__titulo  { @include m.columnas(1, 5); }
+  &__maquina { @include m.columnas(5, 13); }
+
+  @include m.respond("medio") {
+    display: block;
+
+    &__maquina { margin-top: 2rem; }
+  }
+}

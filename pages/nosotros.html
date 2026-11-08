@@ -11,20 +11,18 @@
   <meta property="og:description" content="Conocé a la dupla de Conecta: Amalia Gross, Licenciada en Comunicación Social, y Facundo Silveira, Diseñador Digital y UX/UI.">
   <meta property="og:type" content="website">
   <link rel="icon" href="../assets/img/logo-conecta.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/vendor/aos.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-  <div class="grano" aria-hidden="true"></div>
   <header>
-    <nav class="navbar navbar-expand-lg conecta-nav" data-bs-theme="dark" aria-label="Navegación principal">
+    <nav class="navbar navbar-expand-lg conecta-nav" aria-label="Navegación principal">
       <div class="container-fluid">
         <a class="navbar-brand" href="../index.html" rel="home">
-          <img class="marca__logo" src="../assets/img/logo-conecta.svg" alt="Conecta — inicio">
+          <img class="marca__logo" src="../assets/img/logo-conecta-tinta.svg" alt="Conecta — inicio" width="124" height="24">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir el menú de navegación">
           <span class="navbar-toggler-icon"></span>
@@ -42,16 +40,10 @@
     </nav>
   </header>
 
-  <button class="scroll-hint" type="button" aria-label="Bajar al contenido">
-    <span class="scroll-hint__texto" aria-hidden="true">Scroll</span>
-    <span class="scroll-hint__punto" aria-hidden="true"></span>
-  </button>
-
   <main>
-    <div class="trazo" aria-hidden="true"><span class="trazo__fill"></span></div>
-    <section class="hero" aria-labelledby="titulo-nosotros">
-      <div class="hero__texto">
-        <h1 id="titulo-nosotros">Nosotros</h1>
+    <section class="hero hero--interna" aria-labelledby="titulo-nosotros">
+      <h1 id="titulo-nosotros">Nosotros</h1>
+      <div class="hero__cuerpo">
         <p>
           Somos una dupla que combina comunicación estratégica y diseño digital.
           Juntos cubrimos todo el recorrido: desde pensar el contenido de tus redes
@@ -59,53 +51,54 @@
         </p>
       </div>
       <figure class="hero__foto">
-        <img src="../assets/img/equipo.png" alt="Amalia y Facundo, la dupla de Conecta">
+        <img src="../assets/img/equipo.png" alt="Amalia y Facundo, la dupla de Conecta" width="1300" height="954">
       </figure>
     </section>
 
-    <section class="seccion" data-aos="fade-up" aria-labelledby="titulo-amalia">
-      <article aria-labelledby="titulo-amalia">
-        <h2 id="titulo-amalia">Amalia Gross</h2>
-        <p>
-          Licenciada en Comunicación Social con más de 2 años de experiencia en
-          agencias de comunicación y marketing. Lidera la estrategia de contenido,
-          la planificación del calendario y los copies de cada marca.
-        </p>
-      </article>
+    <section class="seccion" aria-label="Quiénes forman la dupla">
+      <div class="dupla">
+        <article class="dupla__persona" aria-labelledby="titulo-amalia" data-aos="fade-up">
+          <h2 id="titulo-amalia">Amalia Gross</h2>
+          <p>
+            Licenciada en Comunicación Social con más de 2 años de experiencia en
+            agencias de comunicación y marketing. Lidera la estrategia de contenido,
+            la planificación del calendario y los copies de cada marca.
+          </p>
+        </article>
 
-      <article aria-labelledby="titulo-facundo">
-        <h2 id="titulo-facundo">Facundo Silveira</h2>
-        <p>
-          Diseñador Digital con más de 5 años de experiencia y más de 1 año en
-          diseño UX/UI. Se ocupa del diseño de las piezas, la identidad visual y
-          el desarrollo web de cada proyecto.
-        </p>
-      </article>
+        <article class="dupla__persona" aria-labelledby="titulo-facundo" data-aos="fade-up">
+          <h2 id="titulo-facundo">Facundo Silveira</h2>
+          <p>
+            Diseñador Digital con más de 5 años de experiencia y más de 1 año en
+            diseño UX/UI. Se ocupa del diseño de las piezas, la identidad visual y
+            el desarrollo web de cada proyecto.
+          </p>
+        </article>
+      </div>
     </section>
   </main>
 
   <footer>
     <!--
-      Las mismas acciones del hero, al final del recorrido.
-      Nosotros no es destino de ningun CTA, asi que van las tres.
+      Las mismas acciones del hero, al final del recorrido. Nosotros no es destino de ningún CTA, así que van las tres.
     -->
     <section class="pie__cta" aria-labelledby="titulo-pie-cta">
-      <h2 class="meta" id="titulo-pie-cta">¿Arrancamos?</h2>
+      <h2 id="titulo-pie-cta">¿Arrancamos?</h2>
       <ul class="ctas ctas--pie">
         <li><a class="cta cta--a" href="https://wa.me/543755505926" rel="noopener" target="_blank">Escribinos por WhatsApp</a></li>
-        <li><a class="cta cta--linea" href="planes.html">Ver los planes</a></li>
+        <li><a class="cta cta--oscuro" href="planes.html">Ver los planes</a></li>
         <li><a class="cta cta--linea" href="presupuesto.html">Calcular presupuesto</a></li>
       </ul>
     </section>
 
     <div class="pie__legal">
-    <p>&copy; 2026 .Conecta — Comunicación y desarrollo</p>
-    <nav aria-label="Redes de contacto">
-      <ul>
-        <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
-        <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
-      </ul>
-    </nav>
+      <p>&copy; 2026 .Conecta — Comunicación y desarrollo</p>
+      <nav aria-label="Redes de contacto">
+        <ul>
+          <li><a href="https://wa.me/543755505926" rel="noopener" target="_blank">WhatsApp</a></li>
+          <li><a href="mailto:studio.conecta.gestion@gmail.com">Email</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
   <script src="../assets/vendor/bootstrap.bundle.min.js"></script>

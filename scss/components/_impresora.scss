@@ -16,91 +16,89 @@
 
 .impresora {
   position: relative;
-  max-width: 26rem;
-  margin: 1.5rem auto 0;
+  max-width: 27rem;
+  margin: 0;
   transition: max-width .6s v.$ease;
 
   // Con el papel afuera el conjunto se agranda: es el protagonista.
-  &.tiene-papel { max-width: 30rem; }
+  &.tiene-papel { max-width: 31rem; }
 
-  // --- El cuerpo de la máquina ---------------------------------
+  // --- El cuerpo de la máquina: tinta plana --------------------
   &__cuerpo {
     position: relative;
     z-index: 2;
-    padding: .8rem .8rem 1.5rem;
-    border: 1px solid rgba(255, 255, 255, .1);
-    border-radius: 18px;
-    background: linear-gradient(180deg, #242424 0%, #171717 60%, #121212 100%);
-    box-shadow: 0 20px 50px -26px #000, inset 0 1px 0 rgba(255, 255, 255, .07);
+    padding: .9rem .9rem 1.4rem;
+    border-radius: 6px;
+    background: v.$tinta;
+    color: v.$papel;
   }
 
-  // --- Barra superior: marca y etiqueta -------------------------
   &__barra {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: .75rem;
-    padding: 0 .3rem;
+    margin-bottom: .8rem;
+    padding: 0 .2rem;
   }
 
   &__marca {
     width: auto;
     height: 18px;
-    opacity: .85;
   }
 
   &__etiqueta {
-    padding: .35rem .75rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, .07);
-    @include m.mono(.56rem, .18em, #c9c9c9);
+    @include m.rotulo(.8rem, rgba(v.$papel, .75));
   }
 
-  // --- Visor: lo que la máquina "sabe" hasta ahora --------------
+  // --- Visor: papel claro sobre la tinta ------------------------
   &__visor {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: .95rem 1rem;
-    border-radius: 12px;
-    background: #0b0b0b;
-    border: 1px solid rgba(255, 255, 255, .06);
+    padding: 1rem 1.1rem;
+    border-radius: 3px;
+    background: v.$papel;
+    color: v.$tinta;
   }
 
   &__titulo {
     margin: 0;
+    max-width: none;
     font-family: v.$display;
-    font-size: .95rem;
+    font-size: 1.05rem;
     font-weight: 800;
-    letter-spacing: -.01em;
-    color: #f4f4f4;
+    letter-spacing: -.02em;
+    color: v.$tinta;
   }
 
   &__sub {
     margin: .15rem 0 0;
-    font-size: .74rem;
-    color: v.$tx-3;
+    max-width: none;
+    font-size: .85rem;
+    color: v.$tinta-2;
   }
 
   &__total {
     margin: 0;
+    max-width: none;
     text-align: right;
+    color: v.$tinta;
 
     span {
       display: block;
-      @include m.mono(.54rem, .2em, v.$tx-3);
+      @include m.rotulo(.75rem, v.$tinta-2);
     }
 
     b {
       display: block;
       margin-top: .1rem;
       font-family: v.$display;
-      font-size: 1.35rem;
+      font-size: 1.55rem;
       font-weight: 800;
-      letter-spacing: -.02em;
-      color: #fff;
+      letter-spacing: -.03em;
+      color: v.$tinta;
       font-variant-numeric: tabular-nums;
     }
   }
@@ -109,22 +107,24 @@
   &__estado {
     display: flex;
     align-items: center;
-    gap: .55rem;
-    margin: .8rem 0 0;
-    padding: 0 .35rem;
-    @include m.mono(.6rem, .1em, v.$tx-3);
-    text-transform: none;
+    gap: .6rem;
+    max-width: none;
+    margin: .9rem 0 0;
+    padding: 0 .2rem;
+    font-size: .88rem;
+    font-weight: 500;
+    color: rgba(v.$papel, .78);
   }
 
   // La aguja gira solo mientras imprime.
   &__aguja {
     flex: none;
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
-    border: 1.5px solid rgba(255, 255, 255, .16);
+    border: 2px solid rgba(v.$papel, .3);
     border-top-color: v.$naranja;
-    opacity: .5;
+    opacity: .6;
   }
 
   &.esta-imprimiendo &__aguja {
@@ -142,13 +142,11 @@
   &__ranura {
     position: relative;
     z-index: 3;
-    width: calc(100% - 2.6rem);
-    height: 7px;
-    margin: -11px auto 0;
-    border-radius: 4px;
-    background: #060606;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .9),
-                0 1px 0 rgba(255, 255, 255, .05);
+    width: calc(100% - 2.8rem);
+    height: 8px;
+    margin: -12px auto 0;
+    border-radius: 3px;
+    background: #000;
   }
 
   // --- La salida: acá crece el papel ----------------------------

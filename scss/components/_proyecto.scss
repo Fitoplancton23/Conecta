@@ -1,141 +1,73 @@
 // ============================================================
-//  PROYECTO — las webs que ya salieron.
-//  La captura va dentro de un marco con barra de navegador: el
-//  contexto hace que se lea como un sitio en vivo y no como una
-//  imagen suelta. La barra lleva la URL real, que es la prueba.
+//  PROYECTOS — un índice de trabajos, no una grilla de tarjetas.
+//  Cada proyecto es una fila: la captura grande de un lado y los
+//  datos del otro, alternando. Sin marcos de navegador falsos.
 // ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 @use "../abstracts/placeholders";
 
 .proyectos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 1.6rem);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  @include m.respond("tablet") { grid-template-columns: minmax(0, 1fr); }
+  @extend %lista-limpia;
 }
 
 .proyecto {
-  @extend %tarjeta-base;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: transform .35s v.$ease, border-color .35s v.$ease;
+  @include m.doce();
+  align-items: end;
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+  border-top: 1px solid v.$regla;
 
-  &:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, .2);
-  }
-
-  // --- El marco de navegador ------------------------------------
-  &__marco {
-    border-bottom: 1px solid v.$linea;
-    background: #0d0d0d;
-  }
-
-  &__barra {
-    display: flex;
-    align-items: center;
-    gap: .45rem;
-    padding: .5rem .7rem;
-    border-bottom: 1px solid v.$linea;
-  }
-
-  // Los tres puntos de la ventana. Acá el punto de la marca sí
-  // cumple una función: es la cita visual de un navegador.
-  &__punto {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, .14);
-  }
-
-  &__url {
-    margin-left: .35rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    @include m.mono(.56rem, .06em, v.$tx-3);
-    text-transform: none;
-  }
-
+  // captura: ancha, pegada a un costado
   &__shot {
-    display: block;
-    margin: 0;
+    @include m.columnas(1, 9);
+    grid-row: 1;
 
     img {
-      display: block;
       width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      object-position: top center;
+      border: 1px solid v.$tinta;
+      border-radius: v.$radio;
     }
   }
 
-  // --- La ficha de abajo ----------------------------------------
   &__info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 1.1rem 1.2rem 1.2rem;
+    @include m.columnas(9, 13);
+    grid-row: 1;
+    padding-bottom: .3rem;
   }
 
   &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem .9rem;
-    margin-bottom: .6rem;
+    margin: 0 0 .7rem;
+    @include m.rotulo(.875rem, v.$tinta-2);
   }
-
-  &__tag {
-    padding: .22rem .6rem;
-    border: 1px solid var(--acento);
-    border-radius: 999px;
-    @include m.mono(.54rem, .14em, var(--acento));
-  }
-
-  &__donde { @include m.mono(.54rem, .1em, v.$tx-3); }
 
   &__nombre {
-    margin: 0 0 .45rem;
-    font-family: v.$display;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: -.01em;
-    color: v.$tx;
+    margin-bottom: .8rem;
+    font-size: clamp(2rem, 3.6vw, 3rem);
   }
 
   &__desc {
-    margin: 0;
-    font-size: .87rem;
-    line-height: 1.6;
-    color: v.$tx-2;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    max-width: 38ch;
   }
 
-  &__ir {
-    @extend %enlace-mono;
-    margin-top: auto;
-    padding-top: 1rem;
-    @include m.mono(.6rem, .14em, v.$tx-2);
-    border-bottom: 0;
+  &__ir { @extend %enlace; color: v.$tinta; }
 
-    &::after {
-      content: "↗";
-      font-size: .85em;
-    }
-
-    &:hover { color: var(--acento); }
-  }
-
-  // Los que todavía no están online no llevan enlace: llevan estado.
   &__estado {
-    margin-top: auto;
-    padding-top: 1rem;
-    @include m.mono(.6rem, .14em, v.$tx-3);
+    margin: 0;
+    font-weight: 700;
+    color: v.$naranja-texto;
+  }
+
+  // los pares se espejan y la captura es un poco más angosta
+  li:nth-child(even) & {
+    &__shot { @include m.columnas(6, 13); }
+    &__info { @include m.columnas(1, 6); }
+  }
+
+  @include m.respond("medio") {
+    display: block;
+
+    &__info { margin-top: 1.4rem; }
   }
 }

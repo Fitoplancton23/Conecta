@@ -1,118 +1,98 @@
 // ============================================================
 //  CTA — las tres acciones que tienen que estar a mano:
-//  hablar por WhatsApp, ver los planes y armar el presupuesto.
-//  Viven sobre el panel claro del hero, así que la jerarquía se
-//  construye con relleno (fuerte) contra contorno (secundario).
+//  WhatsApp, planes y presupuesto. Tres pesos distintos:
+//  relleno naranja (la principal), relleno tinta y enlace
+//  subrayado. No son tres botones iguales.
 // ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
 
-// Tres acciones en dos filas, a propósito: las dos primeras se
-// reparten el ancho y la tercera lo toma completo. Dejarlas en
-// flex-wrap las partía 2 + 1 y el corte parecía un accidente.
 .ctas {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: .7rem;
-  max-width: 30rem;
-  margin-top: 1.6rem;
-  padding: 0;
-  list-style: none;
-
-  li:last-child { grid-column: 1 / -1; }
-
-  @include m.respond("chico") {
-    grid-template-columns: 1fr;
-    gap: .55rem;
-
-    li:last-child { grid-column: auto; }
-  }
-
-  // --- En el pie -------------------------------------------------
-  // Acá no hay panel claro que las contenga ni un ancho de columna
-  // que respetar: se acomodan en fila y ocupan lo que necesitan.
-  &--pie {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: none;
-    margin-top: 0;
-
-    li:last-child { grid-column: auto; }
-
-    .cta { width: auto; }
-
-    // El contorno del hero es oscuro porque va sobre panel claro.
-    // Sobre el negro del pie sería invisible: se invierte.
-    .cta--linea {
-      border-color: rgba(255, 255, 255, .2);
-      color: v.$tx;
-
-      &:hover {
-        border-color: rgba(255, 255, 255, .45);
-        background: rgba(255, 255, 255, .05);
-      }
-    }
-
-    @include m.respond("chico") {
-      flex-direction: column;
-
-      .cta { width: 100%; }
-    }
-  }
+  @extend %lista-limpia;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.6rem;
 }
 
 .cta {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: .6rem;
-  min-height: 46px;
-  padding: .85rem 1.35rem;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  text-decoration: none;
-  white-space: nowrap;
-  @include m.mono(.68rem, .14em, #fff);
-  transition: transform .25s v.$ease, background .25s v.$ease,
-              border-color .25s v.$ease, box-shadow .25s v.$ease;
+  min-height: 3.1rem;
+  padding: .8rem 1.5rem;
+  border: 2px solid v.$tinta;
+  border-radius: v.$radio;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  transition: background-color .2s v.$ease, color .2s v.$ease, border-color .2s v.$ease;
 
-  // El punto de la marca, al principio de cada acción.
-  &::before { @include m.punto(7px, currentColor); }
-
-  &:hover  { transform: translateY(-2px); }
-  &:active { transform: none; }
-
-  &:focus-visible {
-    outline: 2px solid v.$naranja;
-    outline-offset: 3px;
-  }
-
-  // --- Primaria: hablar con la dupla --------------------------
+  // principal: color plano de imprenta, tinta encima
   &--a {
-    background: linear-gradient(180deg, v.$naranja-alto, v.$naranja);
-    box-shadow: 0 10px 24px -12px rgba(255, 48, 0, .8);
+    background: v.$naranja;
+    color: v.$tinta;
 
-    &:hover { box-shadow: 0 16px 30px -12px rgba(255, 48, 0, .9); }
+    &:hover { background: v.$tinta; color: v.$papel; }
   }
 
-  // --- Fuerte pero neutra: la calculadora --------------------
+  // secundaria: tinta plena
   &--oscuro {
-    background: #141414;
+    background: v.$tinta;
+    color: v.$papel;
 
-    &:hover { background: #262626; }
+    &:hover { background: v.$naranja; color: v.$tinta; border-color: v.$tinta; }
   }
 
-  // --- Secundaria: solo contorno -----------------------------
+  // la más liviana: solo texto subrayado, sin caja
   &--linea {
-    border-color: rgba(0, 0, 0, .22);
-    color: #16181c;
-    background: transparent;
+    min-height: 0;
+    padding: .3rem 0;
+    border: 0;
+    border-radius: 0;
+    @include m.subrayado($grosor: 3px);
 
-    &:hover {
-      border-color: #16181c;
-      background: rgba(0, 0, 0, .04);
-    }
+    &:hover { color: v.$tinta; }
   }
 
-  width: 100%;
+  @include m.respond("chico") {
+    width: 100%;
+    justify-content: center;
+
+    &--linea { width: auto; }
+  }
+}
+
+// En pantallas chicas los botones se apilan y ocupan el ancho.
+@include m.respond("chico") {
+  .ctas {
+    flex-direction: column;
+    align-items: stretch;
+
+    li:has(.cta--linea) { align-self: flex-start; }
+  }
+}
+
+// --- En el pie: tinta de fondo, así que todo se invierte --------
+.ctas--pie {
+  .cta { border-color: v.$papel; }
+
+  .cta--a {
+    border-color: v.$naranja;
+    &:hover { background: v.$papel; border-color: v.$papel; color: v.$tinta; }
+  }
+
+  .cta--oscuro {
+    background: transparent;
+    color: v.$papel;
+    &:hover { background: v.$papel; color: v.$tinta; }
+  }
+
+  .cta--linea {
+    border: 0;
+    color: v.$papel;
+    text-decoration-color: v.$papel;
+    &:hover { color: v.$papel; text-decoration-color: v.$naranja; }
+  }
 }

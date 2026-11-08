@@ -1,55 +1,58 @@
+// ============================================================
+//  PIE — el único bloque a tinta plena: la página se cierra con
+//  la pregunta y las mismas acciones del principio.
+//  Se acota a body > footer: un <footer> suelto (el del ticket)
+//  no debe heredar nada de acá.
+// ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
 
-// Se acota a body > footer a propósito: el ticket del presupuesto
-// también tiene su propio <footer>, y un selector de elemento suelto
-// le pisaba el fondo y la tipografía.
 body > footer {
-  @include m.centrado();
-  padding-block: clamp(2.6rem, 6vw, 4rem) clamp(1.8rem, 4vw, 2.6rem);
-  border-top: 1px solid v.$linea;
-  background: rgba(0, 0, 0, .4);
-}
+  --foco: #{v.$papel};
+  --regla: #{v.$regla-claro};
 
-// --- Cierre: las mismas acciones del hero, al final del recorrido ---
-.pie__cta {
-  margin-bottom: clamp(2rem, 4vw, 2.8rem);
+  color: v.$papel;
+  background: v.$tinta;
 
-  h2 { margin: 0 0 1.1rem; }
-}
+  ::selection { background: v.$naranja; color: v.$tinta; }
 
-// --- Fila legal: copyright y canales -------------------------------
-.pie__legal {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: clamp(1.4rem, 3vw, 2rem);
-  border-top: 1px solid v.$linea;
+  p { color: rgba(v.$papel, .72); }
 
-  p {
-    @include m.mono(.66rem, .12em);
-    margin: 0;
+  .pie__cta {
+    @include m.centrado();
+    padding-block: clamp(3.5rem, 8vw, 6rem) clamp(2.5rem, 5vw, 4rem);
+
+    h2 {
+      max-width: 14ch;
+      margin-bottom: 2rem;
+      font-size: clamp(2.7rem, 7.4vw, 6rem);
+      color: v.$papel;
+    }
   }
 
-  nav ul {
+  .pie__legal {
+    @include m.centrado();
     display: flex;
-    gap: 1.4rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .8rem 2rem;
+    padding-block: 1.4rem 1.8rem;
+    border-top: 1px solid v.$regla-claro;
+    font-size: .9rem;
 
-  nav a {
-    @include m.mono(.66rem, .12em, v.$tx-2);
-    transition: color .25s v.$ease;
+    p { margin: 0; max-width: none; }
 
-    &:hover { color: v.$naranja; }
-  }
+    ul {
+      @extend %lista-limpia;
+      display: flex;
+      gap: 1.6rem;
+    }
 
-  @include m.respond("chico") {
-    flex-direction: column;
-    align-items: flex-start;
+    a {
+      @include m.subrayado($grosor: 1px);
+      color: v.$papel;
+    }
   }
 }

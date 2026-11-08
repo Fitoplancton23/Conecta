@@ -1,148 +1,64 @@
-// Layout y TRAZO DE CONEXIÓN: la línea que une los dos polos.
+// ============================================================
+//  LAYOUT — cada sección es un bloque con su propio ancho y su
+//  propia línea de apertura. No hay grilla de tarjetas: el
+//  orden lo dan las reglas finas y el desequilibrio de columnas.
+// ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
 
-main {
-  position: relative;
-  width: min(100% - 3rem, v.$ancho);
-  margin-inline: auto;
-  padding-block: clamp(2.5rem, 6vw, 5rem);
-}
-
-.trazo {
-  position: absolute;
-  left: -#{v.$trazo-x};
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  overflow: hidden;
-  background: v.$linea;
-
-  &__fill {
-    position: absolute;
-    inset: 0;
-    transform: scaleY(var(--p, 0));
-    transform-origin: top;
-    background: linear-gradient(180deg,
-      v.$naranja 0%, v.$naranja-alto 22%, v.$azul-alto 74%, v.$azul 100%);
-  }
-
-  @include m.respond("ancho") { display: none; }
-}
+main { display: block; }
 
 .seccion {
-  position: relative;
-  margin-bottom: clamp(3.5rem, 9vw, 7rem);
+  width: min(100% - 2 * var(--gutter), v.$ancho);
+  margin-inline: auto;
+  padding-block: clamp(3rem, 7vw, 6rem);
 
-  // El nodo que cada sección apoya sobre el trazo. Se centra sobre la
-  // línea, no se apoya al lado: su borde izquierdo va medio nodo a la
-  // izquierda del centro del trazo (3,5 px), menos el medio píxel que
-  // la propia línea ocupa. De ahí los 3 px.
-  &::before {
-    @include m.punto(v.$nodo, v.$negro);
-    position: absolute;
-    left: calc(-1 * #{v.$trazo-x} - 3px);
-    top: .55rem;
-    border: 1px solid var(--acento);
-
-    @include m.respond("ancho") { display: none; }
+  // La línea con la que abre cada bloque. Gruesa para marcar un
+  // cambio de tema, fina para separar partes del mismo.
+  &--regla {
+    border-top: 2px solid v.$tinta;
   }
 
-  &__head {
-    position: relative;
-    margin-bottom: 2.2rem;
+  // Cabecera de las páginas internas: título a la izquierda, bajada
+  // abajo a la derecha. Dos pesos distintos, nunca centrados.
+  &--intro {
+    @include m.doce();
+    align-items: end;
+    padding-top: clamp(3rem, 8vw, 7rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
 
-    &::after {
-      content: "";
+    h1 { @include m.columnas(1, 9); }
+
+    p {
+      @include m.columnas(9, 13);
+      margin: 0;
+      font-size: 1.125rem;
+    }
+
+    @include m.respond("medio") {
       display: block;
-      height: 1px;
-      margin-top: 1.3rem;
-      background: linear-gradient(90deg, var(--acento), transparent 70%);
-    }
 
-    h2 { max-width: 18ch; }
-  }
-
-  // el numeral gigante en contorno: textura y orden a la vez
-  &__num {
-    position: absolute;
-    right: -.02em;
-    top: -.42em;
-    font-family: v.$display;
-    font-weight: 800;
-    font-size: clamp(5rem, 15vw, 11rem);
-    line-height: 1;
-    letter-spacing: -.05em;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, .075);
-    pointer-events: none;
-    user-select: none;
-
-    @include m.respond("tablet") { font-size: 5.5rem; }
-  }
-
-  // el h1 de las páginas internas necesita aire antes del texto
-  > h1 { margin-bottom: 1.4rem; }
-
-  // secciones cuyo h2 es hijo directo
-  > h2 {
-    position: relative;
-    padding-bottom: 1.3rem;
-    margin-bottom: 1.5rem;
-
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 1px;
-      background: linear-gradient(90deg, var(--acento), transparent 70%);
-    }
-  }
-
-  // Listas de contenido: la viñeta es EL PUNTO de la marca.
-  // :not([class]) las acota a las listas sueltas de prosa. Las listas
-  // que son componentes (.fichas, .ctas, .proyectos) traen su propio
-  // layout y este selector se las pisaba por tener más especificidad.
-  > ul:not([class]) {
-    display: grid;
-    // minmax(0, 1fr) y no el 1fr implícito: por defecto un track de
-    // grilla crece hasta el min-content de su contenido, así que una
-    // palabra larga sin espacios (un mail) empujaba la lista más ancha
-    // que la pantalla. Con el mínimo en 0 el track no pasa del
-    // contenedor y el texto corta.
-    grid-template-columns: minmax(0, 1fr);
-    gap: .75rem;
-    margin: 0 0 1rem;
-    padding: 0;
-    list-style: none;
-
-    > li:not([class]) {
-      position: relative;
-      padding-left: 1.6rem;
-      color: v.$tx-2;
-
-      &::before {
-        @include m.punto();
-        position: absolute;
-        left: 0;
-        top: .62em;
-      }
+      p { margin-top: 1.6rem; }
     }
   }
 }
 
-figure {
-  margin: 1.6rem 0 0;
+// Listas sueltas de contenido: renglones con línea fina, sin viñeta.
+.renglones {
+  @extend %lista-limpia;
 
-  img {
-    border: 1px solid v.$linea;
-    border-radius: v.$radio-sm;
+  li {
+    @extend %renglon;
+    color: v.$tinta;
+    font-size: 1.125rem;
+    line-height: 1.45;
   }
+
+  li:last-child { border-bottom: 1px solid v.$regla; }
 }
 
-figcaption {
-  @include m.mono(.66rem, .14em);
-  margin-top: .7rem;
-}
+// El enlace de texto: se usa dentro de párrafos y al cierre de bloques.
+.enlace { @extend %enlace; }
+
+figure { margin: 0; }

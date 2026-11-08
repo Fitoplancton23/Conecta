@@ -1,32 +1,31 @@
 // ============================================================
 //  FICHA — cada servicio es una etiqueta de una sola línea que
-//  se prende y se apaga con un click. Nombre y precio, nada más:
-//  lo demás lo cuenta el texto de ayuda del grupo.
+//  se prende y se apaga con un click. Nombre y precio, nada más.
 //
 //  El control real es un checkbox oculto; la ficha es su label.
 //  Así el teclado y el lector de pantalla funcionan solos y el
 //  estado "elegida" sale de :checked, no de JavaScript.
+//  Apagada: contorno de tinta. Elegida: tinta llena.
 // ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
+@use "../abstracts/placeholders";
 
 .fichas {
+  @extend %lista-limpia;
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  gap: .55rem;
 
   li { display: block; margin: 0; }
 
   &__ayuda {
-    margin: 0 0 .75rem;
-    font-size: .78rem;
-    color: v.$tx-3;
+    margin: 0 0 1rem;
+    max-width: 52ch;
+    font-size: .95rem;
+    color: v.$tinta-2;
 
-    a { color: v.$tx-2; border-bottom: 1px solid rgba(255, 255, 255, .18); }
-    a:hover { color: v.$naranja; border-color: v.$naranja; }
+    a { @include m.subrayado($grosor: 1px); color: v.$tinta; font-weight: 600; }
   }
 
   &__accion { margin-top: 1.6rem; }
@@ -47,71 +46,60 @@
 .ficha {
   display: inline-flex;
   align-items: baseline;
-  gap: .55rem;
-  padding: .42rem .85rem .42rem 1.75rem;
+  gap: .7rem;
   position: relative;
-  border: 1px solid v.$linea;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, .022);
+  padding: .55rem 1rem .55rem 2.1rem;
+  border: 2px solid v.$tinta;
+  border-radius: v.$radio;
+  background: transparent;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  transition: border-color .18s v.$ease, background .18s v.$ease,
-              transform .18s v.$ease;
+  transition: background-color .15s v.$ease, color .15s v.$ease;
 
   // El punto de la marca: hueco cuando está apagada.
   &::before {
     content: "";
     position: absolute;
-    left: .72rem;
+    left: .85rem;
     top: 50%;
-    width: 7px;
-    height: 7px;
-    margin-top: -3.5px;
-    border: 1px solid v.$tx-3;
+    width: 10px;
+    height: 10px;
+    margin-top: -5px;
+    border: 2px solid v.$tinta;
     border-radius: 50%;
-    transition: background .18s v.$ease, border-color .18s v.$ease,
-                box-shadow .18s v.$ease;
+    transition: background-color .15s v.$ease, border-color .15s v.$ease;
   }
 
-  &:hover {
-    border-color: rgba(255, 255, 255, .26);
-    background: rgba(255, 255, 255, .05);
-  }
-
-  &:active { transform: scale(.97); }
+  &:hover { background: v.$papel-2; }
 
   &__nombre {
-    font-size: .8rem;
+    font-size: .95rem;
+    font-weight: 700;
     line-height: 1.2;
-    color: v.$tx-2;
   }
 
   &__precio {
-    @include m.mono(.6rem, .06em, v.$tx-3);
-    font-variant-numeric: tabular-nums;
+    font-size: .88rem;
+    font-weight: 500;
+    color: v.$tinta-2;
   }
 }
 
 // --- Elegida --------------------------------------------------
 .ficha__check:checked + .ficha {
-  border-color: rgba(255, 48, 0, .55);
-  background: rgba(255, 48, 0, .1);
+  background: v.$tinta;
+  color: v.$papel;
 
-  &::before {
-    border-color: v.$naranja;
-    background: v.$naranja;
-    box-shadow: 0 0 9px rgba(255, 48, 0, .9);
-  }
+  &::before { background: v.$naranja; border-color: v.$naranja; }
 
-  .ficha__nombre { color: #fff; }
-  .ficha__precio { color: v.$naranja-alto; }
+  .ficha__precio { color: rgba(v.$papel, .78); }
 }
 
 // --- Foco de teclado ------------------------------------------
 .ficha__check:focus-visible + .ficha {
-  outline: 2px solid v.$naranja;
-  outline-offset: 2px;
+  outline: 3px solid v.$naranja;
+  outline-offset: 3px;
 }
 
 // En pantallas chicas el nombre puede partirse: mejor eso que
@@ -120,48 +108,28 @@
   .ficha { white-space: normal; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ficha,
-  .ficha::before { transition: none; }
-  .ficha:active { transform: none; }
-}
-
 // --- Marca de descuento dentro de la ficha ---------------------
-// Solo la lleva la promo de tienda online: el precio ya es el final,
-// esto avisa que está rebajado sin ocupar otra línea.
 .ficha__off {
-  padding: .12rem .42rem;
-  border-radius: 999px;
-  background: rgba(255, 48, 0, .16);
-  border: 1px solid rgba(255, 48, 0, .45);
-  @include m.mono(.52rem, .1em, v.$naranja-alto);
-}
-
-.ficha__check:checked + .ficha .ficha__off {
+  padding: .05rem .4rem;
+  border-radius: 2px;
   background: v.$naranja;
-  border-color: v.$naranja;
-  color: #fff;
+  font-size: .75rem;
+  font-weight: 800;
+  color: v.$tinta;
 }
 
 // --- La salida para lo que no está en el catálogo --------------
 .fichas__aparte {
-  max-width: 46ch;
-  margin: 1.1rem 0 0;
-  font-size: .85rem;
-  line-height: 1.6;
-  color: v.$tx-3;
+  max-width: 50ch;
+  margin: 1.6rem 0 0;
+  font-size: 1rem;
+  color: v.$tinta-2;
 
-  a {
-    color: v.$tx;
-    border-bottom: 1px solid rgba(255, 48, 0, .55);
-    transition: color .25s v.$ease, border-color .25s v.$ease;
-
-    &:hover { color: v.$naranja-alto; border-color: v.$naranja-alto; }
-  }
+  a { @extend %enlace; color: v.$tinta; }
 }
 
 // "desde" antes del precio: el valor es un mínimo, no el final.
 .ficha__precio em {
   font-style: normal;
-  opacity: .7;
+  opacity: .8;
 }

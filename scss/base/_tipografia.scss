@@ -1,19 +1,30 @@
-// Contraste extremo: o es enorme, o es micro-metadata.
+// ============================================================
+//  TIPOGRAFÍA — contraste de escala: o es enorme, o es texto.
+//  Techo de 6rem para el título; el interletrado nunca baja de
+//  -0.04em. El texto corrido se corta a ~62 caracteres.
+// ============================================================
 @use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
 
 h1, h2, h3 {
   margin: 0;
   font-family: v.$display;
-  line-height: 1.03;
+  font-weight: 800;
+  line-height: 1;
   letter-spacing: -.035em;
+  text-wrap: balance;
 }
 
-h1 { font-size: clamp(2.4rem, 5.4vw, 4.15rem); font-weight: 800; }
-h2 { font-size: clamp(2rem, 5vw, 3.4rem);      font-weight: 800; }
-h3 { font-size: 1.35rem; font-weight: 600; letter-spacing: -.02em; }
+h1 { font-size: clamp(2.7rem, 7.4vw, 6rem); line-height: .96; }
+h2 { font-size: clamp(2rem, 4.6vw, 3.6rem); }
+h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); letter-spacing: -.03em; }
 
 p {
   margin: 0 0 1rem;
-  max-width: 64ch;
-  color: v.$tx-2;
+  max-width: 62ch;
+  color: v.$tinta-2;
+  text-wrap: pretty;
 }
+
+// Números en columna: los precios se alinean al sumar.
+b, strong { font-weight: 700; }

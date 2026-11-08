@@ -1,45 +1,76 @@
+// ============================================================
+//  FORMULARIOS — campos con borde de tinta, sin cajas dentro de
+//  cajas. En el presupuesto, cada grupo es un renglón: el título
+//  a la izquierda y las fichas a la derecha.
+// ============================================================
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
-form { margin-top: 1.2rem; }
+form { margin-top: 0; }
 
 fieldset {
-  margin: 0 0 1rem;
-  padding: 1rem 1.2rem 1.2rem;
-  border: 1px solid v.$linea;
-  border-radius: v.$radio-sm;
-  background: rgba(255, 255, 255, .018);
+  display: flow-root;
+  margin: 0;
+  padding: 1.6rem 0 1.8rem;
+  border: 0;
+  border-top: 1px solid v.$regla;
+  min-width: 0;
 
-  // Las listas de adentro las maneja cada componente: hoy el único
-  // fieldset con lista es el catálogo del presupuesto, y lo resuelve
-  // .fichas. Dejar acá un layout de grilla solo le peleaba.
+  &:last-of-type { border-bottom: 1px solid v.$regla; }
 }
 
+// El título del grupo flota a la izquierda; el contenido fluye a
+// su lado. Es el único modo de que un <legend> ocupe una columna.
 legend {
-  padding: 0 .5rem;
-  @include m.mono(.66rem, .18em, var(--acento));
+  float: left;
+  width: clamp(9rem, 24%, 14rem);
+  margin: 0;
+  padding: 0 1.5rem 0 0;
+  font-family: v.$display;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.15;
+  color: v.$tinta;
+
+  @include m.respond("tablet") {
+    float: none;
+    width: auto;
+    margin-bottom: .9rem;
+
+    & ~ :not([hidden]) { margin-left: 0 !important; }
+  }
 }
+
+// Bootstrap hace `legend + * { clear: left }`: sin esto el contenido
+// de cada grupo baja debajo del título en vez de quedar a su lado.
+legend + * { clear: none; }
+
+// Todo lo que acompaña al título arranca en la misma columna, tenga
+// o no más alto que él: con margen y no con el flujo del float, así
+// las fichas de un grupo con ayuda no se corren a la izquierda.
+// (:not([hidden]) sube la especificidad para ganarle al margin de .fichas)
+fieldset > :not(legend):not([hidden]) { margin-left: clamp(9rem, 24%, 14rem); }
 
 label {
-  font-size: .9rem;
-  color: v.$tx-2;
+  font-size: .95rem;
+  font-weight: 600;
+  color: v.$tinta;
 }
 
 input,
 textarea,
 select {
-  padding: .55rem .7rem;
+  padding: .75rem .9rem;
   font: inherit;
-  color: v.$tx;
-  border: 1px solid v.$linea;
-  border-radius: 6px;
-  background: #0c0c0c;
-  transition: border-color .25s v.$ease;
+  color: v.$tinta;
+  border: 2px solid v.$tinta;
+  border-radius: v.$radio;
+  background: v.$blanco;
 
   &:focus {
-    outline: 2px solid var(--acento);
-    outline-offset: 1px;
-    border-color: transparent;
+    outline: 3px solid v.$naranja;
+    outline-offset: 2px;
   }
 }
 
@@ -54,15 +85,16 @@ form p > label { display: block; margin-bottom: .4rem; }
 // Acotado al botón de envío: si no, pisa el hamburguesa de la navbar,
 // que también es un <button>.
 button[type="submit"] {
-  padding: .9rem 1.6rem;
-  border: 0;
-  border-radius: 8px;
+  min-height: 3.1rem;
+  padding: .8rem 1.8rem;
+  border: 2px solid v.$tinta;
+  border-radius: v.$radio;
   cursor: pointer;
-  color: #fff;
-  background: linear-gradient(180deg, v.$naranja-alto, v.$naranja);
-  @include m.mono(.7rem, .16em, #fff);
-  transition: filter .25s v.$ease, transform .25s v.$ease;
+  font: inherit;
+  font-weight: 700;
+  color: v.$tinta;
+  background: v.$naranja;
+  transition: background-color .2s v.$ease, color .2s v.$ease;
 
-  &:hover { filter: brightness(1.1); transform: translateY(-2px); }
-  &:active { transform: none; }
+  &:hover { background: v.$tinta; color: v.$papel; }
 }
