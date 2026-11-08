@@ -48,12 +48,12 @@ Sobre la estructura limpia de "Papel y tinta" hay un acento analógico, usado
 con criterio y no como sistema: pocas piezas con borde irregular, cada una con
 su propio corte.
 
-- **Recortado a tijera** (`clip-path` con siluetas asimétricas): el disco
-  naranja del hero, la tira detrás de "dupla", el botón de WhatsApp, los
-  stickers ("40% off", "El más popular", "En desarrollo") y una captura con cinta.
+- **Dónde aparece**: solo en la banda "Publicá tu tienda online" de la portada
+  y en "Sitios que ya están online". El resto del sitio no lleva papel.
+- **Recortado a tijera** (`clip-path` con siluetas asimétricas): el sticker
+  "40% off", el sticker "En desarrollo" y la captura de Silveris con cinta.
 - **Rasgado** (máscaras SVG en `assets/papel/`, con el núcleo blanco de la hoja
-  asomando): la banda de la oferta, la captura de Hugo Dellana y el papel
-  debajo de la moto.
+  asomando): la banda de la oferta y la captura de Hugo Dellana.
 - **Textura**: un grano de papel muy sutil, solo sobre las piezas de papel.
 - **Profundidad**: sombras suaves con desplazamiento (`filter: drop-shadow` en
   el contenedor, porque `clip-path` recorta cualquier `box-shadow`).

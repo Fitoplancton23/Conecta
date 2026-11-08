@@ -482,7 +482,7 @@ body > footer .pie__legal a {
 }
 .hero h1 em {
   font-style: normal;
-  color: #121312;
+  color: #ff3000;
 }
 .hero__cuerpo {
   grid-column: 1/8;
@@ -517,7 +517,6 @@ body > footer .pie__legal a {
   aspect-ratio: 1;
   border-radius: 50%;
   background: #ff3000;
-  transform: rotate(-5deg);
   transform-origin: 50% 70%;
   animation: punto-crece 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -554,11 +553,11 @@ body > footer .pie__legal a {
 
 @keyframes punto-crece {
   from {
-    transform: scale(0.35) rotate(-24deg);
+    transform: scale(0.35);
     opacity: 0;
   }
   to {
-    transform: rotate(-5deg);
+    transform: none;
     opacity: 1;
   }
 }
@@ -1637,56 +1636,6 @@ button[type=submit]:hover {
     mask: none;
   }
 }
-.hero__foto {
-  filter: drop-shadow(0 8px 12px rgba(18, 19, 18, 0.3));
-}
-.hero__foto::before {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"), #ff3000;
-  clip-path: polygon(99.8% 49.3%, 99.3% 57.7%, 97.4% 64.1%, 93.5% 68%, 92.5% 75.1%, 88.8% 81.3%, 82.2% 86.7%, 78.1% 91%, 69.8% 94.5%, 63.6% 97.5%, 55.2% 99.7%, 48.6% 99.6%, 44.3% 99.5%, 37% 97.1%, 31.6% 93.2%, 22.8% 91.3%, 17.2% 87.6%, 13.6% 83.9%, 8.1% 76.1%, 5.6% 71.1%, 2.5% 64.1%, 1.3% 55.8%, 0.8% 51%, 1.7% 43%, 2.7% 35.2%, 7.5% 28.6%, 8.7% 23.8%, 11.8% 18.8%, 16.5% 14.1%, 24.3% 8.1%, 30.8% 4.3%, 36.9% 2.6%, 43.3% 1.1%, 51.3% 1.3%, 56.9% 1.4%, 62.1% 2.5%, 69.8% 8%, 77.9% 9%, 81.8% 12.6%, 86% 16.3%, 91.2% 22%, 93.8% 28.1%, 97.2% 34.6%, 98.2% 42.6%);
-}
-
-.hero h1 em {
-  position: relative;
-  display: inline-block;
-  filter: drop-shadow(0 2px 2px rgba(18, 19, 18, 0.2));
-}
-.hero h1 em::before {
-  content: "";
-  position: absolute;
-  inset: 0.09em -0.14em 0em -0.14em;
-  z-index: -1;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"), #ff3000;
-  clip-path: polygon(0% 16%, 14% 8%, 30% 13%, 52% 5%, 74% 12%, 90% 4%, 100% 10%, 98.4% 48%, 100% 88%, 84% 95%, 63% 89%, 41% 97%, 20% 91%, 3% 98%, 1.4% 58%);
-  transform: rotate(-1.6deg);
-}
-
-.ctas__recorte {
-  filter: drop-shadow(0 3px 5px rgba(18, 19, 18, 0.26));
-  transform: rotate(-1.2deg);
-  transition: filter 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.ctas__recorte:hover {
-  filter: drop-shadow(0 8px 12px rgba(18, 19, 18, 0.3));
-  transform: rotate(0deg) translateY(-2px);
-}
-.ctas__recorte .cta--a {
-  min-height: 3.4rem;
-  padding: 1rem 1.9rem;
-  border: 0;
-  border-radius: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"), #ff3000;
-  clip-path: polygon(1.2% 9%, 14% 4%, 33% 7%, 58% 2.5%, 80% 6%, 98.4% 0.5%, 99.6% 34%, 98% 58%, 100% 86%, 96.8% 100%, 72% 95%, 48% 99%, 24% 94.5%, 0.6% 99%, 2.2% 66%, 0.2% 38%);
-}
-.ctas__recorte .cta--a:hover {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"), #121312;
-  color: #eeefed;
-}
-
-.ctas--pie .ctas__recorte .cta--a:hover {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"), #eeefed;
-  color: #121312;
-}
-
 .sticker {
   display: inline-block;
   filter: drop-shadow(0 3px 5px rgba(18, 19, 18, 0.26));
@@ -1769,16 +1718,6 @@ button[type=submit]:hover {
   }
 }
 
-.promo .sticker--esquina {
-  top: -1.1rem;
-  right: clamp(1.2rem, 5vw, 3.5rem);
-  --giro: 5deg;
-}
-
-.promo {
-  position: relative;
-}
-
 .proyecto__shot--rasgado,
 .proyecto__shot--recorte,
 .proyecto__shot--sticker {
@@ -1833,48 +1772,6 @@ button[type=submit]:hover {
   left: 1rem;
   bottom: -0.9rem;
   --giro: -4deg;
-}
-
-.cierre {
-  position: relative;
-}
-.cierre__papel {
-  position: relative;
-  isolation: isolate;
-}
-.cierre__papel::before, .cierre__papel::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-.cierre__papel::before {
-  top: -9px;
-  bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"), #fdfdfc;
-  -webkit-mask: url("../assets/papel/rasgado-sup-b.svg") 0 0/1200px 40px repeat-x, linear-gradient(#000 0 0) 0 40px/100% calc(100% - 39px) no-repeat;
-  mask: url("../assets/papel/rasgado-sup-b.svg") 0 0/1200px 40px repeat-x, linear-gradient(#000 0 0) 0 40px/100% calc(100% - 39px) no-repeat;
-}
-.cierre__papel::after {
-  top: 0;
-  bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"), #ff3000;
-  -webkit-mask: url("../assets/papel/rasgado-sup-a.svg") 0 0/1200px 40px repeat-x, linear-gradient(#000 0 0) 0 40px/100% calc(100% - 39px) no-repeat;
-  mask: url("../assets/papel/rasgado-sup-a.svg") 0 0/1200px 40px repeat-x, linear-gradient(#000 0 0) 0 40px/100% calc(100% - 39px) no-repeat;
-}
-.cierre__papel {
-  position: absolute;
-  left: 38%;
-  right: 0;
-  bottom: 0;
-  height: 30%;
-  filter: drop-shadow(0 3px 5px rgba(18, 19, 18, 0.26));
-}
-.cierre img {
-  position: relative;
-  z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
