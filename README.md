@@ -40,7 +40,29 @@ y como subrayado del enlace activo. Todo lo demás es tipografía y líneas fina
    repo, contraste AA, foco visible, `prefers-reduced-motion`.
 
 El rediseño se revisó con [Impeccable](https://impeccable.style)
-(`npx impeccable detect`), que no reporta anti-patrones sobre las cinco páginas.
+(`npx impeccable detect`), que solo marca los recortes irregulares, a propósito: son el acento pedido.
+
+### Acento: mixed media y papel recortado a mano
+
+Sobre la estructura limpia de "Papel y tinta" hay un acento analógico, usado
+con criterio y no como sistema: pocas piezas con borde irregular, cada una con
+su propio corte.
+
+- **Recortado a tijera** (`clip-path` con siluetas asimétricas): el disco
+  naranja del hero, la tira detrás de "dupla", el botón de WhatsApp, los
+  stickers ("40% off", "El más popular", "En desarrollo") y una captura con cinta.
+- **Rasgado** (máscaras SVG en `assets/papel/`, con el núcleo blanco de la hoja
+  asomando): la banda de la oferta, la captura de Hugo Dellana y el papel
+  debajo de la moto.
+- **Textura**: un grano de papel muy sutil, solo sobre las piezas de papel.
+- **Profundidad**: sombras suaves con desplazamiento (`filter: drop-shadow` en
+  el contenedor, porque `clip-path` recorta cualquier `box-shadow`).
+- **Se mantiene limpio y geométrico**: navegación, grillas, planes, formularios,
+  calculadora y bloques de lectura.
+
+Todo vive en `scss/components/_papel.scss`, con los recortes y el grano en
+`_variables.scss` y los mixins `recorte` y `papel-rasgado` en `_mixins.scss`.
+Las piezas decorativas son `aria-hidden` y el texto real sigue en el DOM.
 
 ---
 
@@ -79,7 +101,7 @@ servicio externo esté disponible.
 │   ├── layout/             → _main, _footer
 │   ├── components/         → _navbar, _cta, _hero, _servicio, _proyecto,
 │   │                          _cierre, _plan, _form, _ficha, _impresora,
-│   │                          _ticket, _motion
+│   │                          _ticket, _papel, _motion
 │   └── pages/              → _paginas
 ├── styles/
 │   └── main.css            → CSS compilado
@@ -89,6 +111,7 @@ servicio externo esté disponible.
 └── assets/
     ├── fonts/              → Bricolage Grotesque y Schibsted Grotesk
     ├── img/                → imágenes y logotipo (blanco y tinta)
+    ├── papel/              → bordes rasgados (máscaras SVG)
     └── vendor/             → Bootstrap y AOS
 ```
 

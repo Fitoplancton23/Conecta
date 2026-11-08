@@ -24,7 +24,7 @@
 
     em {
       font-style: normal;
-      color: v.$naranja;
+      color: v.$tinta;
     }
   }
 
@@ -66,6 +66,7 @@
       aspect-ratio: 1;
       border-radius: 50%;
       background: v.$naranja;
+      transform: rotate(-5deg);
       transform-origin: 50% 70%;
       animation: punto-crece 1s v.$ease both;
     }
@@ -105,8 +106,8 @@
 }
 
 @keyframes punto-crece {
-  from { transform: scale(.35); opacity: 0; }
-  to   { transform: none; opacity: 1; }
+  from { transform: scale(.35) rotate(-24deg); opacity: 0; }
+  to   { transform: rotate(-5deg); opacity: 1; }
 }
 
 @keyframes dupla-sube {

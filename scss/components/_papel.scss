@@ -1,0 +1,218 @@
+// ============================================================
+//  PAPEL — el acento de mixed media / papel recortado a mano.
+//
+//  Es un ACENTO, no un sistema: aparece en pocas piezas elegidas
+//  y todo lo demás (navegación, formularios, planes, el ticket,
+//  las filas de contenido) queda limpio y geométrico. El contraste
+//  entre lo recortado y lo preciso es el recurso.
+//
+//  Dónde hay papel, y de qué clase:
+//    · recortado a tijera .. el disco del hero, la tira bajo
+//                            "dupla", el botón de WhatsApp, los
+//                            stickers y una captura con cinta
+//    · rasgado ............. la banda de la oferta, una captura
+//                            y el papel debajo de la moto
+//  Cada pieza lleva su propio corte: ninguna se repite igual.
+//
+//  Las sombras van en el PADRE (filter: drop-shadow) porque el
+//  clip-path de la pieza recortaría cualquier sombra propia.
+// ============================================================
+@use "sass:map";
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+// --- El disco del hero: papel naranja cortado con tijera ---------
+.hero__foto {
+  // la sombra cae sobre el papel y también sobre la dupla: profundidad
+  filter: v.$sombra-papel-alta;
+
+  &::before {
+    background: v.$grano, v.$naranja;
+    clip-path: map.get(v.$recortes, "disco");
+  }
+}
+
+// --- La palabra destacada: una tira de papel pegada detrás ---------
+.hero h1 em {
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(0 2px 2px rgba(v.$tinta, .2));
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: .09em -.14em .0em -.14em;
+    z-index: -1;
+    background: v.$grano, v.$naranja;
+    clip-path: map.get(v.$recortes, "tira");
+    transform: rotate(-1.6deg);
+  }
+}
+
+// --- El botón principal: papel recortado, una pieza por botón ------
+.ctas__recorte {
+  filter: v.$sombra-papel;
+  transform: rotate(-1.2deg);
+  transition: filter .25s v.$ease, transform .25s v.$ease;
+
+  &:hover {
+    filter: v.$sombra-papel-alta;
+    transform: rotate(0deg) translateY(-2px);
+  }
+
+  .cta--a {
+    min-height: 3.4rem;
+    padding: 1rem 1.9rem;
+    border: 0;
+    border-radius: 0;
+    @include m.recorte("boton");
+
+    &:hover { background: v.$grano, v.$tinta; color: v.$papel; }
+  }
+}
+
+.ctas--pie .ctas__recorte .cta--a:hover { background: v.$grano, v.$papel; color: v.$tinta; }
+
+// --- Sticker: una etiqueta troquelada, apoyada y un poco torcida --
+.sticker {
+  display: inline-block;
+  filter: v.$sombra-papel;
+  transform: rotate(var(--giro, -5deg));
+
+  &__papel {
+    display: block;
+    padding: .55rem 1.15rem .62rem;
+    font-family: v.$display;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    line-height: 1;
+    white-space: nowrap;
+    color: v.$tinta;
+    @include m.recorte("sticker-a", v.$blanco);
+  }
+
+  // otra silueta y otro color para que no sean todos iguales
+  &--naranja .sticker__papel {
+    @include m.recorte("sticker-b", v.$naranja);
+  }
+
+  &--chico {
+    vertical-align: middle;
+    margin-top: .45rem;
+
+    .sticker__papel { padding: .38rem .85rem .42rem; font-size: .95rem; }
+  }
+
+  // apoyado sobre la esquina de otra pieza, tapando un poco el borde
+  &--esquina {
+    position: absolute;
+    z-index: 3;
+  }
+}
+
+// --- La oferta: una banda rasgada de una hoja naranja --------------
+.oferta {
+  @include m.papel-rasgado("sup", v.$naranja, 40px, 10px);
+  background: transparent;
+  padding-top: clamp(4.5rem, 8vw, 6.5rem);
+
+  &__fila { position: relative; z-index: 1; }
+
+  // el sticker se apoya junto al título, lejos del precio
+  .sticker--esquina {
+    top: -.4rem;
+    left: min(44%, 33rem);
+    --giro: 6deg;
+
+    @include m.respond("medio") { left: auto; right: 0; top: -1.2rem; }
+  }
+}
+
+.promo .sticker--esquina {
+  top: -1.1rem;
+  right: clamp(1.2rem, 5vw, 3.5rem);
+  --giro: 5deg;
+}
+
+.promo { position: relative; }
+
+// --- Proyectos: una captura rasgada y otra recortada con cinta ------
+.proyecto__shot--rasgado,
+.proyecto__shot--recorte,
+.proyecto__shot--sticker { position: relative; }
+
+.proyecto__shot--rasgado {
+  margin-bottom: 11px;
+  filter: v.$sombra-papel;
+
+  img {
+    position: relative;
+    z-index: 1;
+    border: 0;
+    border-radius: 0;
+    -webkit-mask: map.get(v.$rasgados, "inf-a") 0 100% / 1200px 40px repeat-x,
+                  linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 39px) no-repeat;
+            mask: map.get(v.$rasgados, "inf-a") 0 100% / 1200px 40px repeat-x,
+                  linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 39px) no-repeat;
+  }
+
+  // el núcleo blanco de la hoja, asomando por debajo del corte
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 -11px 0;
+    z-index: 0;
+    background: v.$grano, v.$blanco;
+    -webkit-mask: map.get(v.$rasgados, "inf-b") 0 100% / 1200px 40px repeat-x,
+                  linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 39px) no-repeat;
+            mask: map.get(v.$rasgados, "inf-b") 0 100% / 1200px 40px repeat-x,
+                  linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 39px) no-repeat;
+  }
+}
+
+.proyecto__shot--recorte {
+  filter: v.$sombra-papel;
+  transform: rotate(-.8deg);
+
+  img {
+    border: 0;
+    border-radius: 0;
+    clip-path: map.get(v.$recortes, "foto");
+  }
+
+  // la cinta que la sostiene
+  &::after {
+    content: "";
+    position: absolute;
+    top: -.85rem;
+    left: 46%;
+    z-index: 2;
+    width: 7.6rem;
+    height: 1.9rem;
+    background: v.$grano, rgba(255, 48, 0, .86);
+    clip-path: map.get(v.$recortes, "cinta");
+    transform: rotate(-4deg);
+  }
+}
+
+.proyecto__shot--sticker {
+  .sticker--esquina { left: 1rem; bottom: -.9rem; --giro: -4deg; }
+}
+
+// --- El papel debajo de la moto: ruta rasgada de una hoja naranja ---
+.cierre {
+  position: relative;
+
+  &__papel {
+    @include m.papel-rasgado("sup", v.$naranja, 40px, 9px);
+    position: absolute;
+    left: 38%;
+    right: 0;
+    bottom: 0;
+    height: 30%;
+    filter: v.$sombra-papel;
+  }
+
+  img { position: relative; z-index: 1; }
+}

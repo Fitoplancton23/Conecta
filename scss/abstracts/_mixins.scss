@@ -64,3 +64,58 @@
 
   &:hover { text-decoration-color: $hover; }
 }
+
+// 7. Papel recortado a mano: silueta irregular + grano de papel.
+//    $silueta es una clave de $recortes. Para que la sombra se vea,
+//    la pieza se envuelve en un padre con filter: drop-shadow (el
+//    clip-path recorta cualquier box-shadow propio).
+@mixin recorte($silueta, $color: v.$naranja) {
+  background: v.$grano, $color;
+  clip-path: map.get(v.$recortes, $silueta);
+}
+
+// 8. Borde rasgado de una pieza. El papel de color se rasga y deja ver
+//    el núcleo blanco de la hoja, apenas más afuera y con otro corte:
+//    así se lee como papel de verdad y no como un filtro.
+//    $lado: "sup" (el borde rasgado es el de arriba) o "inf".
+//    La pieza necesita position + isolation; su contenido, z-index: 1.
+@mixin papel-rasgado($lado: "sup", $color: v.$naranja, $alto: 40px, $nucleo: 9px) {
+  $a: map.get(v.$rasgados, "#{$lado}-a");
+  $b: map.get(v.$rasgados, "#{$lado}-b");
+  $resto: 0 0;
+  $tira: 0 100%;
+  @if $lado == "sup" {
+    $resto: 0 $alto;
+    $tira: 0 0;
+  }
+
+  position: relative;
+  isolation: isolate;
+
+  // núcleo blanco, más afuera
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  &::before {
+    @if $lado == "sup" { top: -#{$nucleo}; bottom: 0; } @else { top: 0; bottom: -#{$nucleo}; }
+    background: v.$grano, v.$blanco;
+    -webkit-mask: $b $tira / 1200px $alto repeat-x, linear-gradient(#000 0 0) $resto / 100% calc(100% - #{$alto - 1}) no-repeat;
+            mask: $b $tira / 1200px $alto repeat-x, linear-gradient(#000 0 0) $resto / 100% calc(100% - #{$alto - 1}) no-repeat;
+  }
+
+  // la hoja de color
+  &::after {
+    top: 0;
+    bottom: 0;
+    background: v.$grano, $color;
+    -webkit-mask: $a $tira / 1200px $alto repeat-x, linear-gradient(#000 0 0) $resto / 100% calc(100% - #{$alto - 1}) no-repeat;
+            mask: $a $tira / 1200px $alto repeat-x, linear-gradient(#000 0 0) $resto / 100% calc(100% - #{$alto - 1}) no-repeat;
+  }
+}
